@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: Monsieur_Canard <Monsieur_Canard@studen    +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/25 16:19:35 by Monsieur_Ca      ###   ########.fr       */
+/*   Updated: 2024/04/25 16:58:03 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,17 @@
 # define ERROR_MLX_INIT "Error while init_mlx"
 # define ERROR_INIT_WINDOWS "Error while init windows"
 
+# define ESCAPE 65307
+# define SPACE 32
+# define LEFT 65361
+# define RIGHT 65363
+# define UP 65364
+# define DOWN 65362
+# define PLUS 65451
+# define MINUS 65453
+# define ENTER 65293
+# define QUIT 17
+
 //MAIN
 typedef struct s_map
 {
@@ -58,6 +69,13 @@ typedef struct s_data
 	t_img	img;
 	t_map	map_data;
 }				t_data;
+
+//////////////////////////////////////////
+/////////// INITIALISATION ///////////////
+//////////////////////////////////////////
+
+void		init_mlx(t_data *data);
+void		init_image(t_data *data);
 
 
 t_map		open_files(char *map_name);

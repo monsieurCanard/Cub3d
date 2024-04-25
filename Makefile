@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: Monsieur_Canard <Monsieur_Canard@studen    +#+  +:+       +#+         #
+#    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/04/25 15:50:34 by Monsieur_Ca      ###   ########.fr        #
+#    Updated: 2024/04/25 17:09:35 by antgabri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,8 +50,20 @@ SRC_PARSER_DIR		=	parser/
 SRC_PARSER_LIST		=	open_files.c 
 SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
+SRC_COMPONENTS_DIR	=	components/
+
+SRC_COMPONENTS_LIST	=	free.c
+SRC_COMPONENTS		=	$(addprefix $(SRC_COMPONENTS_DIR), $(SRC_COMPONENTS_LIST))
+
+SRC_INIT_DATA_DIR	=	init_data/
+
+SRC_INIT_DATA_LIST	=	init_mlx.c
+SRC_INIT_DATA		=	$(addprefix $(SRC_INIT_DATA_DIR), $(SRC_INIT_DATA_LIST))
+
 SRC_LIST			=	main.c				\
-						$(SRC_PARSER)
+						$(SRC_PARSER)		\
+						$(SRC_COMPONENTS)	\
+						$(SRC_INIT_DATA)
 SRC					=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 
 ##################
