@@ -6,7 +6,7 @@
 #    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/04/25 17:09:35 by antgabri         ###   ########.fr        #
+#    Updated: 2024/04/25 17:36:51 by antgabri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@
 
 CC		=	cc
 CFLAGS	=	-Wall -Wextra -Werror -g3
-
+OPTION	=	-L $(MLX_DIR) -lmlx -lX11 -lXext -lm
 ################
 ##   LIBS	  ##
 ################
@@ -25,12 +25,16 @@ LIBFT		= $(LIBFT_DIR)libft.a
 LIBFT_DIR	= libs/libft/
 LIBFT_INC	= $(LIBFT_DIR)includes/
 
+MLX			= $(MLX_DIR)libmlx_Linux.a
+MLX_DIR		= minilibx-linux/
+MLX_INC		= $(MLX_DIR)
 #################
 ##   INCLUDE   ##
 #################
 
 INCLUDE_LIST	=	./includes/				\
-					./$(LIBFT_INC)
+					./$(LIBFT_INC)			\
+					./$(MLX_INC)
 INCLUDE			=	$(addprefix -I, $(INCLUDE_LIST))
 
 
@@ -129,27 +133,30 @@ endef
 ##    RULES    ##
 #################
 
-all: $(LIBFT) $(NAME)
+all: $(LIBFT) $(MLX) $(NAME)
 
 $(LIBFT):
 	@make -sC $(LIBFT_DIR)
 
+$(MLX):
+	@make -sC $(MLX_DIR)
+
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
-
 	@$(eval COMPILED_SRCS=$(shell expr $(COMPILED_SRCS) + 1))
 	@$(call print_progress,$(COMPILED_SRCS),$(TOTAL_SRCS), $<)
 
 
 $(NAME): $(call $(RQ_SRC)) $(OBJ_LIST)
 	@echo "\033[2K$(COLOR_ORANGE)$(BOLD)Compilation complete ! $(COLOR_BLUE)Cub3d is Ready !$(COLOR_RESET)"
-	@$(CC) $(CFLAGS) $^ $(INCLUDE) $(LIBFT)  -o $@
+	@$(CC) $(CFLAGS) $^ $(INCLUDE) $(OPTION) $(LIBFT) -o $@
 
 clean:
 	@echo "$(COLOR_RED)$(BOLD)Delete $(NAME) objects$(COLOR_RESET)"
 	@rm -rf $(OBJ_DIR) $(NORM_LOG)
 	@make clean -sC $(LIBFT_DIR)
+	@make clean -sC $(MLX_DIR)
 
 fclean: clean
 	@echo "$(COLOR_RED)$(BOLD)Delete Cub3d$(COLOR_RESET)"

@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:09:13 by Monsieur_Ca       #+#    #+#             */
-/*   Updated: 2024/04/25 16:53:36 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:34:46 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	init_image(t_data *data)
 {
-	data->img.img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, WEIGHT);
-	if (!data->img_ptr)
+	data->img.img_ptr = mlx_new_image(data->mlx_ptr, WIDTH, HEIGHT);
+	if (!data->img.img_ptr)
 	{
 		printf(ERROR_IMAGE);
 		mlx_destroy_window(data->mlx_ptr, data->win_ptr);
@@ -36,7 +36,7 @@ void	init_mlx(t_data *data)
 		printf(ERROR_MLX_INIT);
 		exit (EXIT_FAILURE);
 	}
-	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, WEIGHT, "cub3D");
+	data->win_ptr = mlx_new_window(data->mlx_ptr, WIDTH, HEIGHT, "cub3D");
 	if (!data->win_ptr)
 	{
 		printf(ERROR_INIT_WINDOWS);

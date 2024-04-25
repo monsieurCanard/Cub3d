@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/25 16:58:03 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/04/25 17:35:08 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 
 # define ERROR_MLX_INIT "Error while init_mlx"
 # define ERROR_INIT_WINDOWS "Error while init windows"
+# define ERROR_IMAGE "Error while init image"
 
 # define ESCAPE 65307
 # define SPACE 32
