@@ -50,7 +50,7 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-minishell
+cub3d
 norme_log
 .heredoc_*
 test.c
