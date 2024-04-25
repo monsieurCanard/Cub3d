@@ -1,35 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   core_data.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/25 16:23:26 by jbrousse         ###   ########.fr       */
+/*   Created: 2024/04/25 16:08:52 by jbrousse          #+#    #+#             */
+/*   Updated: 2024/04/25 18:11:44 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CORE_DATA_H
+# define CORE_DATA_H
 
-# include <math.h>
-# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
 # include <stdbool.h>
-# include <fcntl.h>
-# include <errno.h>
-# include "libft.h"
-//MAIN
 
-# include "core_data.h"
+# define FAILURE -1
+# define SUCCESS 0
 
-typedef struct s_data
+enum e_texture
 {
-	void	*mlx;
-	void	*win;
-	t_map	map_data;
-}				t_data;
+	NO,
+	SO,
+	WE,
+	EA
+};
 
-t_map		open_files(char *map_name);
+typedef struct s_argb
+{
+	unsigned char	a;
+	unsigned char	r;
+	unsigned char	g;
+	unsigned char	b;
+}	t_argb;
+
+typedef struct s_map
+{
+	char		*texture[5];
+	t_argb		*floor;
+	t_argb		*ceiling;
+	char		**map;
+}	t_map;
 
 #endif

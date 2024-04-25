@@ -1,35 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/25 16:23:26 by jbrousse         ###   ########.fr       */
+/*   Created: 2024/04/25 16:08:08 by jbrousse          #+#    #+#             */
+/*   Updated: 2024/04/25 18:18:55 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
-
-# include <math.h>
-# include <stdio.h>
-# include <stdbool.h>
-# include <fcntl.h>
-# include <errno.h>
-# include "libft.h"
-//MAIN
+#ifndef PARSER_H
+# define PARSER_H
 
 # include "core_data.h"
+# include "libft.h"
+# include <errno.h>
+# include <stdio.h>
 
-typedef struct s_data
-{
-	void	*mlx;
-	void	*win;
-	t_map	map_data;
-}				t_data;
+t_argb	*take_colors(const char *line);
 
-t_map		open_files(char *map_name);
+int		take_texture(t_map *map, const char *line);
+
+void	read_files(t_map *map, int fd_map);
+
+t_map	*get_map(const char *map_name);
 
 #endif
