@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
+#    By: Monsieur_Canard <Monsieur_Canard@studen    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/04/25 15:10:05 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/04/25 15:50:34 by Monsieur_Ca      ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ SRC_DIR				=	sources/
 
 SRC_PARSER_DIR		=	parser/
 
-SRC_PARSER_LIST		=	open_files.c
+SRC_PARSER_LIST		=	open_files.c 
 SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
 SRC_LIST			=	main.c				\
@@ -123,7 +123,7 @@ $(LIBFT):
 	@make -sC $(LIBFT_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
-	@mkdir -p $(OBJ_DIR)
+	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
 	@$(eval COMPILED_SRCS=$(shell expr $(COMPILED_SRCS) + 1))

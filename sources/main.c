@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anthony <anthony@student.42.fr>            +#+  +:+       +#+        */
+/*   By: Monsieur_Canard <Monsieur_Canard@studen    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/20 17:53:37 by anthony          ###   ########.fr       */
+/*   Updated: 2024/04/25 16:10:27 by Monsieur_Ca      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int main(int ac, char **av)
+int	main(int ac, char **av)
 {
 	t_data	data;
 
@@ -21,12 +21,13 @@ int main(int ac, char **av)
 		errno = EINVAL;
 		return (perror("Error:"), errno);
 	}
-	data.map_data = open_files(av[1]);
-	int i = 0;
-	while (data.map_data.map[i] != NULL)
-	{
-		printf("%s\n", data.map_data.map[i]);
-		i++;
-	}
+	init_mlx(&data);
+	// data.map_data = open_files(av[1]);
+	// int i = 0;
+	// while (data.map_data.map[i] != NULL)
+	// {
+	// 	printf("%s\n", data.map_data.map[i]);
+	// 	i++;
+	// }
 	return (0);
 }
