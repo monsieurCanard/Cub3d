@@ -52,6 +52,4 @@ Mkfile.old
 dkms.conf
 cub3d
 norme_log
-.heredoc_*
-test.c
 

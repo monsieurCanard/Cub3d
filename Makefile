@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anthony <anthony@student.42.fr>            +#+  +:+       +#+         #
+#    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/04/20 17:57:44 by anthony          ###   ########.fr        #
+#    Updated: 2024/04/25 15:10:05 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,16 +14,16 @@
 ##  COMPILE	  ##
 ################
 
-CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CC		=	cc
+CFLAGS	=	-Wall -Wextra -Werror -g3
 
 ################
 ##   LIBS	  ##
 ################
 
-LIBFT = $(LIBFT_DIR)libft.a
-LIBFT_DIR = libs/libft/
-LIBFT_INC = $(LIBFT_DIR)includes/
+LIBFT		= $(LIBFT_DIR)libft.a
+LIBFT_DIR	= libs/libft/
+LIBFT_INC	= $(LIBFT_DIR)includes/
 
 #################
 ##   INCLUDE   ##
@@ -58,7 +58,7 @@ SRC					=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 ##   OBJ/NAME   ##
 ##################
 
-NAME		=	Cub3d
+NAME		=	cub3D
 
 NORM_LOG	:=	norme_log
 
