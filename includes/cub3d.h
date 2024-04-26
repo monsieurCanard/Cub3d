@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/26 11:41:16 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:42:31 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,7 @@
 
 # include <math.h>
 # include <stdio.h>
-# include <stdlib.h>
 # include <stdbool.h>
-# include <unistd.h>
 # include <fcntl.h>
 # include <errno.h>
 # include <math.h>
@@ -53,28 +51,8 @@
 # define BLACK 0x000000
 
 //MAIN
-typedef struct s_map
-{
-	int			fd_map;
-	int			fd_texture[5];
-	char		**map;
-}	t_map;
 
-typedef struct s_img
-{
-	void	*img_ptr;
-	char	*pixel_ptr;
-	int		bpp;
-	int		color_offset;
-	int		size_line;
-	int		endian;
-}	t_img;
-
-typedef struct s_player
-{
-	double	x;
-	double	y;
-}	t_player;
+# include "core_data.h"
 
 typedef struct s_data
 {

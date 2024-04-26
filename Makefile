@@ -6,7 +6,7 @@
 #    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/04/26 11:24:11 by antgabri         ###   ########.fr        #
+#    Updated: 2024/04/26 15:41:37 by antgabri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,12 @@ SRC_DIR				=	sources/
 
 SRC_PARSER_DIR		=	parser/
 
-SRC_PARSER_LIST		=	open_files.c 
+SRC_PARSER_LIST		=	map/take_map.c		\
+						open_map.c			\
+						read_files_utils.c	\
+						read_files.c		\
+						split_color.c		\
+						take_data.c
 SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
 SRC_COMPONENTS_DIR	=	components/

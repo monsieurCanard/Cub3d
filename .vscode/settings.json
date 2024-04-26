@@ -1,5 +1,8 @@
 {
     "files.associations": {
         "cub3d.h": "c"
-    }
+    },
+	"files.associations": {
+		"parser.h": "c"
+	}
 }
