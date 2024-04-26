@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:09:13 by Monsieur_Ca       #+#    #+#             */
-/*   Updated: 2024/04/26 17:12:53 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:26:20 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	*init_engine(void)
 		exit (EXIT_FAILURE);
 	}
 	init_image(engine);
+	mlx_loop_end
 	__create_void(engine);
 	return (engine);
 }
