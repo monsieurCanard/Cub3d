@@ -1,28 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pixel_put.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/26 14:17:05 by antgabri         ###   ########.fr       */
+/*   Created: 2024/04/26 11:00:08 by antgabri          #+#    #+#             */
+/*   Updated: 2024/04/26 11:24:24 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int ac, char **av)
+void	my_pixel_put(t_img *img, int x, int y, int color)
 {
-	t_data	data;
+	int		offset;
 
-	(void)av;
-	if (ac != 2)
-	{
-		errno = EINVAL;
-		return (perror("Error:"), errno);
-	}
-	init_mlx(&data);
-	start_game(&data);
-	return (0);
+	offset = (y * img->size_line) + (x * (img->bpp / 8));
+	*(unsigned int *)(img->pixel_ptr + offset) = color;
 }

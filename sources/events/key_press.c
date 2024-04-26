@@ -1,28 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   key_press.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/26 14:17:05 by antgabri         ###   ########.fr       */
+/*   Created: 2024/04/26 10:39:01 by antgabri          #+#    #+#             */
+/*   Updated: 2024/04/26 14:17:24 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int ac, char **av)
+int	key_press(int keycode, t_data *data)
 {
-	t_data	data;
-
-	(void)av;
-	if (ac != 2)
+	if (keycode == ESCAPE)
 	{
-		errno = EINVAL;
-		return (perror("Error:"), errno);
+		close_window(data);
+		exit(0);
 	}
-	init_mlx(&data);
-	start_game(&data);
+	if (keycode == LEFT)
+	{
+		data->player.x -= 10;
+	}
+	if (keycode == RIGHT)
+	{
+		data->player.x += 10;
+	}
+	if (keycode == UP)
+	{
+		data->player.y += 10;
+	}
+	if (keycode == DOWN)
+	{
+		data->player.y -= 10;
+	}
+	create_game(data);
 	return (0);
 }
