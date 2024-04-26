@@ -6,43 +6,11 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:04:21 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/25 18:41:34 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/04/26 11:54:12 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-static char	**split_color(const char *line)
-{
-	int		i;
-	char	**colors;
-	char	*tmp;
-
-	colors = ft_split(line + 2, ',');
-	if (colors == NULL)
-		return (NULL);
-	if (ft_tablen((const char **)colors) != 3)
-	{
-		errno = EINVAL;
-		ft_rm_split(colors);
-		return (NULL);
-	}
-	i = 0;
-	while (colors[i] != NULL)
-	{
-		// TODO: check if is digit
-		tmp = ft_strtrim(colors[i], " \t\n\r\v\f");
-		if (tmp == NULL)
-		{
-			ft_rm_split(colors);
-			return (NULL);
-		}
-		free(colors[i]);
-		colors[i] = tmp;
-		i++;
-	}
-	return (colors);
-}
 
 static bool	verif_color_range(t_argb *color)
 {
@@ -55,7 +23,7 @@ static bool	verif_color_range(t_argb *color)
 	return (true);
 }
 
-t_argb	*take_colors(const char *line)
+t_argb	*hook_color(const char *line)
 {
 	t_argb	*color;
 	char	**colors;
@@ -82,6 +50,23 @@ t_argb	*take_colors(const char *line)
 	}
 	ft_rm_split(colors);
 	return (color);
+}
+
+int	take_colors(t_map *map, const char *line)
+{
+	if (ft_strncmp(line, "F ", 1) == 0)
+	{
+		map->floor = hook_color(line);
+		if (map->floor == NULL)
+			return (FAILURE);
+	}
+	if (ft_strncmp(line, "C ", 1) == 0)
+	{
+		map->ceiling = hook_color(line);
+		if (map->ceiling == NULL)
+			return (FAILURE);
+	}
+	return (SUCCESS);
 }
 
 static int	hook_texture(t_map *map, const char *line, int id)

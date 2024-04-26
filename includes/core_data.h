@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:08:52 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/25 18:11:44 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/04/26 14:30:40 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_map
 	char		*texture[5];
 	t_argb		*floor;
 	t_argb		*ceiling;
+	size_t		size_x;
+	size_t		size_z;
 	char		**map;
 }	t_map;
 
