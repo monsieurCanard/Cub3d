@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/26 15:42:55 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:51:34 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int	main(int ac, char **av)
 {
-	// t_data	data;
+	t_data	data;
 
 	(void)av;
 	if (ac != 2)
@@ -24,6 +24,8 @@ int	main(int ac, char **av)
 		return (perror("Error"), errno);
 	}
 	get_map(av[1]);
+	init_mlx(&data);
+	start_game(&data);
 	// int i = 0;
 	// while (data.map_data.map[i] != NULL)
 	// {

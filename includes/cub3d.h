@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/26 15:42:31 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/04/26 15:52:39 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,22 @@
 //MAIN
 
 # include "core_data.h"
+
+typedef struct s_img
+{
+	void	*img_ptr;
+	char	*pixel_ptr;
+	int		bpp;
+	int		color_offset;
+	int		size_line;
+	int		endian;
+}	t_img;
+
+typedef struct s_player
+{
+	float	x;
+	float	y;
+}				t_player;
 
 typedef struct s_data
 {

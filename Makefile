@@ -6,7 +6,7 @@
 #    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/04/26 15:41:37 by antgabri         ###   ########.fr        #
+#    Updated: 2024/04/26 15:48:33 by antgabri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ LIBFT_DIR	= libs/libft/
 LIBFT_INC	= $(LIBFT_DIR)includes/
 
 MLX			= $(MLX_DIR)libmlx_Linux.a
-MLX_DIR		= minilibx-linux/
+MLX_DIR		= libs/minilibx/
 MLX_INC		= $(MLX_DIR)
 #################
 ##   INCLUDE   ##
