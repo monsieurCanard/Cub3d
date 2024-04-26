@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
+#    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/04/26 15:48:33 by antgabri         ###   ########.fr        #
+#    Updated: 2024/04/26 17:10:02 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,9 +61,15 @@ SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
 SRC_COMPONENTS_DIR	=	components/
 
-SRC_COMPONENTS_LIST	=	free.c	\
-						pixel_put.c
+SRC_COMPONENTS_LIST	=	free.c	
 SRC_COMPONENTS		=	$(addprefix $(SRC_COMPONENTS_DIR), $(SRC_COMPONENTS_LIST))
+
+SRC_ENGINE_DIR		=	engine/
+
+SRC_ENGINE_LIST		=	engine_void.c	\
+						init_engine.c	\
+						pixel_put.c
+SRC_ENGINE			=	$(addprefix $(SRC_ENGINE_DIR), $(SRC_ENGINE_LIST))
 
 SRC_EVENTS_DIR		=	events/
 
@@ -72,20 +78,15 @@ SRC_EVENTS_LIST		=	key_press.c \
 SRC_EVENTS			=	$(addprefix $(SRC_EVENTS_DIR), $(SRC_EVENTS_LIST))
 
 
-SRC_INIT_DATA_DIR	=	init_data/
+# SRC_PLAYER_DIR		=	player/
 
-SRC_INIT_DATA_LIST	=	init_mlx.c
-SRC_INIT_DATA		=	$(addprefix $(SRC_INIT_DATA_DIR), $(SRC_INIT_DATA_LIST))
+# SRC_PLAYER_LIST		=	create_player.c
+# SRC_PLAYER			=	$(addprefix $(SRC_PLAYER_DIR), $(SRC_PLAYER_LIST))
 
-SRC_PLAYER_DIR		=	player/
+# SRC_GAME_DIR		=	game/
 
-SRC_PLAYER_LIST		=	create_player.c
-SRC_PLAYER			=	$(addprefix $(SRC_PLAYER_DIR), $(SRC_PLAYER_LIST))
-
-SRC_GAME_DIR		=	game/
-
-SRC_GAME_LIST		=	start_game.c
-SRC_GAME			=	$(addprefix $(SRC_GAME_DIR), $(SRC_GAME_LIST))
+# SRC_GAME_LIST		=	start_game.c
+# SRC_GAME			=	$(addprefix $(SRC_GAME_DIR), $(SRC_GAME_LIST))
 
 ##----------------------------------------------------------------------------------##
 SRC_LIST			=	main.c				\
@@ -93,8 +94,7 @@ SRC_LIST			=	main.c				\
 						$(SRC_COMPONENTS)	\
 						$(SRC_INIT_DATA)	\
 						$(SRC_EVENTS)		\
-						$(SRC_PLAYER)		\
-						$(SRC_GAME)
+						$(SRC_ENGINE)
 SRC					=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 
 ##################

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   close_window.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 10:39:56 by antgabri          #+#    #+#             */
-/*   Updated: 2024/04/26 14:18:10 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:08:02 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "engine.h"
 
-int	close_window(t_data *data)
+int	close_window(t_engine *engine)
 {
-	mlx_destroy_window(data->mlx_ptr, data->win_ptr);
-	mlx_destroy_image(data->mlx_ptr, data->img.img_ptr);
-	mlx_destroy_display(data->mlx_ptr);
-	free (data->mlx_ptr);
+	mlx_destroy_window(engine->mlx_ptr, engine->win_ptr);
+	mlx_destroy_image(engine->mlx_ptr, engine->e_void.img_ptr);
+	mlx_destroy_display(engine->mlx_ptr);
+	free (engine->mlx_ptr);
 	exit (EXIT_SUCCESS);
 }
