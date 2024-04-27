@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/04/26 17:10:02 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/04/26 22:13:02 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,6 +68,8 @@ SRC_ENGINE_DIR		=	engine/
 
 SRC_ENGINE_LIST		=	engine_void.c	\
 						init_engine.c	\
+						init_image.c	\
+						loop.c			\
 						pixel_put.c
 SRC_ENGINE			=	$(addprefix $(SRC_ENGINE_DIR), $(SRC_ENGINE_LIST))
 
@@ -77,6 +79,10 @@ SRC_EVENTS_LIST		=	key_press.c \
 						close_window.c
 SRC_EVENTS			=	$(addprefix $(SRC_EVENTS_DIR), $(SRC_EVENTS_LIST))
 
+
+SRC_DEBUG_DIR		=	debug/
+SRC_DEBUG_LIST		=	draw_2d_map.c
+SRC_DEBUG			=	$(addprefix $(SRC_DEBUG_DIR), $(SRC_DEBUG_LIST))
 
 # SRC_PLAYER_DIR		=	player/
 
@@ -94,6 +100,7 @@ SRC_LIST			=	main.c				\
 						$(SRC_COMPONENTS)	\
 						$(SRC_INIT_DATA)	\
 						$(SRC_EVENTS)		\
+						$(SRC_DEBUG)		\
 						$(SRC_ENGINE)
 SRC					=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 

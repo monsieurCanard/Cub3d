@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/26 17:06:56 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/04/26 22:10:56 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ typedef struct s_data
 {
 	void		*engine;
 	t_player	player;
-	t_map		map_data;
+	t_map		*map_data;
 }				t_data;
 
 
@@ -79,5 +79,7 @@ void		create_player(t_data *data);
 
 void		create_game(t_data *data);
 void		start_game(t_data *data);
+
+void	draw_2d_map(void *engine, t_map *map);
 
 #endif

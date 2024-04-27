@@ -6,27 +6,16 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:09:13 by Monsieur_Ca       #+#    #+#             */
-/*   Updated: 2024/04/26 17:26:20 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/04/26 22:11:34 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "engine.h"
 
-void	init_image(t_engine *engine)
+static void take_close_io(t_engine *engine)
 {
-	engine->e_void.img_ptr = mlx_new_image(engine->mlx_ptr, WIDTH, HEIGHT);
-	if (!engine->e_void.img_ptr)
-	{
-		printf(ERROR_IMAGE);
-		mlx_destroy_window(engine->mlx_ptr, engine->win_ptr);
-		mlx_destroy_display(engine->mlx_ptr);
-		free(engine->mlx_ptr);
-		exit (EXIT_FAILURE);
-	}
-	engine->e_void.pixel_ptr = mlx_get_data_addr(engine->e_void.img_ptr,
-			&engine->e_void.bpp, &engine->e_void.size_line,
-			&engine->e_void.endian);
-	engine->e_void.color_offset = 1;
+	mlx_hook(engine->win_ptr, 17, 1L << 17, close_window, engine);
+	mlx_hook(engine->win_ptr, 2, 1L << 0, key_press, engine);
 }
 
 void	*init_engine(void)
@@ -53,8 +42,7 @@ void	*init_engine(void)
 		free(engine->mlx_ptr);
 		exit (EXIT_FAILURE);
 	}
-	init_image(engine);
-	mlx_loop_end
 	__create_void(engine);
+	take_close_io(engine);
 	return (engine);
 }

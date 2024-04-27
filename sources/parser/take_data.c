@@ -6,22 +6,11 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:04:21 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/26 11:54:12 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/04/26 21:15:31 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
-
-static bool	verif_color_range(t_argb *color)
-{
-	if (color->r < 0 || color->r > 255)
-		return (false);
-	if (color->g < 0 || color->g > 255)
-		return (false);
-	if (color->b < 0 || color->b > 255)
-		return (false);
-	return (true);
-}
 
 t_argb	*hook_color(const char *line)
 {
@@ -41,13 +30,6 @@ t_argb	*hook_color(const char *line)
 	color->r = ft_atoi(colors[0]);
 	color->g = ft_atoi(colors[1]);
 	color->b = ft_atoi(colors[2]);
-	if (verif_color_range(color) == false)
-	{
-		errno = EINVAL;
-		free(color);
-		ft_rm_split(colors);
-		return (NULL);
-	}
 	ft_rm_split(colors);
 	return (color);
 }
