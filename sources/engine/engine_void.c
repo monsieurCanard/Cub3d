@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_game.c                                       :+:      :+:    :+:   */
+/*   engine_void.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 11:03:34 by antgabri          #+#    #+#             */
-/*   Updated: 2024/04/26 17:13:38 by jbrousse         ###   ########.fr       */
+/*   Created: 2024/04/26 16:24:14 by jbrousse          #+#    #+#             */
+/*   Updated: 2024/04/26 17:15:59 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "engine.h"
 
-void	create_game(t_data *data)
+void	__create_void(t_engine *engine)
 {
 	size_t	x;
 	size_t	y;
@@ -23,16 +23,15 @@ void	create_game(t_data *data)
 		x = 0;
 		while (x < WIDTH)
 		{
-			if (fabs(data->player.x - x) < 5 && fabs(data->player.y - y) < 5)
-				my_pixel_put(&data->img, x, y, RED);
-			else
-				my_pixel_put(&data->img, x, y, BLACK);
+			my_pixel_put(&engine->e_void, x, y, VOID_COLOR);
 			x++;
 		}
 		y++;
 	}
-	mlx_put_image_to_window(data->mlx_ptr, data->win_ptr,
-		data->img.img_ptr, 0, 0);
+	mlx_put_image_to_window(engine->mlx_ptr, engine->win_ptr,
+		engine->e_void.img_ptr, 0, 0);
+	mlx_hook(engine->win_ptr, 17, 1L << 17, close_window, engine);
+	mlx_hook(engine->win_ptr, 2, 1L << 0, key_press, engine);
+	mlx_loop(engine->mlx_ptr);
+	return ;
 }
-
-

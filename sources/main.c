@@ -3,15 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/26 15:51:34 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/04/26 17:03:45 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
+#include "engine.h"
 
 int	main(int ac, char **av)
 {
@@ -24,8 +25,7 @@ int	main(int ac, char **av)
 		return (perror("Error"), errno);
 	}
 	get_map(av[1]);
-	init_mlx(&data);
-	start_game(&data);
+	data.engine = init_engine();
 	// int i = 0;
 	// while (data.map_data.map[i] != NULL)
 	// {
