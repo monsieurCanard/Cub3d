@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/04/26 22:13:02 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/04/30 14:50:27 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,27 +14,31 @@
 ##  COMPILE	  ##
 ################
 
-CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -g3
-OPTION	=	-L $(MLX_DIR) -lmlx -lX11 -lXext -lm
+CC			=	cc
+CFLAGS		=	-Wall -Wextra -Werror -g3
+
 ################
 ##   LIBS	  ##
 ################
 
-LIBFT		= $(LIBFT_DIR)libft.a
-LIBFT_DIR	= libs/libft/
-LIBFT_INC	= $(LIBFT_DIR)includes/
+CORE_ENGINE		=	$(CORE_ENGINE_DIR)/core_engine.a
+CORE_ENGINE_DIR	=	Core-Engine/
+CORE_ENGINE_INC	=	$(CORE_ENGINE_DIR)inc/
 
-MLX			= $(MLX_DIR)libmlx_Linux.a
-MLX_DIR		= libs/minilibx/
-MLX_INC		= $(MLX_DIR)
+LIBFT_INC		= $(CORE_ENGINE_DIR)libs/libft/includes/
+
+MLX_INC			= $(CORE_ENGINE_DIR)libs/minilibx/
+
+LDFLAGS 		= $(CORE_ENGINE) -lX11 -lXext -lm
+
 #################
 ##   INCLUDE   ##
 #################
 
 INCLUDE_LIST	=	./includes/				\
 					./$(LIBFT_INC)			\
-					./$(MLX_INC)
+					./$(MLX_INC)			\
+					./$(CORE_ENGINE_INC)
 INCLUDE			=	$(addprefix -I, $(INCLUDE_LIST))
 
 
@@ -49,59 +53,26 @@ SRC_DIR				=	sources/
 ##									SOURCES PARTS									##
 ##----------------------------------------------------------------------------------##
 
-SRC_PARSER_DIR		=	parser/
+# SRC_PARSER_DIR		=	parser/
 
-SRC_PARSER_LIST		=	map/take_map.c		\
-						open_map.c			\
-						read_files_utils.c	\
-						read_files.c		\
-						split_color.c		\
-						take_data.c
-SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
+# SRC_PARSER_LIST		=	map/take_map.c		\
+# 						open_map.c			\
+# 						read_files_utils.c	\
+# 						read_files.c		\
+# 						split_color.c		\
+# 						take_data.c
+# SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
-SRC_COMPONENTS_DIR	=	components/
-
-SRC_COMPONENTS_LIST	=	free.c	
-SRC_COMPONENTS		=	$(addprefix $(SRC_COMPONENTS_DIR), $(SRC_COMPONENTS_LIST))
-
-SRC_ENGINE_DIR		=	engine/
-
-SRC_ENGINE_LIST		=	engine_void.c	\
-						init_engine.c	\
-						init_image.c	\
-						loop.c			\
-						pixel_put.c
-SRC_ENGINE			=	$(addprefix $(SRC_ENGINE_DIR), $(SRC_ENGINE_LIST))
-
-SRC_EVENTS_DIR		=	events/
-
-SRC_EVENTS_LIST		=	key_press.c \
-						close_window.c
-SRC_EVENTS			=	$(addprefix $(SRC_EVENTS_DIR), $(SRC_EVENTS_LIST))
-
-
-SRC_DEBUG_DIR		=	debug/
-SRC_DEBUG_LIST		=	draw_2d_map.c
-SRC_DEBUG			=	$(addprefix $(SRC_DEBUG_DIR), $(SRC_DEBUG_LIST))
 
 # SRC_PLAYER_DIR		=	player/
 
 # SRC_PLAYER_LIST		=	create_player.c
 # SRC_PLAYER			=	$(addprefix $(SRC_PLAYER_DIR), $(SRC_PLAYER_LIST))
 
-# SRC_GAME_DIR		=	game/
-
-# SRC_GAME_LIST		=	start_game.c
-# SRC_GAME			=	$(addprefix $(SRC_GAME_DIR), $(SRC_GAME_LIST))
-
 ##----------------------------------------------------------------------------------##
 SRC_LIST			=	main.c				\
 						$(SRC_PARSER)		\
-						$(SRC_COMPONENTS)	\
-						$(SRC_INIT_DATA)	\
-						$(SRC_EVENTS)		\
-						$(SRC_DEBUG)		\
-						$(SRC_ENGINE)
+						$(SRC_DEBUG)
 SRC					=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 
 ##################
@@ -167,13 +138,11 @@ endef
 ##    RULES    ##
 #################
 
-all: $(LIBFT) $(MLX) $(NAME)
+all: $(CORE_ENGINE) $(NAME)
 
-$(LIBFT):
-	@make -sC $(LIBFT_DIR)
 
-$(MLX):
-	@make -sC $(MLX_DIR)
+$(CORE_ENGINE):
+	@make -sC $(CORE_ENGINE_DIR)
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(dir $@)
@@ -184,19 +153,18 @@ $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 
 $(NAME): $(call $(RQ_SRC)) $(OBJ_LIST)
 	@echo "\033[2K$(COLOR_ORANGE)$(BOLD)Compilation complete ! $(COLOR_BLUE)Cub3d is Ready !$(COLOR_RESET)"
-	@$(CC) $(CFLAGS) $^ $(INCLUDE) $(OPTION) $(LIBFT) -o $@
+	@$(CC) $(CFLAGS) $^ $(INCLUDE) $(LDFLAGS) -o $@
 
 clean:
 	@echo "$(COLOR_RED)$(BOLD)Delete $(NAME) objects$(COLOR_RESET)"
 	@rm -rf $(OBJ_DIR) $(NORM_LOG)
-	@make clean -sC $(LIBFT_DIR)
-	@make clean -sC $(MLX_DIR)
+	@make clean -sC $(CORE_ENGINE_DIR)
 
 fclean: clean
 	@echo "$(COLOR_RED)$(BOLD)Delete Cub3d$(COLOR_RESET)"
 	@rm -f $(NAME)
-	@echo "$(COLOR_RED)$(BOLD)Delete Libft$(COLOR_RESET)"
-	@rm -f $(LIBFT)
+	@echo "$(COLOR_RED)$(BOLD)Delete Core Engine$(COLOR_RESET)"
+	@rm -f $(CORE_ENGINE)
 
 norme:
 	@echo "$(COLOR_BLUE)Norminette...$(COLOR_RESET)"

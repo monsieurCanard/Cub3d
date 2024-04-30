@@ -6,27 +6,19 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/26 22:08:17 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:08:57 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-#include "parser.h"
-#include "engine.h"
+#include <core_engine.h>
 
 int	main(int ac, char **av)
 {
-	t_data	data;
-
+	(void)ac;
 	(void)av;
-	if (ac != 2)
-	{
-		errno = EINVAL;
-		return (perror("Error"), errno);
-	}
-	data.map_data = get_map(av[1]);
-	data.engine = init_engine();
-	draw_2d_map(data.engine, data.map_data);
-	e_loop(data.engine);
+	if (init_engine() == FAILURE)
+		return (EXIT_FAILURE);
+	loop();
 	return (0);
 }

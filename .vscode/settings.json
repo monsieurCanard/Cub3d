@@ -1,7 +1,7 @@
 {
     "files.associations": {
 		"parser.h": "c",
-		"engine.h": "c"
+		"core_engine.h": "c"
 	},
 	"files.associations": {
 		"parser.h": "c"

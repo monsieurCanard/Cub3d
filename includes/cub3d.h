@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/26 22:10:56 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/04/30 14:07:24 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <math.h>
-# include "libft.h"
-# include "mlx.h"
 
 # define FAILURE -1
 # define SUCCESS 0
