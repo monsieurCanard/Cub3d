@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/04/30 14:50:27 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/04/30 16:27:59 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,26 +53,29 @@ SRC_DIR				=	sources/
 ##									SOURCES PARTS									##
 ##----------------------------------------------------------------------------------##
 
-# SRC_PARSER_DIR		=	parser/
+SRC_PARSER_DIR		=	parser/
 
-# SRC_PARSER_LIST		=	map/take_map.c		\
-# 						open_map.c			\
-# 						read_files_utils.c	\
-# 						read_files.c		\
-# 						split_color.c		\
-# 						take_data.c
-# SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
+SRC_PARSER_LIST		=	map/take_map.c		\
+						open_map.c			\
+						read_files_utils.c	\
+						read_files.c		\
+						split_color.c		\
+						take_data.c
+SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
+SRC_START_DIR		=	start_game/
+SRC_START_LIST		=	start_game.c
+SRC_START			=	$(addprefix $(SRC_START_DIR), $(SRC_START_LIST))
 
-# SRC_PLAYER_DIR		=	player/
-
-# SRC_PLAYER_LIST		=	create_player.c
-# SRC_PLAYER			=	$(addprefix $(SRC_PLAYER_DIR), $(SRC_PLAYER_LIST))
+SRC_DEBUG_DIR		=	debug/
+SRC_DEBUG_LIST		=	draw_2d_map.c
+SRC_DEBUG			=	$(addprefix $(SRC_DEBUG_DIR), $(SRC_DEBUG_LIST))
 
 ##----------------------------------------------------------------------------------##
 SRC_LIST			=	main.c				\
 						$(SRC_PARSER)		\
-						$(SRC_DEBUG)
+						$(SRC_DEBUG)		\
+						$(SRC_START)
 SRC					=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 
 ##################

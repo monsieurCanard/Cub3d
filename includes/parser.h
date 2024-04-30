@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:08:08 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/30 14:07:39 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/04/30 16:26:35 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define PARSER_H
 
 # include "core_data.h"
+# include "libft.h"
 # include <errno.h>
 # include <stdio.h>
 
