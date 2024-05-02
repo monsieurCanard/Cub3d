@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/30 18:47:34 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/02 15:15:37 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,6 @@ static int	camera_move(int keycode, t_camera *camera)
 	t_engine	*engine;
 
 	engine = get_engine();
-	printf("cam x: %f\n", camera->coord->x);
-	printf("cam y: %f\n", camera->coord->y);
 	if (keycode == KEY_UP)
 	{
 		camera->coord->y += 12.5;
@@ -42,9 +40,17 @@ static int	camera_move(int keycode, t_camera *camera)
 		engine->object_2d[499]->coord->x -= 12.5;
 	}
 	else if (keycode == KEY_A)
-		camera->angle += 0.1;
+	{
+		camera->angle += 0.05 * PI;
+		if (camera->angle > 2 * PI)
+			camera->angle = 0;
+	}
 	else if (keycode == KEY_D)
-		camera->angle -= 0.1;
+	{
+		camera->angle -= 0.05 * PI;
+		if (camera->angle < 0)
+			camera->angle = 2 * PI;
+	}
 	else if (keycode == 65307)
 	{
 		stop_engine();

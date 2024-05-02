@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/04/30 16:27:59 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/05/02 15:10:27 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -166,8 +166,7 @@ clean:
 fclean: clean
 	@echo "$(COLOR_RED)$(BOLD)Delete Cub3d$(COLOR_RESET)"
 	@rm -f $(NAME)
-	@echo "$(COLOR_RED)$(BOLD)Delete Core Engine$(COLOR_RESET)"
-	@rm -f $(CORE_ENGINE)
+	@make fclean -sC $(CORE_ENGINE_DIR)
 
 norme:
 	@echo "$(COLOR_BLUE)Norminette...$(COLOR_RESET)"
