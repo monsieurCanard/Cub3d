@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/30 17:40:40 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/06 17:30:57 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,8 @@ void	create_wall(t_img *img, int x, int y, size_t nb_obj)
 	t_object2d	*obj;
 
 	obj = new_obj2d("wall", nb_obj);
-	obj->coord->x = x;
-	obj->coord->y = y;
 	obj->img = img;
+	obj->change_coord(obj, new_coord(x, y));
 }
 
 void	create_debug_map(t_map *map)
@@ -73,13 +72,11 @@ void	create_debug_map(t_map *map)
 			else if (map->map[y][x] == 'N')
 			{
 				cam = new_camera();
-				cam->coord->x = (int)-(x * 25);
-				cam->coord->y = (int)-(y * 25);
+				cam->coord->x = 0;
+				cam->coord->y = 0;
 				cam_obj = new_obj2d("cam", 499);
-				cam_obj->coord->x = (int)(x * 25);
-				cam_obj->coord->y = (int)-(y * 25);
 				cam_obj->img = cam_img;
-				create_wall(empty_img, x * 25, -(y * 25), nb_obj);
+				create_wall(empty_img, 0, 0, nb_obj);
 				nb_obj++;
 			}
 			x++;

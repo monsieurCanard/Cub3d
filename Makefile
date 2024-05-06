@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/02 15:10:27 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/05/06 16:00:01 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,8 @@ LIBFT_INC		= $(CORE_ENGINE_DIR)libs/libft/includes/
 
 MLX_INC			= $(CORE_ENGINE_DIR)libs/minilibx/
 
+VECTORFT_INC	= $(CORE_ENGINE_DIR)libs/vectorft/includes/
+
 LDFLAGS 		= $(CORE_ENGINE) -lX11 -lXext -lm
 
 #################
@@ -38,6 +40,7 @@ LDFLAGS 		= $(CORE_ENGINE) -lX11 -lXext -lm
 INCLUDE_LIST	=	./includes/				\
 					./$(LIBFT_INC)			\
 					./$(MLX_INC)			\
+					./$(VECTORFT_INC)		\
 					./$(CORE_ENGINE_INC)
 INCLUDE			=	$(addprefix -I, $(INCLUDE_LIST))
 
