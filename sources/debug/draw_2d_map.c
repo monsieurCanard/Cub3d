@@ -6,77 +6,71 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/06 17:30:57 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/07 17:44:20 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <core_engine.h>
 
-int	init_debug_img(t_img **empty_img, t_img **full_img, t_img **cam_img)
-{
-	*empty_img = init_xmp_img("./debug/texture/empty.xpm");
-	*full_img = init_xmp_img("./debug/texture/full.xpm");
-	*cam_img = init_xmp_img("./debug/texture/cam.xpm");
-	if (*empty_img == NULL || *full_img == NULL)
-	{
-		perror("Error\n");
-		return (FAILURE);
-	}
-	if ((*empty_img)->addr == NULL || (*full_img)->addr == NULL)
-	{
-		perror("Error\n");
-		return (FAILURE);
-	}
-	return (SUCCESS);
-}
-
-void	create_wall(t_img *img, int x, int y, size_t nb_obj)
+void	create_wall(int x, int y, size_t nb_obj)
 {
 	t_object2d	*obj;
 
 	obj = new_obj2d("wall", nb_obj);
-	obj->img = img;
+	obj->render = init_xmp_render2d("./debug/texture/full.xpm");
+	obj->change_coord(obj, new_coord(x, y));
+}
+
+void	create_floor(int x, int y, size_t nb_obj)
+{
+	t_object2d	*obj;
+
+	obj = new_obj2d("floor", nb_obj);
+	obj->render = init_xmp_render2d("./debug/texture/empty.xpm");
+	obj->change_coord(obj, new_coord(x, y));
+}
+
+void	create_player(int x, int y, size_t nb_obj)
+{
+	t_object2d	*obj;
+
+	obj = new_obj2d("player", nb_obj);
+	obj->render = init_xmp_render2d("./debug/texture/cam.xpm");
+	// printf("obj->render.size.x = %f, obj->render.size.y = %f\n", obj->render.size.x, obj->render.size.y);
 	obj->change_coord(obj, new_coord(x, y));
 }
 
 void	create_debug_map(t_map *map)
 {
-	t_img	*empty_img;
-	t_img	*full_img;
-	t_img	*cam_img;
-	t_camera	*cam;
-	t_object2d	*cam_obj;
-	size_t	nb_obj;
-	size_t	x;
-	size_t	y;
+	t_camera	*camera;
+	size_t		nb_obj;
+	int		x;
+	int		y;
 
-	init_debug_img(&empty_img, &full_img, &cam_img);
 	y = 0;
 	nb_obj = 0;
-	while (y < map->size_z)
+	while (y < (int)map->size_z)
 	{
 		x = 0;
-		while (x < map->size_x)
+		while (x < (int)map->size_x)
 		{
 			if (map->map[y][x] == '1')
 			{
-				create_wall(full_img, x * 25, -(y * 25), nb_obj);
+				create_wall(x * 25, -(y * 25), nb_obj);
 				nb_obj++;
 			}
 			else if (map->map[y][x] == '0')
 			{
-				create_wall(empty_img, x * 25, -(y * 25), nb_obj);
+				create_floor(x * 25, -(y * 25), nb_obj);
 				nb_obj++;
 			}
 			else if (map->map[y][x] == 'N')
 			{
-				cam = new_camera();
-				cam->coord->x = 0;
-				cam->coord->y = 0;
-				cam_obj = new_obj2d("cam", 499);
-				cam_obj->img = cam_img;
-				create_wall(empty_img, 0, 0, nb_obj);
+				camera = new_camera();
+				camera->coord.x = -(x * 25);
+				camera->coord.y = y * 25;
+				create_player(x * 25, -(y * 25), 499);
 				nb_obj++;
 			}
 			x++;

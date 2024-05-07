@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/06 16:00:01 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/05/07 16:29:07 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,9 @@ CFLAGS		=	-Wall -Wextra -Werror -g3
 ##   LIBS	  ##
 ################
 
-CORE_ENGINE		=	$(CORE_ENGINE_DIR)/core_engine.a
+CORE_ENGINE		=	$(CORE_ENGINE_DIR)core_engine.a
 CORE_ENGINE_DIR	=	Core-Engine/
-CORE_ENGINE_INC	=	$(CORE_ENGINE_DIR)inc/
+CORE_ENGINE_INC	=	$(CORE_ENGINE_DIR)includes/
 
 LIBFT_INC		= $(CORE_ENGINE_DIR)libs/libft/includes/
 
