@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/07 17:44:20 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/08 17:00:36 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	create_wall(int x, int y, size_t nb_obj)
 
 	obj = new_obj2d("wall", nb_obj);
 	obj->render = init_xmp_render2d("./debug/texture/full.xpm");
-	obj->change_coord(obj, new_coord(x, y));
+	obj->coord = new_coord(x, y);
 }
 
 void	create_floor(int x, int y, size_t nb_obj)
@@ -28,7 +28,7 @@ void	create_floor(int x, int y, size_t nb_obj)
 
 	obj = new_obj2d("floor", nb_obj);
 	obj->render = init_xmp_render2d("./debug/texture/empty.xpm");
-	obj->change_coord(obj, new_coord(x, y));
+	obj->coord = new_coord(x, y);
 }
 
 void	create_player(int x, int y, size_t nb_obj)
@@ -36,9 +36,9 @@ void	create_player(int x, int y, size_t nb_obj)
 	t_object2d	*obj;
 
 	obj = new_obj2d("player", nb_obj);
-	obj->render = init_xmp_render2d("./debug/texture/cam.xpm");
+	obj->render = init_xmp_render2d("./debug/texture/player_moche.xpm");
 	// printf("obj->render.size.x = %f, obj->render.size.y = %f\n", obj->render.size.x, obj->render.size.y);
-	obj->change_coord(obj, new_coord(x, y));
+	obj->coord = new_coord(x, y);
 }
 
 void	create_debug_map(t_map *map)

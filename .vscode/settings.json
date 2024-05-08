@@ -1,7 +1,7 @@
 {
     "files.associations": {
 		"parser.h": "c",
-		"vectorft.h": "c"
+		"object.h": "c"
 	},
 	"files.associations": {
 		"parser.h": "c"
