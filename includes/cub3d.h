@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/30 16:34:06 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:08:48 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,11 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <math.h>
+# include <libft.h>
+# include <core_engine.h>
 
 # define FAILURE -1
 # define SUCCESS 0
-
 
 # define BLUE 0x0000FF
 # define RED 0xFF0000
@@ -42,23 +43,13 @@
 //MAIN
 
 # include "core_data.h"
-
-
-
-typedef struct s_player
-{
-	float	x;
-	float	y;
-}				t_player;
+# include "player.h"
 
 typedef struct s_data
 {
 	void		*engine;
-	t_player	player;
 	t_map		*map_data;
 }				t_data;
-
-
 
 //////////////////////////////////////////
 ///////////// EVENTS /////////////////////
@@ -74,8 +65,9 @@ typedef struct s_data
 ///////////// GAME ///////////////////////
 //////////////////////////////////////////
 
-int		start_game(t_map *map);
+int		start_game(t_map *map, t_list **objs);
 
-void		create_debug_map(t_map *map);
+void	create_debug_map(t_map *map, t_list **objs);
 
+void	print_data(t_map *map);
 #endif

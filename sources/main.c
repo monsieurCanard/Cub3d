@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/08 16:13:26 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/09 18:19:40 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,53 +14,62 @@
 #include "parser.h"
 #include <core_engine.h>
 
-static int	camera_move(int keycode, t_camera *camera)
+static int	camera_move(int keycode, t_list *objs)
 {
 	t_engine	*engine;
+	t_player	*player;
 
+	player = objs->content;
 	engine = get_engine();
-	if (keycode == KEY_UP)
+	if (keycode == KEY_UP || keycode == KEY_W)
 	{
-		camera->coord.y -= 12.5;
-		engine->object_2d[499]->coord = new_coord(engine->object_2d[499]->coord.x, engine->object_2d[499]->coord.y + 12.5);
+		engine->camera->coord.y -= player->delta.y;
+		engine->camera->coord.x -= player->delta.x;
+		player->move_up(player);
 	}
-	else if (keycode == KEY_DOWN)
+	else if (keycode == KEY_DOWN || keycode == KEY_S)
 	{
-		camera->coord.y += 12.5;
-		engine->object_2d[499]->coord = new_coord(engine->object_2d[499]->coord.x, engine->object_2d[499]->coord.y - 12.5);
+		engine->camera->coord.y += player->delta.y;
+		engine->camera->coord.x += player->delta.x;
+		player->move_down(player);
 	}
 	else if (keycode == KEY_RIGHT)
 	{
-		camera->coord.x -= 12.5;
-		engine->object_2d[499]->coord = new_coord(engine->object_2d[499]->coord.x + 12.5, engine->object_2d[499]->coord.y);
+		engine->camera->coord.x -= player->delta.y;
+		engine->camera->coord.y += player->delta.x;
+		player->move_right(player);
 	}
 	else if (keycode == KEY_LEFT)
 	{
-		camera->coord.x += 12.5;
-		engine->object_2d[499]->coord = new_coord(engine->object_2d[499]->coord.x - 12.5, engine->object_2d[499]->coord.y);
+		engine->camera->coord.x += player->delta.y;
+		engine->camera->coord.y -= player->delta.x;
+		player->move_left(player);
 	}
 	else if (keycode == KEY_A)
 	{
-		engine->object_2d[499]->angle += 0.1 * PI;
+		player->angle_left(player);
 	}
 	else if (keycode == KEY_D)
 	{
-		engine->object_2d[499]->angle -= 0.1 * PI;
+		player->angle_right(player);
 	}
 	else if (keycode == 65307)
 	{
 		stop_engine();
 	}
-	printf("camera->angle = %f\n", camera->angle);
+	draw_rays(player->obj, player->obj->coord, (t_vector2){player->obj->coord.x + 100 * cos(player->obj->angle), player->obj->coord.y - 100 * sin(player->obj->angle)});
 	return (SUCCESS);
 }
 
+
 int	main(int ac, char **av)
 {
-	t_map		*map;
 	t_engine	*engine;
+	t_list		*objs;
+	t_map		*map;
 
 
+	objs = NULL;
 	engine = get_engine();
 	if (ac != 2)
 	{
@@ -76,8 +85,8 @@ int	main(int ac, char **av)
 	}
 	if (init_engine() == FAILURE)
 		return (EXIT_FAILURE);
-	start_game(map);
-	key_hook(camera_move, engine->camera);
-	loop();
+	start_game(map, &objs);
+	event_hook(&camera_move, KeyPress, KeyPressMask, objs);
+	loop(NULL ,NULL);
 	return (0);
 }

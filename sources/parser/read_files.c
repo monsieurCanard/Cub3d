@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:29:31 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/26 15:33:07 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/09 16:18:34 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	take_data(t_map *map, const char *raw_line)
 	return (SUCCESS);
 }
 
-static void	print_data(t_map *map)
+void	print_data(t_map *map)
 {
 	size_t i = 0;
 	while (i < 4)
