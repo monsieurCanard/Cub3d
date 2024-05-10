@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/09 18:19:40 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/10 12:36:08 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,33 +27,33 @@ static int	camera_move(int keycode, t_list *objs)
 		engine->camera->coord.x -= player->delta.x;
 		player->move_up(player);
 	}
-	else if (keycode == KEY_DOWN || keycode == KEY_S)
+	if (keycode == KEY_DOWN)
 	{
 		engine->camera->coord.y += player->delta.y;
 		engine->camera->coord.x += player->delta.x;
 		player->move_down(player);
 	}
-	else if (keycode == KEY_RIGHT)
+	if (keycode == KEY_RIGHT)
 	{
 		engine->camera->coord.x -= player->delta.y;
 		engine->camera->coord.y += player->delta.x;
 		player->move_right(player);
 	}
-	else if (keycode == KEY_LEFT)
+	if (keycode == KEY_LEFT)
 	{
 		engine->camera->coord.x += player->delta.y;
 		engine->camera->coord.y -= player->delta.x;
 		player->move_left(player);
 	}
-	else if (keycode == KEY_A)
+	if (keycode == KEY_A)
 	{
 		player->angle_left(player);
 	}
-	else if (keycode == KEY_D)
+	if (keycode == KEY_D)
 	{
 		player->angle_right(player);
 	}
-	else if (keycode == 65307)
+	if (keycode == 65307)
 	{
 		stop_engine();
 	}
