@@ -6,13 +6,12 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/10 12:36:08 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:17:14 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
-#include <core_engine.h>
 
 static int	camera_move(int keycode, t_list *objs)
 {
@@ -57,7 +56,6 @@ static int	camera_move(int keycode, t_list *objs)
 	{
 		stop_engine();
 	}
-	draw_rays(player->obj, player->obj->coord, (t_vector2){player->obj->coord.x + 100 * cos(player->obj->angle), player->obj->coord.y - 100 * sin(player->obj->angle)});
 	return (SUCCESS);
 }
 

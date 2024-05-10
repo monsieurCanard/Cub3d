@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/09 18:08:48 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/10 17:08:00 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include <errno.h>
 # include <math.h>
 # include <libft.h>
-# include <core_engine.h>
+# include <core.h>
 
 # define FAILURE -1
 # define SUCCESS 0
@@ -70,4 +70,5 @@ int		start_game(t_map *map, t_list **objs);
 void	create_debug_map(t_map *map, t_list **objs);
 
 void	print_data(t_map *map);
+
 #endif
