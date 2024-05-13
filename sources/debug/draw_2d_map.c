@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/10 17:54:46 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/13 13:38:02 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,6 @@ void	create_floor(int x, int y, size_t nb_obj)
 
 	obj = new_object(nb_obj);
 	init_xmp_render2d(obj, "./debug/texture/empty_debug_square.xpm");
-	printf("obj->id = %d\n", obj->id);
-	printf("obj->render.img = %p\n", obj->render.img);
-	printf("obj->render.size.x = %f\n", obj->render.size.x);
 	obj->trans.pos = vector2(x, y);
 	obj->trans.scale.x = 0.64;
 	obj->render.draw = &basic_draw2d;
@@ -54,6 +51,7 @@ t_player	*create_player(int x, int y, size_t nb_obj)
 	init_xmp_render2d(player->obj, "./debug/texture/player_octe.xpm");
 	player->obj->trans.pos = vector2(x, y);
 	player->obj->trans.scale.x = 0.25;
+	player->obj->render.draw = &basic_draw2d;
 	return (player);
 }
 
