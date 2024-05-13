@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
+#    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/09 18:10:03 by antgabri         ###   ########.fr        #
+#    Updated: 2024/05/13 14:25:53 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,8 @@ SRC_START			=	$(addprefix $(SRC_START_DIR), $(SRC_START_LIST))
 SRC_DEBUG_DIR		=	debug/
 SRC_DEBUG_LIST		=	draw_2d_map.c	\
 						player_angle.c	\
-						player_move.c
+						player_move.c	\
+						debug_line.c
 SRC_DEBUG			=	$(addprefix $(SRC_DEBUG_DIR), $(SRC_DEBUG_LIST))
 
 ##----------------------------------------------------------------------------------##

@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/13 13:38:02 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:25:37 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	create_wall(int x, int y, size_t nb_obj)
 	obj = new_object(nb_obj);
 	init_xmp_render2d(obj, "./debug/texture/full_debug_square.xpm");
 	obj->trans.pos = vector2(x, y);
+	obj->type = WALL;
 	obj->trans.scale.x = 0.64;
 	obj->render.draw = &basic_draw2d;
 }
@@ -30,6 +31,7 @@ void	create_floor(int x, int y, size_t nb_obj)
 	obj = new_object(nb_obj);
 	init_xmp_render2d(obj, "./debug/texture/empty_debug_square.xpm");
 	obj->trans.pos = vector2(x, y);
+	obj->type = FLOOR;
 	obj->trans.scale.x = 0.64;
 	obj->render.draw = &basic_draw2d;
 }
@@ -51,11 +53,12 @@ t_player	*create_player(int x, int y, size_t nb_obj)
 	init_xmp_render2d(player->obj, "./debug/texture/player_octe.xpm");
 	player->obj->trans.pos = vector2(x, y);
 	player->obj->trans.scale.x = 0.25;
+	player->obj->type = PLAYER;
 	player->obj->render.draw = &basic_draw2d;
 	return (player);
 }
 
-void	create_debug_map(t_map *map, t_list **objs)
+void	create_debug_map(t_data *data)
 {
 	t_camera	*camera;
 	t_player	*player;
@@ -65,33 +68,33 @@ void	create_debug_map(t_map *map, t_list **objs)
 
 	y = 0;
 	nb_obj = 0;
-	while (y < (int)map->size_z)
+	while (y < (int)data->map_data->size_z)
 	{
 		x = 0;
-		while (x < (int)map->size_x)
+		while (x < (int)data->map_data->size_x)
 		{
-			if (map->map[y][x] == '1')
+			if (data->map_data->map[y][x] == '1')
 			{
 				create_wall(x * 64, -(y * 64), nb_obj);
 				nb_obj++;
 			}
-			else if (map->map[y][x] == '0')
+			else if (data->map_data->map[y][x] == '0')
 			{
 				create_floor(x * 64, -(y * 64), nb_obj);
 				nb_obj++;
 			}
-			else if (map->map[y][x] == 'N')
+			else if (data->map_data->map[y][x] == 'N')
 			{
 				camera = new_camera();
 				camera->coord.x = -(x * 64);
 				camera->coord.y = y * 64;
-				player = create_player(x * 64, -(y * 64), 499);
-				ft_lstadd_back(objs, ft_lstnew(player));
-				nb_obj++;
+				data->player = create_player(x * 64, -(y * 64), 999);
+				create_floor(x * 64, -(y * 64), nb_obj++);
+				t_debug *debug = new_debug(vector2(0, 0), vector2(0, 0), 0);
+				debug->active = true;
 			}
 			x++;
 		}
 		y++;
 	}
-	ft_lstadd_back(objs, ft_lstnew(map));
 }

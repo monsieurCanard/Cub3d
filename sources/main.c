@@ -6,19 +6,17 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/10 17:17:14 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:37:55 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include "parser.h"
 
-static int	camera_move(int keycode, t_list *objs)
+static int	camera_move(int keycode, t_player *player)
 {
 	t_engine	*engine;
-	t_player	*player;
-
-	player = objs->content;
+	
 	engine = get_engine();
 	if (keycode == KEY_UP || keycode == KEY_W)
 	{
@@ -26,7 +24,7 @@ static int	camera_move(int keycode, t_list *objs)
 		engine->camera->coord.x -= player->delta.x;
 		player->move_up(player);
 	}
-	if (keycode == KEY_DOWN)
+	if (keycode == KEY_DOWN || keycode == KEY_S)
 	{
 		engine->camera->coord.y += player->delta.y;
 		engine->camera->coord.x += player->delta.x;
@@ -63,11 +61,8 @@ static int	camera_move(int keycode, t_list *objs)
 int	main(int ac, char **av)
 {
 	t_engine	*engine;
-	t_list		*objs;
-	t_map		*map;
+	t_data		data;
 
-
-	objs = NULL;
 	engine = get_engine();
 	if (ac != 2)
 	{
@@ -75,16 +70,16 @@ int	main(int ac, char **av)
 		perror("Error\n");
 		exit(FAILURE);
 	}
-	map = get_map(av[1]);
-	if (map == NULL)
+	data.map_data = get_map(av[1]);
+	if (data.map_data == NULL)
 	{
 		perror("Error\n");
 		exit(FAILURE);
 	}
 	if (init_engine() == FAILURE)
 		return (EXIT_FAILURE);
-	start_game(map, &objs);
-	event_hook(&camera_move, KeyPress, KeyPressMask, objs);
-	loop(NULL ,NULL);
+	start_game(&data);
+	event_hook(&camera_move, KeyPress, KeyPressMask, data.player);
+	loop(&update_raycast ,&data);
 	return (0);
 }

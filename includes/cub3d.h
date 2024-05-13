@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/10 17:08:00 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/13 17:25:12 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,10 @@
 
 # define PI 3.14159265359
 
+# define FLOOR 0
+# define WALL 1
+# define PLAYER 2
+
 //////////////////////////////////////
 ///////////// DEBUG //////////////////
 //////////////////////////////////////
@@ -47,8 +51,8 @@
 
 typedef struct s_data
 {
-	void		*engine;
 	t_map		*map_data;
+	t_player	*player;
 }				t_data;
 
 //////////////////////////////////////////
@@ -65,10 +69,12 @@ typedef struct s_data
 ///////////// GAME ///////////////////////
 //////////////////////////////////////////
 
-int		start_game(t_map *map, t_list **objs);
+int		start_game(t_data *data);
 
-void	create_debug_map(t_map *map, t_list **objs);
+void	create_debug_map(t_data *data);
 
 void	print_data(t_map *map);
+
+int		update_raycast(void *obj);
 
 #endif

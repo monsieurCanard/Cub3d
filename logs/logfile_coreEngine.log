@@ -28,8 +28,3 @@
 [INFO] sources/initializer/init_render.c:75 - init_renderer
 [INFO] sources/initializer/init_render.c:77 - init_buffer renderer->voidbuffer
 [INFO] sources/object/camera.c:23 - new camera
-[DEBUG] sources/stop_components/stop_engine.c:20 - mlx_destroy_window() called
-[DEBUG] sources/stop_components/stop_engine.c:25 - mlx_destroy_display() called
-[DEBUG] sources/stop_components/stop_engine.c:30 - Freeing mlx
-[DEBUG] sources/stop_components/stop_engine.c:40 - Freeing engine->title
-[DEBUG] sources/stop_components/stop_engine.c:43 - Freeing engine
