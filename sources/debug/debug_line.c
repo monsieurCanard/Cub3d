@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:05 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/14 17:36:29 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/14 20:19:00 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ t_vector2	cast_ray_h(t_map *map, t_vector2 start, float angle)
 	t_vector2	point;
 
 	point = start;
+	if (angle == 0 || angle == PI)
+		return (point);
 	if (angle < PI)
 	{
 		point.y = ((((int)start.y + 32) >> 6) << 6) - 32;
@@ -81,7 +83,6 @@ t_vector2	update_raycast(void *obj, float angle)
 	t_vector2	end_v;
 	t_vector2	ray_vector_h;
 	t_vector2	ray_vector_v;
-	t_mrender	*renderer;
 	t_vector2	raycast;
 
 	data = (t_data *)obj;
@@ -103,11 +104,25 @@ void draw_all_ray(void *obj)
 	int i;
 	float angle;
 	t_data *data;
+	t_mrender *renderer;
 
 	data = (t_data *)obj;
 	i = 0;
-	angle = data->player->obj->trans.rot.x ;
-	
+	angle = data->player->obj->trans.rot.x - ((FOV / 2) * DR);
+	renderer = get_renderer();
+	while (i < 60)
+	{
+		if (angle > 2 * PI)
+			angle -= 2 * PI;
+		if (angle < 0)
+			angle += 2 * PI;
+		renderer->debug[i]->start = world_to_screen2d(data->player->obj->trans.pos);
+		t_vector2 raycast = update_raycast(data, angle);
+		renderer->debug[i]->end = world_to_screen2d(raycast);
+		renderer->debug[i]->color = 0x00FF00;
+		angle += DR;
+		i++;
+	}
 }
 
 // static bool	is_inside_square(t_vector2 point, t_vector2 start,

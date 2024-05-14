@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/13 17:37:55 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/14 19:26:20 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	start_game(&data);
 	event_hook(&camera_move, KeyPress, KeyPressMask, data.player);
-	loop(&update_raycast ,&data);
+	loop(&draw_all_ray ,&data);
 	return (0);
 }
