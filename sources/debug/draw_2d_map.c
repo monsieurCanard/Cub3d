@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/13 17:25:37 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:33:08 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,6 @@ void	create_debug_map(t_data *data)
 				camera->coord.y = y * 64;
 				data->player = create_player(x * 64, -(y * 64), 999);
 				create_floor(x * 64, -(y * 64), nb_obj++);
-				t_debug *debug = new_debug(vector2(0, 0), vector2(0, 0), 0);
-				debug->active = true;
 			}
 			x++;
 		}

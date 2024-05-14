@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:37:06 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/10 17:18:30 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:16:58 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	p_angle_right(t_player *player)
 {
-	player->obj->trans.rot.x += 0.1;
+	player->obj->trans.rot.x += 0.05 * PI;
 	if (player->obj->trans.rot.x > 2 * PI)
 		player->obj->trans.rot.x -= 2 * PI;
 	player->delta.x = 5 * cos(player->obj->trans.rot.x);
@@ -23,7 +23,7 @@ static void	p_angle_right(t_player *player)
 
 static void	p_angle_left(t_player *player)
 {
-	player->obj->trans.rot.x -= 0.1;
+	player->obj->trans.rot.x -= 0.05 * PI;
 	if (player->obj->trans.rot.x < 0)
 		player->obj->trans.rot.x += 2 * PI;
 	player->delta.x = 5 * cos(player->obj->trans.rot.x);

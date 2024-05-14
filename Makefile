@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/13 14:25:53 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/05/14 12:41:21 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,8 @@ SRC_DEBUG_DIR		=	debug/
 SRC_DEBUG_LIST		=	draw_2d_map.c	\
 						player_angle.c	\
 						player_move.c	\
-						debug_line.c
+						debug_line.c	\
+						cast_ray_v.c
 SRC_DEBUG			=	$(addprefix $(SRC_DEBUG_DIR), $(SRC_DEBUG_LIST))
 
 ##----------------------------------------------------------------------------------##
@@ -151,7 +152,7 @@ all: $(CORE_ENGINE) $(NAME)
 
 
 $(CORE_ENGINE):
-	@make -sC $(CORE_ENGINE_DIR)
+	@make -sC $(CORE_ENGINE_DIR) 
 
 $(OBJ_DIR)%.o: $(SRC_DIR)%.c
 	@mkdir -p $(dir $@)

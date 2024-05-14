@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/13 17:25:12 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:14:39 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,8 @@ void	create_debug_map(t_data *data);
 void	print_data(t_map *map);
 
 int		update_raycast(void *obj);
+
+
+t_vector2	cast_ray_v(t_map *map, t_vector2 start, float angle);
 
 #endif

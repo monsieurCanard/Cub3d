@@ -6,17 +6,31 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:05 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/13 17:43:41 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/14 17:36:29 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include <limits.h>
+
+static bool	check_map(t_map *map, t_vector2 point, float angle)
+{
+	int	map_x;
+	int	map_y;
+
+	map_x = ((int)point.x + 32) / 64;
+	if (angle < PI)
+		map_y = -((int)point.y - 32) / 64;
+	else if (angle > PI)
+		map_y = -((int)point.y + 32) / 64;
+	if (map_x >= 0 && map_y >= 0 && map_x < map->size_x && map_y < map->size_z && map->map[map_y][map_x] == '1')
+		return (true);
+	return (false);
+}
 
 t_vector2	next_intersection(t_map *map, t_vector2 point, float angle)
 {
 	t_vector2	intersection;
-	int			map_x;
-	int			map_y;
 	int			dov;
 	float		atan;
 
@@ -25,32 +39,28 @@ t_vector2	next_intersection(t_map *map, t_vector2 point, float angle)
 	dov = 0;
 	while (dov < 10)
 	{
+		if (check_map(map, intersection, angle) == true)
+			break ;
 		if (angle > PI)
 		{
-			intersection.x += -(-64 * atan);
+			intersection.x -= -64 * atan;
 			intersection.y += 64;
 		}
 		else if (angle < PI)
 		{
-			intersection.x += - (64 * atan);
-			intersection.y += -64;
+			intersection.x -= 64 * atan;
+			intersection.y -= 64;
 		}
-		map_x = ((int)intersection.x + 32) / 64;
-		map_y = -((int)intersection.y + 96) / 64;
-		printf("map_x = %d, map_y = %d\n", map_x, map_y);
-		if (map_x > 0 && map_y > 0 && map[map_y][map_x] == '1')
-			break ;
 		dov++;
 	}
 	return (intersection);
 }
 
-t_vector2	cast_ray_h(char **map ,t_vector2 start, float angle)
+t_vector2	cast_ray_h(t_map *map, t_vector2 start, float angle)
 {
 	t_vector2	point;
-	t_vector2	raiser;
-	float		step;
 
+	point = start;
 	if (angle < PI)
 	{
 		point.y = ((((int)start.y + 32) >> 6) << 6) - 32;
@@ -61,29 +71,47 @@ t_vector2	cast_ray_h(char **map ,t_vector2 start, float angle)
 		point.y = ((((int)start.y + 32) >> 6) << 6) + 32;
 		point.x = (start.y - point.y) / tan(angle) + start.x;
 	}
-	else
-		return (start);
 	return (next_intersection(map, point, angle));
 }
 
-int	update_raycast(void *obj)
+t_vector2	update_raycast(void *obj, float angle)
 {
-	t_data			*data;
-	t_vector2		end;
-	t_mrender		*renderer;
+	t_data		*data;
+	t_vector2	end_h;
+	t_vector2	end_v;
+	t_vector2	ray_vector_h;
+	t_vector2	ray_vector_v;
+	t_mrender	*renderer;
+	t_vector2	raycast;
 
 	data = (t_data *)obj;
-	end = cast_ray_h(data->map_data->map, data->player->obj->trans.pos, data->player->obj->trans.rot.x);
-	renderer = get_renderer();
-	
-	renderer->debug[0]->start = world_to_screen2d(data->player->obj->trans.pos);
-	renderer->debug[0]->end = world_to_screen2d(end);
-	renderer->debug[0]->color = 0x00FF00;
-	return (SUCCESS);
+	end_h = cast_ray_h(data->map_data, data->player->obj->trans.pos, angle);
+	end_v = cast_ray_v(data->map_data, data->player->obj->trans.pos, angle);
+	ray_vector_h = sub_vector2(end_h, data->player->obj->trans.pos);
+	ray_vector_v = sub_vector2(end_v, data->player->obj->trans.pos);
+	float dist_h = magnitude_vector2(ray_vector_h);
+	float dist_v = magnitude_vector2(ray_vector_v);
+	if (dist_h > dist_v)
+		raycast = end_v;
+	else
+		raycast = end_h;
+	return (raycast);
 }
 
+void draw_all_ray(void *obj)
+{
+	int i;
+	float angle;
+	t_data *data;
 
-// static bool	is_inside_square(t_vector2 point, t_vector2 start, t_vector2 end)
+	data = (t_data *)obj;
+	i = 0;
+	angle = data->player->obj->trans.rot.x ;
+	
+}
+
+// static bool	is_inside_square(t_vector2 point, t_vector2 start,
+//		t_vector2 end)
 // {
 // 	if (point.x >= start.x && point.x <= end.x
 // 		&& point.y <= start.y && point.y >= end.y)
@@ -110,7 +138,8 @@ int	update_raycast(void *obj)
 // {
 // 	t_vector2	end_obj;
 
-// 	end_obj = (t_vector2){obj->trans.pos.x + (obj->render.size.x * obj->trans.scale.x / 2),
+// 	end_obj = (t_vector2){obj->trans.pos.x + (obj->render.size.x
+//			* obj->trans.scale.x / 2),
 // 		obj->trans.pos.y - (obj->render.size.y * obj->trans.scale.x / 2),};
 // 	return (end_obj);
 // }
