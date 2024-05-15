@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_ray_v.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/14 12:23:42 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/14 19:49:31 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:36:35 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,18 @@ static bool	check_map(t_map *map, t_vector2 point, float angle)
 	int	map_x;
 	int	map_y;
 
+	map_x = 0;
 	map_y = -((int)point.y - 32) / 64;
 	if (angle < PI / 2 || angle > 3 * PI / 2)
+	{
 		map_x = ((int)point.x + 32) / 64;
+	}
 	else if (angle > PI / 2 && angle < 3 * PI / 2)
+	{
 		map_x = ((int)point.x - 32) / 64;
-	if (map_x >= 0 && map_y >= 0 && map_x < map->size_x && map_y < map->size_z && map->map[map_y][map_x] == '1')
+	}
+	if (map_x >= 0 && map_y >= 0 && map_x < (int)map->size_x
+		&& map_y < (int)map->size_z && map->map[map_y][map_x] == '1')
 		return (true);
 	return (false);
 }
@@ -31,8 +37,6 @@ static bool	check_map(t_map *map, t_vector2 point, float angle)
 static t_vector2	next_intersection(t_map *map, t_vector2 point, float angle)
 {
 	t_vector2	intersection;
-	int			map_x;
-	int			map_y;
 	int			dov;
 	float		atan;
 

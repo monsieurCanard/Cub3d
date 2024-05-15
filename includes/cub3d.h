@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/14 20:03:33 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:06:38 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,14 +72,20 @@ typedef struct s_data
 ///////////// GAME ///////////////////////
 //////////////////////////////////////////
 
-int		start_game(t_data *data);
+int			start_game(t_data *data);
 
-void	create_debug_map(t_data *data);
+void		create_debug_map(t_data *data);
 
-void	print_data(t_map *map);
+void		print_data(t_map *map);
 
-void 	draw_all_ray(void *obj);
+//////////////////////////////////////////
+///////////// RAYCAST ////////////////////
+//////////////////////////////////////////
+
+int			draw_all_ray(void *obj);
 
 t_vector2	cast_ray_v(t_map *map, t_vector2 start, float angle);
+
+t_vector2	cast_ray_h(t_map *map, t_vector2 start, float angle);
 
 #endif

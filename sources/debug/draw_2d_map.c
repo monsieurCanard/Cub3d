@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_2d_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/14 19:31:12 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/15 10:33:11 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,10 @@ void	create_floor(int x, int y, size_t nb_obj)
 t_player	*create_player(int x, int y, size_t nb_obj)
 {
 	t_player	*player;
+	t_debug		*debug;
+	int			i;
 
+	i = 0;
 	player = malloc(sizeof(t_player));
 	if (!player)
 	{
@@ -55,10 +58,9 @@ t_player	*create_player(int x, int y, size_t nb_obj)
 	player->obj->trans.scale.x = 0.25;
 	player->obj->type = PLAYER;
 	player->obj->render.draw = &basic_draw2d;
-	int i = 0;
 	while (i < FOV)
 	{
-		t_debug *debug = new_debug(vector2(0,0), vector2(0,0), i);
+		debug = new_debug(vector2(0,0), vector2(0,0), i);
 		debug->active = true;
 		i++;
 	}
@@ -68,7 +70,6 @@ t_player	*create_player(int x, int y, size_t nb_obj)
 void	create_debug_map(t_data *data)
 {
 	t_camera	*camera;
-	t_player	*player;
 	size_t		nb_obj;
 	int			x;
 	int			y;

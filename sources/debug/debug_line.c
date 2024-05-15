@@ -3,77 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   debug_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:05 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/14 20:19:00 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/15 11:07:03 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 #include <limits.h>
 
-static bool	check_map(t_map *map, t_vector2 point, float angle)
+static t_vector2	__cal_ray(float dist_h, float dist_v, t_vector2 end_h,
+		t_vector2 end_v)
 {
-	int	map_x;
-	int	map_y;
+	t_vector2	ray;
 
-	map_x = ((int)point.x + 32) / 64;
-	if (angle < PI)
-		map_y = -((int)point.y - 32) / 64;
-	else if (angle > PI)
-		map_y = -((int)point.y + 32) / 64;
-	if (map_x >= 0 && map_y >= 0 && map_x < map->size_x && map_y < map->size_z && map->map[map_y][map_x] == '1')
-		return (true);
-	return (false);
-}
-
-t_vector2	next_intersection(t_map *map, t_vector2 point, float angle)
-{
-	t_vector2	intersection;
-	int			dov;
-	float		atan;
-
-	atan = -1 / tan(angle);
-	intersection = point;
-	dov = 0;
-	while (dov < 10)
-	{
-		if (check_map(map, intersection, angle) == true)
-			break ;
-		if (angle > PI)
-		{
-			intersection.x -= -64 * atan;
-			intersection.y += 64;
-		}
-		else if (angle < PI)
-		{
-			intersection.x -= 64 * atan;
-			intersection.y -= 64;
-		}
-		dov++;
-	}
-	return (intersection);
-}
-
-t_vector2	cast_ray_h(t_map *map, t_vector2 start, float angle)
-{
-	t_vector2	point;
-
-	point = start;
-	if (angle == 0 || angle == PI)
-		return (point);
-	if (angle < PI)
-	{
-		point.y = ((((int)start.y + 32) >> 6) << 6) - 32;
-		point.x = (start.y - point.y) / tan(angle) + start.x;
-	}
-	else if (angle > PI)
-	{
-		point.y = ((((int)start.y + 32) >> 6) << 6) + 32;
-		point.x = (start.y - point.y) / tan(angle) + start.x;
-	}
-	return (next_intersection(map, point, angle));
+	if (dist_h < dist_v)
+		ray = end_h;
+	else
+		ray = end_v;
+	return (ray);
 }
 
 t_vector2	update_raycast(void *obj, float angle)
@@ -83,46 +32,58 @@ t_vector2	update_raycast(void *obj, float angle)
 	t_vector2	end_v;
 	t_vector2	ray_vector_h;
 	t_vector2	ray_vector_v;
-	t_vector2	raycast;
 
 	data = (t_data *)obj;
 	end_h = cast_ray_h(data->map_data, data->player->obj->trans.pos, angle);
 	end_v = cast_ray_v(data->map_data, data->player->obj->trans.pos, angle);
 	ray_vector_h = sub_vector2(end_h, data->player->obj->trans.pos);
 	ray_vector_v = sub_vector2(end_v, data->player->obj->trans.pos);
-	float dist_h = magnitude_vector2(ray_vector_h);
-	float dist_v = magnitude_vector2(ray_vector_v);
-	if (dist_h > dist_v)
-		raycast = end_v;
-	else
-		raycast = end_h;
-	return (raycast);
+	return (__cal_ray(magnitude_vector2(ray_vector_h),
+			magnitude_vector2(ray_vector_v), end_h, end_v));
 }
 
-void draw_all_ray(void *obj)
+static float	get_ray(t_data *data, float angle, int index)
 {
-	int i;
-	float angle;
-	t_data *data;
-	t_mrender *renderer;
+	t_mrender	*renderer;
+	t_vector2	raycast;
 
-	data = (t_data *)obj;
-	i = 0;
-	angle = data->player->obj->trans.rot.x - ((FOV / 2) * DR);
 	renderer = get_renderer();
+	renderer->debug[index]->start = world_to_screen2d
+		(data->player->obj->trans.pos);
+	raycast = update_raycast(data, angle);
+	renderer->debug[index]->end = world_to_screen2d(raycast);
+	renderer->debug[index]->color = 0x00FF00;
+	return (magnitude_vector2(sub_vector2(raycast,
+				data->player->obj->trans.pos)));
+}
+
+int	draw_all_ray(void *obj)
+{
+	int			i;
+	float		angle;
+	t_data		*data;
+	float		*dist_ray;
+
+	i = 0;
+	data = (t_data *)obj;
+	dist_ray = malloc(sizeof(float) * 60);
+	if (!dist_ray)
+	{
+		logerror(__FILE__, __LINE__, "malloc() failed");
+		return (FAILURE);
+	}
+	angle = data->player->obj->trans.rot.x - ((FOV / 2) * DR);
 	while (i < 60)
 	{
 		if (angle > 2 * PI)
 			angle -= 2 * PI;
-		if (angle < 0)
+		else if (angle < 0)
 			angle += 2 * PI;
-		renderer->debug[i]->start = world_to_screen2d(data->player->obj->trans.pos);
-		t_vector2 raycast = update_raycast(data, angle);
-		renderer->debug[i]->end = world_to_screen2d(raycast);
-		renderer->debug[i]->color = 0x00FF00;
+		dist_ray[i] = get_ray(data, angle, i);
 		angle += DR;
 		i++;
 	}
+	return (SUCCESS);
 }
 
 // static bool	is_inside_square(t_vector2 point, t_vector2 start,
