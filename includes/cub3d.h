@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/15 11:06:38 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:08:36 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,9 @@ void		print_data(t_map *map);
 //////////////////////////////////////////
 
 int			draw_all_ray(void *obj);
+
+int			event_player_2d(int keycode, t_player *player);
+
 
 t_vector2	cast_ray_v(t_map *map, t_vector2 start, float angle);
 
