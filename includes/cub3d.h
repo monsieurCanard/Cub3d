@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/15 16:02:36 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/16 00:22:01 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ int			draw_all_ray(void *obj);
 
 int			event_player_2d(int keycode, t_player *player);
 
-float		get_ray(t_data *data, float angle, int index);
+float		get_ray(t_data *data, float angle, int index, int *color);
 
 t_vector2	cast_ray_v(t_map *map, t_vector2 start, float angle);
 
