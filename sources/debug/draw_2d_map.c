@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/14 19:31:12 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/15 12:03:00 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	create_wall(int x, int y, size_t nb_obj)
 	t_game_object	*obj;
 
 	obj = new_object(nb_obj);
-	init_xmp_render2d(obj, "./debug/texture/full_debug_square.xpm");
+	init_xmp_render2d(obj, "./debug/texture/full_debug_square.xpm", 0);
 	obj->trans.pos = vector2(x, y);
 	obj->type = WALL;
 	obj->trans.scale.x = 0.64;
@@ -29,7 +29,7 @@ void	create_floor(int x, int y, size_t nb_obj)
 	t_game_object	*obj;
 
 	obj = new_object(nb_obj);
-	init_xmp_render2d(obj, "./debug/texture/empty_debug_square.xpm");
+	init_xmp_render2d(obj, "./debug/texture/empty_debug_square.xpm", 0);
 	obj->trans.pos = vector2(x, y);
 	obj->type = FLOOR;
 	obj->trans.scale.x = 0.64;
@@ -50,7 +50,7 @@ t_player	*create_player(int x, int y, size_t nb_obj)
 	player->obj->trans.rot.x = 3 * PI / 2;
 	init_move_player(player);
 	player->delta = vector2(5 * cos(player->obj->trans.rot.x),-(5 * sin(player->obj->trans.rot.x)));
-	init_xmp_render2d(player->obj, "./debug/texture/player_octe.xpm");
+	init_xmp_render2d(player->obj, "./debug/texture/player_octe.xpm", 0);
 	player->obj->trans.pos = vector2(x, y);
 	player->obj->trans.scale.x = 0.25;
 	player->obj->type = PLAYER;
@@ -67,14 +67,14 @@ t_player	*create_player(int x, int y, size_t nb_obj)
 
 void	create_debug_map(t_data *data)
 {
-	t_camera	*camera;
-	t_player	*player;
+	t_engine	*engine;
 	size_t		nb_obj;
 	int			x;
 	int			y;
 
 	y = 0;
 	nb_obj = 0;
+	engine = get_engine();
 	while (y < (int)data->map_data->size_z)
 	{
 		x = 0;
@@ -92,9 +92,8 @@ void	create_debug_map(t_data *data)
 			}
 			else if (data->map_data->map[y][x] == 'N')
 			{
-				camera = new_camera();
-				camera->coord.x = -(x * 64);
-				camera->coord.y = y * 64;
+				engine->win[0].offset.x = -(x * 64);
+				engine->win[0].offset.y = y * 64;
 				data->player = create_player(x * 64, -(y * 64), 999);
 				create_floor(x * 64, -(y * 64), nb_obj++);
 			}
