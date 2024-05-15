@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:05 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/15 11:07:03 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:10:33 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,16 @@ t_vector2	update_raycast(void *obj, float angle)
 
 static float	get_ray(t_data *data, float angle, int index)
 {
-	t_mrender	*renderer;
+	t_engine	*engine;
 	t_vector2	raycast;
 
-	renderer = get_renderer();
-	renderer->debug[index]->start = world_to_screen2d
-		(data->player->obj->trans.pos);
+	engine = get_engine();
+	printf("kawjdhakwdjh engine->obj2d[3] = %p\n", engine->obj2d[3]);
+	engine->debug[index]->start = world_to_screen
+		(data->player->obj->trans.pos, 0);
 	raycast = update_raycast(data, angle);
-	renderer->debug[index]->end = world_to_screen2d(raycast);
-	renderer->debug[index]->color = 0x00FF00;
+	engine->debug[index]->end = world_to_screen(raycast, 0);
+	engine->debug[index]->color = 0x00FF00;
 	return (magnitude_vector2(sub_vector2(raycast,
 				data->player->obj->trans.pos)));
 }

@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/15 12:07:07 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:06:50 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_player	*create_player(int x, int y, size_t nb_obj)
 	player->obj = new_object(nb_obj);
 	player->obj->trans.rot.x = 3 * PI / 2;
 	init_move_player(player);
-	player->delta = vector2(5 * cos(player->obj->trans.rot.x),-(5 * sin(player->obj->trans.rot.x)));
+	player->delta = vector2(5 * cos(player->obj->trans.rot.x), -(5 * sin(player->obj->trans.rot.x)));
 	init_xmp_render2d(player->obj, "./debug/texture/player_octe.xpm", 0);
 	player->obj->trans.pos = vector2(x, y);
 	player->obj->trans.scale.x = 0.25;
@@ -94,8 +94,8 @@ void	create_debug_map(t_data *data)
 			}
 			else if (data->map_data->map[y][x] == 'N')
 			{
-				engine->win[0].offset.x = -(x * 64);
-				engine->win[0].offset.y = y * 64;
+				engine->win[0]->offset.x = -(x * 64);
+				engine->win[0]->offset.y = y * 64;
 				data->player = create_player(x * 64, -(y * 64), 999);
 				create_floor(x * 64, -(y * 64), nb_obj++);
 			}

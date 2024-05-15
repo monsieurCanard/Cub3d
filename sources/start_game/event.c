@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/15 11:57:51 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/15 15:13:48 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,26 +19,26 @@ int	event_player_2d(int keycode, t_player *player)
 	engine = get_engine();
 	if (keycode == KEY_UP || keycode == KEY_W)
 	{
-		engine->win[player->obj->render.id_win].offset.y -= player->delta.y;
-		engine->win[player->obj->render.id_win].offset.x -= player->delta.x;
+		engine->win[player->obj->render.id_win]->offset.y -= player->delta.y;
+		engine->win[player->obj->render.id_win]->offset.x -= player->delta.x;
 		player->move_up(player);
 	}
 	if (keycode == KEY_DOWN || keycode == KEY_S)
 	{
-		engine->win[player->obj->render.id_win].offset.y += player->delta.y;
-		engine->win[player->obj->render.id_win].offset.x += player->delta.x;
+		engine->win[player->obj->render.id_win]->offset.y += player->delta.y;
+		engine->win[player->obj->render.id_win]->offset.x += player->delta.x;
 		player->move_down(player);
 	}
 	if (keycode == KEY_RIGHT)
 	{
-		engine->win[player->obj->render.id_win].offset.x -= player->delta.y;
-		engine->win[player->obj->render.id_win].offset.y += player->delta.x;
+		engine->win[player->obj->render.id_win]->offset.x -= player->delta.y;
+		engine->win[player->obj->render.id_win]->offset.y += player->delta.x;
 		player->move_right(player);
 	}
 	if (keycode == KEY_LEFT)
 	{
-		engine->win[player->obj->render.id_win].offset.x += player->delta.y;
-		engine->win[player->obj->render.id_win].offset.y -= player->delta.x;
+		engine->win[player->obj->render.id_win]->offset.x += player->delta.y;
+		engine->win[player->obj->render.id_win]->offset.y -= player->delta.x;
 		player->move_left(player);
 	}
 	if (keycode == KEY_A)

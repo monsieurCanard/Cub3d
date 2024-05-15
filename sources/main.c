@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/15 12:08:29 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/15 13:15:28 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,5 @@ int	main(int ac, char **av)
 	if (init_window(vector2(800, 800), "Cub2d") == FAILURE)
 		return (EXIT_FAILURE);
 	start_game(&data);
-
 	return (0);
 }

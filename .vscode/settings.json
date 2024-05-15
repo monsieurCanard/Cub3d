@@ -1,7 +1,7 @@
 {
     "files.associations": {
 		"parser.h": "c",
-		"cub3d.h": "c"
+		"logging.h": "c"
 	},
 	"files.associations": {
 		"parser.h": "c"

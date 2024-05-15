@@ -6,7 +6,7 @@
 #    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/15 10:18:36 by antgabri         ###   ########.fr        #
+#    Updated: 2024/05/15 13:11:21 by antgabri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,7 +73,8 @@ SRC_RAYCAST_LIST	=	cast_ray_v.c	\
 SRC_RAYCAST			=	$(addprefix $(SRC_RAYCAST_DIR), $(SRC_RAYCAST_LIST))
 
 SRC_START_DIR		=	start_game/
-SRC_START_LIST		=	start_game.c
+SRC_START_LIST		=	start_game.c \
+						event.c
 SRC_START			=	$(addprefix $(SRC_START_DIR), $(SRC_START_LIST))
 
 SRC_DEBUG_DIR		=	debug/
