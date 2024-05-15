@@ -6,7 +6,7 @@
 #    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/15 13:11:21 by antgabri         ###   ########.fr        #
+#    Updated: 2024/05/15 16:00:47 by antgabri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,10 @@ SRC_START_LIST		=	start_game.c \
 						event.c
 SRC_START			=	$(addprefix $(SRC_START_DIR), $(SRC_START_LIST))
 
+SRC_UPDATE_GAME_DIR	=	update_game/
+SRC_UPDATE_GAME_LIST	=	get_raycast.c
+SRC_UPDATE_GAME		=	$(addprefix $(SRC_UPDATE_GAME_DIR), $(SRC_UPDATE_GAME_LIST))
+
 SRC_DEBUG_DIR		=	debug/
 SRC_DEBUG_LIST		=	draw_2d_map.c	\
 						player_angle.c	\
@@ -89,7 +93,8 @@ SRC_LIST			=	main.c				\
 						$(SRC_PARSER)		\
 						$(SRC_DEBUG)		\
 						$(SRC_START)		\
-						$(SRC_RAYCAST)
+						$(SRC_RAYCAST)		\
+						$(SRC_UPDATE_GAME)
 SRC					=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 
 ##################

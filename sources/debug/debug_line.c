@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:05 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/15 15:10:33 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/15 16:02:12 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,13 +42,12 @@ t_vector2	update_raycast(void *obj, float angle)
 			magnitude_vector2(ray_vector_v), end_h, end_v));
 }
 
-static float	get_ray(t_data *data, float angle, int index)
+float	get_ray(t_data *data, float angle, int index)
 {
 	t_engine	*engine;
 	t_vector2	raycast;
 
 	engine = get_engine();
-	printf("kawjdhakwdjh engine->obj2d[3] = %p\n", engine->obj2d[3]);
 	engine->debug[index]->start = world_to_screen
 		(data->player->obj->trans.pos, 0);
 	raycast = update_raycast(data, angle);
@@ -58,34 +57,22 @@ static float	get_ray(t_data *data, float angle, int index)
 				data->player->obj->trans.pos)));
 }
 
-int	draw_all_ray(void *obj)
-{
-	int			i;
-	float		angle;
-	t_data		*data;
-	float		*dist_ray;
+// float	*draw_all_ray(void *obj)
+// {
+// 	int			i;
+// 	float		angle;
+// 	t_data		*data;
+// 	float		*dist_ray;
 
-	i = 0;
-	data = (t_data *)obj;
-	dist_ray = malloc(sizeof(float) * 60);
-	if (!dist_ray)
-	{
-		logerror(__FILE__, __LINE__, "malloc() failed");
-		return (FAILURE);
-	}
-	angle = data->player->obj->trans.rot.x - ((FOV / 2) * DR);
-	while (i < 60)
-	{
-		if (angle > 2 * PI)
-			angle -= 2 * PI;
-		else if (angle < 0)
-			angle += 2 * PI;
-		dist_ray[i] = get_ray(data, angle, i);
-		angle += DR;
-		i++;
-	}
-	return (SUCCESS);
-}
+// 	i = 0;
+// 	data = (t_data *)obj;
+// 	if (!dist_ray)
+// 	{
+// 		logerror(__FILE__, __LINE__, "malloc() failed");
+// 		return (NULL);
+// 	}
+// 	return (dist_ray);
+// }
 
 // static bool	is_inside_square(t_vector2 point, t_vector2 start,
 //		t_vector2 end)
