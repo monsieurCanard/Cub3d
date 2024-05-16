@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/16 00:22:01 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/16 14:57:12 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,21 @@
 # include "core_data.h"
 # include "player.h"
 
+typedef struct s_img
+{
+	void		*img_ptr;
+	char		*addr;
+	int			bpp;
+	int			l_length;
+	int			endian;
+	t_vector2	size;
+}				t_img;
+
 typedef struct s_data
 {
 	t_map		*map_data;
 	t_player	*player;
+	t_img		*texture_img[4];
 }				t_data;
 
 //////////////////////////////////////////
@@ -78,16 +89,13 @@ void		create_debug_map(t_data *data);
 
 void		print_data(t_map *map);
 
-
 //////////////////////////////////////////
 ///////////// RAYCAST ////////////////////
 //////////////////////////////////////////
 
-int			draw_all_ray(void *obj);
+int			event_player_2d(t_player *player);
 
-int			event_player_2d(int keycode, t_player *player);
-
-float		get_ray(t_data *data, float angle, int index, int *color);
+float		get_ray(t_data *data, float angle, int index, t_vector2 *coord_ray);
 
 t_vector2	cast_ray_v(t_map *map, t_vector2 start, float angle);
 

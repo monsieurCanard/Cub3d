@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_2d_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/15 16:45:33 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/16 11:26:06 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_player	*create_player(int x, int y, size_t nb_obj)
 		logerror(__FILE__, __LINE__, "malloc() failed");
 		return (NULL);
 	}
+	ft_bzero(player, sizeof(t_player));
 	player->obj = new_object(nb_obj);
 	player->obj->trans.rot.x = 3 * PI / 2;
 	init_move_player(player);

@@ -1,4 +1,1 @@
 [DEBUG] sources/initializer/init_engine.c:23 - mlx_init() called
-[DEBUG] sources/stop_components/stop_engine.c:20 - mlx_destroy_display() called
-[DEBUG] sources/stop_components/stop_engine.c:25 - Freeing mlx
-[DEBUG] sources/stop_components/stop_engine.c:33 - Freeing engine

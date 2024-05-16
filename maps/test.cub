@@ -1,11 +1,7 @@
-WE     ./testWE
-NO ./testNO
-
-
-
-
-
-EA      ./testEA    
+WE    ./debug/texture/wall_text.xpm
+NO     ./debug/texture/wall_text.xpm
+EA      ./debug/texture/wall_text.xpm  
+SO       ./debug/texture/wall_text.xpm
 
 
 
@@ -15,10 +11,8 @@ EA      ./testEA
 
 
 
-SO ./testSO
-
-F 0   ,2,  3
-C     45,    5,    67
+F 100   ,100,  100
+C     8,    150,    255
      
 
         1111111111111111111111111

@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:05 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/16 00:25:47 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/16 15:19:20 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,22 @@
 #include <limits.h>
 
 static t_vector2	__cal_ray(float dist_h, float dist_v, t_vector2 end_h,
-		t_vector2 end_v, int *color)
+		t_vector2 end_v)
 {
 	t_vector2	ray;
 
 	if (dist_h < dist_v)
 	{
 		ray = end_h;
-		*color = 0xAA0000;
 	}
 	else
 	{
 		ray = end_v;
-		*color = 0xFF0000;
 	}
 	return (ray);
 }
 
-t_vector2	update_raycast(void *obj, float angle, int *color)
+static t_vector2	update_raycast(void *obj, float angle)
 {
 	t_data		*data;
 	t_vector2	end_h;
@@ -45,21 +43,20 @@ t_vector2	update_raycast(void *obj, float angle, int *color)
 	ray_vector_h = sub_vector2(end_h, data->player->obj->trans.pos);
 	ray_vector_v = sub_vector2(end_v, data->player->obj->trans.pos);
 	return (__cal_ray(magnitude_vector2(ray_vector_h),
-			magnitude_vector2(ray_vector_v), end_h, end_v, color));
+			magnitude_vector2(ray_vector_v), end_h, end_v));
 }
 
-float	get_ray(t_data *data, float angle, int index, int *color)
+float	get_ray(t_data *data, float angle, int index, t_vector2 *coord_ray)
 {
 	t_engine	*engine;
-	t_vector2	raycast;
 
 	engine = get_engine();
 	engine->debug[index]->start = world_to_screen
 		(data->player->obj->trans.pos, 0);
-	raycast = update_raycast(data, angle, color);
-	engine->debug[index]->end = world_to_screen(raycast, 0);
+	*coord_ray = update_raycast(data, angle);
+	engine->debug[index]->end = world_to_screen(*coord_ray, 0);
 	engine->debug[index]->color = 0x00FF00;
-	return (magnitude_vector2(sub_vector2(raycast,
+	return (magnitude_vector2(sub_vector2(*coord_ray,
 				data->player->obj->trans.pos)));
 }
 
