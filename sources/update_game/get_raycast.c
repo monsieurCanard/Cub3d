@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:30:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/16 16:37:36 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/17 07:32:54 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ static void	copy_pixel3d(t_buffer *dst, t_img *src, t_vector2 dst_c, t_vector2 s
 			+ roundf(src_c.x) * (src->bpp / 8));
 	color = create_trgb(src->addr[offset + 3], src->addr[offset + 2],
 			src->addr[offset + 1], src->addr[offset]);
-	printf("color : %d", mlx_get_color_value(get_engine()->mlx, color));
-	printf("color = %x\n", color);
-	printf("src_x = %f, src_y = %f\n", src_c.x, src_c.y);
 	pixel_put(dst, dst_c, color);
 }
 
@@ -37,7 +34,6 @@ static void	draw_3d_pov(float dist_ray, t_data *data, t_vector2 *coord_ray, int 
 	if (line_height > 1080)
 		line_height = 1080;
 	start = vector2(i * 18, 540 - line_height / 2);
-	printf("coord_ray.x = %f, coord_ray.y = %f\n", coord_ray->x, coord_ray->y);
 	while (start.y < line_height + 540 - line_height / 2)
 	{
 		start.x = i * 18;

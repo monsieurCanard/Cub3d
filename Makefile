@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
+#    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/15 16:00:47 by antgabri         ###   ########.fr        #
+#    Updated: 2024/05/17 07:38:20 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ CFLAGS		=	-Wall -Wextra  -g3
 CORE_ENGINE		=	$(CORE_ENGINE_DIR)core_engine.a
 CORE_ENGINE_DIR	=	Core-Engine/
 CORE_ENGINE_INC	=	$(CORE_ENGINE_DIR)includes/
+CORE_ENGINE_NORME = $(CORE_ENGINE_DIR)includes/ $(CORE_ENGINE_DIR)sources/ $(CORE_ENGINE_DIR)libs/libft/ $(CORE_ENGINE_DIR)libs/vectorft/
 
 LIBFT_INC		= $(CORE_ENGINE_DIR)libs/libft/includes/
 
@@ -166,14 +167,14 @@ all: $(CORE_ENGINE) $(NAME)
 $(CORE_ENGINE):
 	@make -sC $(CORE_ENGINE_DIR) 
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCLUDES)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@$(eval COMPILED_SRCS=$(shell expr $(COMPILED_SRCS) + 1))
 	@$(call print_progress,$(COMPILED_SRCS),$(TOTAL_SRCS), $<)
 
 
-$(NAME): $(call $(RQ_SRC)) $(OBJ_LIST)
+$(NAME): $(OBJ_LIST)
 	@echo "\033[2K$(COLOR_ORANGE)$(BOLD)Compilation complete ! $(COLOR_BLUE)Cub3d is Ready !$(COLOR_RESET)"
 	@$(CC) $(CFLAGS) $^ $(INCLUDE) $(LDFLAGS) -o $@
 
@@ -189,7 +190,7 @@ fclean: clean
 
 norme:
 	@echo "$(COLOR_BLUE)Norminette...$(COLOR_RESET)"
-	@norminette $(SRC) $(INCLUDES) $(LIBFT_DIR) > $(NORM_LOG) ; \
+	@norminette $(SRC) $(INCLUDES) $(CORE_ENGINE_NORME) > $(NORM_LOG) ; \
 	if grep -q "Error" $(NORM_LOG); then \
 		echo "$(COLOR_RED)Norme : KO!$(COLOR_RESET)"; \
 	else \
