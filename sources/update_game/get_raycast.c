@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_raycast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:30:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/16 16:37:36 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/17 16:41:41 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,38 @@ static void	copy_pixel3d(t_buffer *dst, t_img *src, t_vector2 dst_c, t_vector2 s
 	int	offset;
 
 	offset = (roundf(src_c.y) * src->l_length
-			+ roundf(src_c.x) * (src->bpp / 8));
+		+ roundf(src_c.x) * (src->bpp / 8));
 	color = create_trgb(src->addr[offset + 3], src->addr[offset + 2],
 			src->addr[offset + 1], src->addr[offset]);
-	printf("color : %d", mlx_get_color_value(get_engine()->mlx, color));
-	printf("color = %x\n", color);
-	printf("src_x = %f, src_y = %f\n", src_c.x, src_c.y);
 	pixel_put(dst, dst_c, color);
 }
 
-static void	draw_3d_pov(float dist_ray, t_data *data, t_vector2 *coord_ray, int i)
+static void	draw_3d_pov(float dist_ray, t_data *data, t_vector2 *coord_ray, int i, float angle)
 {
 	float		line_height;
 	t_vector2	src;
 	t_vector2	start;
+	int 		tex_x;
 
 	line_height = 32 * 1080 / dist_ray;
 	if (line_height > 1080)
 		line_height = 1080;
 	start = vector2(i * 18, 540 - line_height / 2);
-	printf("coord_ray.x = %f, coord_ray.y = %f\n", coord_ray->x, coord_ray->y);
 	while (start.y < line_height + 540 - line_height / 2)
 	{
 		start.x = i * 18;
 		while (start.x < (i * 18) + 18)
 		{
-			copy_pixel3d(get_engine()->win[1]->renderer.b_back, data->texture_img[0], start, vector2((int)(coord_ray->x - 32) % 64, (int)(coord_ray->y - 32.0) % 64));
+			float tex_pos = (start.y - (540 - line_height / 2)) / line_height;
+			int tex_y = (int)(tex_pos * 64);
+			//TODO Savoir de quelle cote on tape un mur pour savoir comment afficher la texture
+			if (angle > PI)
+    			tex_x = (int)(coord_ray->x - 32) % 64;
+			else
+    			tex_x =  64 - (int)(coord_ray->x - 32) % 64;
+			// tex_x = 64 -(int)(coord_ray->y - 32) % 64;
+			copy_pixel3d(get_engine()->win[1]->renderer.b_back, data->texture_img[0], start,
+				vector2(tex_x, tex_y));
 			start.x++;
 		}
 		start.y++;
@@ -110,7 +116,7 @@ int	update_game(void *obj)
 		else if (off_angle < 0)
 			off_angle += 2 * PI;
 		ray *= cos(fabs(off_angle));
-		draw_3d_pov(ray, data, &coord_ray , i);
+		draw_3d_pov(ray, data, &coord_ray , i, data->player->obj->trans.rot.x);
 		angle += DR;
 		i++;
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/16 15:23:33 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/17 15:17:28 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ static int	take_texture_img(char **file_name, t_img **texture_tab)
 		texture_img = malloc(sizeof(t_img));
 		texture_img->img_ptr = mlx_xpm_file_to_image(get_engine()->mlx,
 				file_name[i], &width, &height);
+		printf("File name = %s\n", file_name[i]);
 		if (texture_img->img_ptr == NULL)
 		{
 			perror("Error\n");
@@ -34,7 +35,8 @@ static int	take_texture_img(char **file_name, t_img **texture_tab)
 		texture_img->addr = mlx_get_data_addr(texture_img->img_ptr,
 				&(texture_img->bpp), &(texture_img->l_length),
 				(&texture_img->endian));
-		if (texture_img->img_ptr == NULL)
+		printf("texture_img->addr = %p\n", texture_img->addr);
+		if (texture_img->addr == NULL)
 		{
 			perror("Error\n");
 			return (FAILURE);

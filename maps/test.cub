@@ -1,7 +1,7 @@
-WE    ./debug/texture/wall_text.xpm
-NO     ./debug/texture/wall_text.xpm
-EA      ./debug/texture/wall_text.xpm  
-SO       ./debug/texture/wall_text.xpm
+WE    ./debug/texture/wall_texture.xpm
+NO     ./debug/texture/wall_texture.xpm
+EA      ./debug/texture/wall_texture.xpm  
+SO       ./debug/texture/wall_texture.xpm
 
 
 
