@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/16 11:26:06 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/17 19:00:06 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,10 @@
 void	create_wall(int x, int y, size_t nb_obj)
 {
 	t_game_object	*obj;
+	t_texture		*texture;
 
-	obj = new_object(nb_obj);
-	init_xmp_render2d(obj, "./debug/texture/full_debug_square.xpm", 0);
+	texture = init_texture("./debug/texture/full_debug_square.xpm");
+	obj = new_object(nb_obj, texture, 0);
 	obj->trans.pos = vector2(x, y);
 	obj->type = WALL;
 	obj->trans.scale.x = 0.64;
@@ -27,9 +28,10 @@ void	create_wall(int x, int y, size_t nb_obj)
 void	create_floor(int x, int y, size_t nb_obj)
 {
 	t_game_object	*obj;
+	t_texture		*texture;
 
-	obj = new_object(nb_obj);
-	init_xmp_render2d(obj, "./debug/texture/empty_debug_square.xpm", 0);
+	texture = init_texture("./debug/texture/empty_debug_square.xpm");
+	obj = new_object(nb_obj, texture, 0);
 	obj->trans.pos = vector2(x, y);
 	obj->type = FLOOR;
 	obj->trans.scale.x = 0.64;
@@ -40,6 +42,7 @@ t_player	*create_player(int x, int y, size_t nb_obj)
 {
 	t_player	*player;
 	t_debug		*debug;
+	t_texture	*texture;
 	int			i;
 
 	i = 0;
@@ -50,11 +53,16 @@ t_player	*create_player(int x, int y, size_t nb_obj)
 		return (NULL);
 	}
 	ft_bzero(player, sizeof(t_player));
-	player->obj = new_object(nb_obj);
-	player->obj->trans.rot.x = 3 * PI / 2;
+	texture = init_texture("./debug/texture/player_octe.xpm");
+	if (!texture)
+	{
+		logerror(__FILE__, __LINE__, "init_texture() failed");
+		return (NULL);
+	}
+	player->obj = new_object(nb_obj, texture, 0);
 	init_move_player(player);
+	player->obj->trans.rot.x = 3 * PI / 2;
 	player->delta = vector2(5 * cos(player->obj->trans.rot.x), -(5 * sin(player->obj->trans.rot.x)));
-	init_xmp_render2d(player->obj, "./debug/texture/player_octe.xpm", 0);
 	player->obj->trans.pos = vector2(x, y);
 	player->obj->trans.scale.x = 0.25;
 	player->obj->type = PLAYER;

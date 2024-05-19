@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:30:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/17 07:32:54 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/18 12:29:47 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	draw_3d_pov(float dist_ray, t_data *data, t_vector2 *coord_ray, int 
 		start.x = i * 18;
 		while (start.x < (i * 18) + 18)
 		{
-			copy_pixel3d(get_engine()->win[1]->renderer.b_back, data->texture_img[0], start, vector2((int)(coord_ray->x - 32) % 64, (int)(coord_ray->y - 32.0) % 64));
+			//copy_pixel3d(get_engine()->win[1]->renderer.b_back, data->texture_img[0], start, vector2((int)(coord_ray->x - 32) % 64, (int)(coord_ray->y - 32.0) % 64));
 			start.x++;
 		}
 		start.y++;

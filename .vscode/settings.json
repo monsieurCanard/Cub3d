@@ -1,18 +1,7 @@
 {
     "files.associations": {
 		"parser.h": "c",
-		"array": "c",
-		"*.tcc": "c",
-		"string": "c",
-		"vector": "c",
-		"string_view": "c",
-		"functional": "c",
-		"limits": "c",
-		"ostream": "c",
-		"ranges": "c",
-		"span": "c",
-		"streambuf": "c",
-		"tuple": "c"
+		"core.h": "c"
 	},
 	"files.associations": {
 		"parser.h": "c"
