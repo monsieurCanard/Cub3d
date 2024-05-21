@@ -1,7 +1,7 @@
 /* XPM */
 static char * wall_text_xpm[] = {
 "64 64 179 2",
-"  	c #FF00FF",
+"  	c red",
 ". 	c #FF000F",
 "+ 	c #F412FE",
 "@ 	c #DA77E3",

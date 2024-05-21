@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:30:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/21 15:51:25 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:59:06 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	update_game(void *obj)
 		else if (off_angle < 0)
 			off_angle += 2 * PI;
 		ray *= cos(fabs(off_angle));
-		draw_3d_pov(ray, data, &coord_ray , i, data->player->obj->trans.rot.x);
+		draw_3d_pov(ray, data, &coord_ray , i);
 		angle += DR;
 		i++;
 	}
