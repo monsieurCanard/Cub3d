@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/16 14:57:12 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/19 20:00:07 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@
 # define WALL 1
 # define PLAYER 2
 
-# define FOV 60
+# define FOV 65
 
 //////////////////////////////////////
 ///////////// DEBUG //////////////////
@@ -52,21 +52,11 @@
 # include "core_data.h"
 # include "player.h"
 
-typedef struct s_img
-{
-	void		*img_ptr;
-	char		*addr;
-	int			bpp;
-	int			l_length;
-	int			endian;
-	t_vector2	size;
-}				t_img;
-
 typedef struct s_data
 {
 	t_map		*map_data;
 	t_player	*player;
-	t_img		*texture_img[4];
+	t_texture	*texture[4];
 }				t_data;
 
 //////////////////////////////////////////

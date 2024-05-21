@@ -6,25 +6,14 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:30:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/18 12:29:47 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/19 19:57:38 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	copy_pixel3d(t_buffer *dst, t_img *src, t_vector2 dst_c, t_vector2 src_c)
-{
-	int	color;
-	int	offset;
-
-	offset = (roundf(src_c.y) * src->l_length
-			+ roundf(src_c.x) * (src->bpp / 8));
-	color = create_trgb(src->addr[offset + 3], src->addr[offset + 2],
-			src->addr[offset + 1], src->addr[offset]);
-	pixel_put(dst, dst_c, color);
-}
-
-static void	draw_3d_pov(float dist_ray, t_data *data, t_vector2 *coord_ray, int i)
+static void	draw_3d_pov(float dist_ray, t_data *data,
+	t_vector2 *coord_ray, int i)
 {
 	float		line_height;
 	t_vector2	src;
@@ -39,7 +28,7 @@ static void	draw_3d_pov(float dist_ray, t_data *data, t_vector2 *coord_ray, int 
 		start.x = i * 18;
 		while (start.x < (i * 18) + 18)
 		{
-			//copy_pixel3d(get_engine()->win[1]->renderer.b_back, data->texture_img[0], start, vector2((int)(coord_ray->x - 32) % 64, (int)(coord_ray->y - 32.0) % 64));
+			copy_pixel(get_engine()->win[1], data->texture[0], start, vector2((int)(coord_ray->x - 32) % 64, (int)(coord_ray->y - 32.0) % 64));
 			start.x++;
 		}
 		start.y++;
@@ -93,7 +82,7 @@ int	update_game(void *obj)
 	event_player_2d(data->player);
 	draw_ceil_floor(data->map_data);
 	angle = data->player->obj->trans.rot.x - ((FOV / 2) * DR);
-	while (i < 60)
+	while (i < FOV)
 	{
 		if (angle > 2 * PI)
 			angle -= 2 * PI;
