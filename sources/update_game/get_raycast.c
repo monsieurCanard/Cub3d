@@ -3,14 +3,35 @@
 /*                                                        :::      ::::::::   */
 /*   get_raycast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:30:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/21 15:59:06 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:32:02 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int	get_side_wall(t_vector2 *ray, t_player *player)
+{
+	t_vector2	vector;
+
+	vector = sub_vector2(*ray, player->obj->trans.pos);
+	if ((int)(ray->y - 32) % 64 == 0)
+	{
+		if (vector.y < 0)
+			return (0);
+		else
+			return (1);
+	}
+	else
+	{
+		if (vector.x < 0)
+			return (2);
+		else
+			return (3);
+	}
+}
 
 static void	draw_3d_pov(float dist_ray, t_data *data,
 	t_vector2 *coord_ray, int i)
@@ -19,11 +40,13 @@ static void	draw_3d_pov(float dist_ray, t_data *data,
 	t_vector2	src;
 	t_vector2	start;
 	int 		tex_x;
+	int 		ret;
 
 	line_height = 32 * 1080 / dist_ray;
 	if (line_height > 1080)
 		line_height = 1080;
 	start = vector2(i * 18, 540 - line_height / 2);
+	ret = get_side_wall(coord_ray, data->player);
 	while (start.y < line_height + 540 - line_height / 2)
 	{
 		start.x = i * 18;
@@ -32,11 +55,10 @@ static void	draw_3d_pov(float dist_ray, t_data *data,
 			float tex_pos = (start.y - (540 - line_height / 2)) / line_height;
 			int tex_y = (int)(tex_pos * 64);
 			//TODO Savoir de quelle cote on tape un mur pour savoir comment afficher la texture
-			// if (angle > PI)
-    		tex_x = (int)(coord_ray->x - 32) % 64;
-			// else
+			// if (on tape au nord)
+    			tex_x = (int)(coord_ray->x - 32) % 64;
+			//if (on tape au sud)
     		// 	tex_x =  64 - (int)(coord_ray->x - 32) % 64;
-			// tex_x = 64 -(int)(coord_ray->y - 32) % 64;
 			copy_pixel(get_engine()->win[1], data->texture[0], start,
 				vector2(tex_x, tex_y));
 			start.x++;

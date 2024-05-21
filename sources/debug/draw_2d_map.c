@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_2d_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/17 19:00:06 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/21 17:20:23 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ void	create_debug_map(t_data *data)
 				create_floor(x * 64, -(y * 64), nb_obj);
 				nb_obj++;
 			}
-			else if (data->map_data->map[y][x] == 'N')
+			if (data->map_data->map[y][x] == 'N')
 			{
 				engine->win[0]->offset.x = -(x * 64);
 				engine->win[0]->offset.y = y * 64;
