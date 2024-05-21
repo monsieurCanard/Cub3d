@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:05 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/16 15:19:20 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/19 18:49:16 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,94 +59,3 @@ float	get_ray(t_data *data, float angle, int index, t_vector2 *coord_ray)
 	return (magnitude_vector2(sub_vector2(*coord_ray,
 				data->player->obj->trans.pos)));
 }
-
-// float	*draw_all_ray(void *obj)
-// {
-// 	int			i;
-// 	float		angle;
-// 	t_data		*data;
-// 	float		*dist_ray;
-
-// 	i = 0;
-// 	data = (t_data *)obj;
-// 	if (!dist_ray)
-// 	{
-// 		logerror(__FILE__, __LINE__, "malloc() failed");
-// 		return (NULL);
-// 	}
-// 	return (dist_ray);
-// }
-
-// static bool	is_inside_square(t_vector2 point, t_vector2 start,
-//		t_vector2 end)
-// {
-// 	if (point.x >= start.x && point.x <= end.x
-// 		&& point.y <= start.y && point.y >= end.y)
-// 	{
-// 		return (true);
-// 	}
-// 	return (false);
-// }
-
-// static t_vector2	__cal_start_obj(t_game_object *obj)
-// {
-// 	t_vector2	start_obj;
-// 	t_engine	*engine;
-// 	float		scale;
-
-// 	scale = obj->trans.scale.x;
-// 	engine = get_engine();
-// 	start_obj = (t_vector2){obj->trans.pos.x - (obj->render.size.x * scale / 2),
-// 		obj->trans.pos.y + (obj->render.size.y * scale / 2),};
-// 	return (start_obj);
-// }
-
-// static t_vector2	__cal_end_obj(t_game_object *obj)
-// {
-// 	t_vector2	end_obj;
-
-// 	end_obj = (t_vector2){obj->trans.pos.x + (obj->render.size.x
-//			* obj->trans.scale.x / 2),
-// 		obj->trans.pos.y - (obj->render.size.y * obj->trans.scale.x / 2),};
-// 	return (end_obj);
-// }
-
-// static bool	verif_point(t_vector2 point, int j)
-// {
-// 	t_engine	*engine;
-// 	t_vector2	start_obj;
-// 	t_vector2	end_obj;
-
-// 	engine = get_engine();
-// 	start_obj = __cal_start_obj(engine->obj2d[j]);
-// 	end_obj = __cal_end_obj(engine->obj2d[j]);
-// 	if (is_inside_square(point, start_obj, end_obj) == true
-// 		&& engine->obj2d[j]->type == 1)
-// 	{
-// 		return (true);
-// 	}
-// 	return (false);
-// }
-
-// t_vector2	cast_ray(t_vector2 start, float angle)
-// {
-// 	t_vector2	point;
-// 	t_vector2	raiser;
-// 	float		step;
-
-// 	raiser.x = cos(angle);
-// 	raiser.y = sin(angle);
-// 	step = 0.1;
-// 	while (step < 70)
-// 	{
-// 		point = (t_vector2){start.x + step * raiser.x,
-// 			start.y - step * raiser.y};
-// 		if (((int)roundf(point.x - 32) % 64 == 0
-// 				|| (int)roundf(point.y - 32) % 64 == 0))
-// 		{
-// 			return (next_intersection(point, angle));
-// 		}
-// 		step += 0.1;
-// 	}
-// 	return (point);
-// }

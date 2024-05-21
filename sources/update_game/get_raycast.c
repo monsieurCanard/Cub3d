@@ -3,28 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   get_raycast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:30:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/17 16:41:41 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/21 15:51:25 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static void	copy_pixel3d(t_buffer *dst, t_img *src, t_vector2 dst_c, t_vector2 src_c)
-{
-	int	color;
-	int	offset;
-
-	offset = (roundf(src_c.y) * src->l_length
-		+ roundf(src_c.x) * (src->bpp / 8));
-	color = create_trgb(src->addr[offset + 3], src->addr[offset + 2],
-			src->addr[offset + 1], src->addr[offset]);
-	pixel_put(dst, dst_c, color);
-}
-
-static void	draw_3d_pov(float dist_ray, t_data *data, t_vector2 *coord_ray, int i, float angle)
+static void	draw_3d_pov(float dist_ray, t_data *data,
+	t_vector2 *coord_ray, int i)
 {
 	float		line_height;
 	t_vector2	src;
@@ -43,12 +32,12 @@ static void	draw_3d_pov(float dist_ray, t_data *data, t_vector2 *coord_ray, int 
 			float tex_pos = (start.y - (540 - line_height / 2)) / line_height;
 			int tex_y = (int)(tex_pos * 64);
 			//TODO Savoir de quelle cote on tape un mur pour savoir comment afficher la texture
-			if (angle > PI)
-    			tex_x = (int)(coord_ray->x - 32) % 64;
-			else
-    			tex_x =  64 - (int)(coord_ray->x - 32) % 64;
+			// if (angle > PI)
+    		tex_x = (int)(coord_ray->x - 32) % 64;
+			// else
+    		// 	tex_x =  64 - (int)(coord_ray->x - 32) % 64;
 			// tex_x = 64 -(int)(coord_ray->y - 32) % 64;
-			copy_pixel3d(get_engine()->win[1]->renderer.b_back, data->texture_img[0], start,
+			copy_pixel(get_engine()->win[1], data->texture[0], start,
 				vector2(tex_x, tex_y));
 			start.x++;
 		}
@@ -103,7 +92,7 @@ int	update_game(void *obj)
 	event_player_2d(data->player);
 	draw_ceil_floor(data->map_data);
 	angle = data->player->obj->trans.rot.x - ((FOV / 2) * DR);
-	while (i < 60)
+	while (i < FOV)
 	{
 		if (angle > 2 * PI)
 			angle -= 2 * PI;
