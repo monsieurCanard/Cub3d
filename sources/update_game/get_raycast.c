@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_raycast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:30:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/21 17:32:02 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/22 19:23:12 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,52 +15,62 @@
 static int	get_side_wall(t_vector2 *ray, t_player *player)
 {
 	t_vector2	vector;
+	static int	old_side;
 
 	vector = sub_vector2(*ray, player->obj->trans.pos);
-	if ((int)(ray->y - 32) % 64 == 0)
+	if ((int)(ray->y - 32) % 64 == 0 && (int)(ray->x - 32) % 64 != 0)
 	{
 		if (vector.y < 0)
-			return (0);
+			old_side = NO;
 		else
-			return (1);
+			old_side = SO;
 	}
-	else
+	else if ((int)(ray->x - 32) % 64 == 0 && (int)(ray->y - 32) % 64 != 0)
 	{
 		if (vector.x < 0)
-			return (2);
+			old_side = EA;
 		else
-			return (3);
+			old_side = WE;
 	}
+	return (old_side);
+}
+
+t_vector2	get_src_pixel(t_vector2 start, int line_height, t_vector2 *ray, int side, int size_y)
+{
+	t_vector2	src;
+
+	src.y = roundf((start.y - 540 + line_height / 2) * size_y / line_height);
+	if (side == NO)
+		src.x = abs(64 - (int)((ray->x - 32)) % 64 + start.x);
+	else if (side == SO)
+		src.x = abs((int)(ray->x - 32) % 64 + start.x);
+	else if (side == EA)
+		src.x = abs(64 + (int)(ray->y - 32) % 64 + start.x);
+	else
+		src.x = abs((int)(ray->y - 32) % 64 + start.x);
+	return (src);
 }
 
 static void	draw_3d_pov(float dist_ray, t_data *data,
 	t_vector2 *coord_ray, int i)
 {
 	float		line_height;
-	t_vector2	src;
+	t_vector2	tex;
 	t_vector2	start;
-	int 		tex_x;
-	int 		ret;
+	int			side;
+	float		scale;
 
 	line_height = 32 * 1080 / dist_ray;
-	if (line_height > 1080)
-		line_height = 1080;
 	start = vector2(i * 18, 540 - line_height / 2);
-	ret = get_side_wall(coord_ray, data->player);
+	side = get_side_wall(coord_ray, data->player);
+	scale = data->texture[side]->size.x / 64;
 	while (start.y < line_height + 540 - line_height / 2)
 	{
 		start.x = i * 18;
 		while (start.x < (i * 18) + 18)
 		{
-			float tex_pos = (start.y - (540 - line_height / 2)) / line_height;
-			int tex_y = (int)(tex_pos * 64);
-			//TODO Savoir de quelle cote on tape un mur pour savoir comment afficher la texture
-			// if (on tape au nord)
-    			tex_x = (int)(coord_ray->x - 32) % 64;
-			//if (on tape au sud)
-    		// 	tex_x =  64 - (int)(coord_ray->x - 32) % 64;
-			copy_pixel(get_engine()->win[1], data->texture[0], start,
-				vector2(tex_x, tex_y));
+			tex = get_src_pixel(start, line_height, coord_ray, side, data->texture[side]->size.y);
+			copy_pixel(get_engine()->win[1], data->texture[side], start, tex);
 			start.x++;
 		}
 		start.y++;

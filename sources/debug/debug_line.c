@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 11:10:05 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/19 18:49:16 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/22 18:37:21 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ static t_vector2	__cal_ray(float dist_h, float dist_v, t_vector2 end_h,
 		t_vector2 end_v)
 {
 	t_vector2	ray;
-
+	printf("dist_h: %f\n", dist_h);
+	printf("dist_v: %f\n", dist_v);
 	if (dist_h < dist_v)
 	{
 		ray = end_h;
