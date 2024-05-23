@@ -1,24 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_game.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 15:33:20 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/23 18:56:23 by jbrousse         ###   ########.fr       */
+/*   Created: 2024/05/23 17:12:44 by jbrousse          #+#    #+#             */
+/*   Updated: 2024/05/23 20:09:56 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	start_game(t_data *data)
+float	cap_angle_rad(float angle)
 {
-	create_debug_map(data);
-	event_hook(&key_press, KeyPress, KeyPressMask, &(data->player->keys), 0);
-	event_hook(&key_release, KeyRelease, KeyReleaseMask, &(data->player->keys), 0);
-	event_hook(&key_press, KeyPress, KeyPressMask, &(data->player->keys), 1);
-	event_hook(&key_release, KeyRelease, KeyReleaseMask, &(data->player->keys), 1);
-	loop(&update, data);
-	return (SUCCESS);
+	if (angle < 0)
+		angle += 2 * PI;
+	else if (angle >= 2 * PI)
+		angle -= 2 * PI;
+	return (angle);
 }

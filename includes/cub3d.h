@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/21 16:00:06 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/23 20:08:34 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,9 @@
 
 # define FAILURE -1
 # define SUCCESS 0
+
+# define WIN_WIDTH 1080
+# define WIN_HEIGHT 1080
 
 # define BLUE 0x0000FF
 # define RED 0xFF0000
@@ -59,6 +62,14 @@ typedef struct s_data
 	t_texture	*texture[4];
 }				t_data;
 
+typedef struct s_ray
+{
+	t_vector2	end;
+	t_vector2	vector;
+	float		dist;
+	int			hit_axis;
+}				t_ray;
+
 //////////////////////////////////////////
 ///////////// EVENTS /////////////////////
 //////////////////////////////////////////
@@ -66,8 +77,10 @@ typedef struct s_data
 // t_map		open_files(char *map_name);
 
 //////////////////////////////////////////
-///////////// PLAYER /////////////////////
+//////////////// UTILS ///////////////////
 //////////////////////////////////////////
+
+float		cap_angle_rad(float angle);
 
 //////////////////////////////////////////
 ///////////// GAME ///////////////////////
@@ -85,10 +98,22 @@ void		print_data(t_map *map);
 
 int			event_player_2d(t_player *player);
 
-float		get_ray(t_data *data, float angle, int index, t_vector2 *coord_ray);
+// float		get_ray(t_data *data, float angle, int index, t_vector2 *coord_ray);
+
+t_vector2	cast_ray(float angle, t_data *data, int *hit_axis, int index);
 
 t_vector2	cast_ray_v(t_map *map, t_vector2 start, float angle);
 
 t_vector2	cast_ray_h(t_map *map, t_vector2 start, float angle);
+
+//////////////////////////////////////////
+////////////////// 3D ////////////////////
+//////////////////////////////////////////
+
+void		draw_ceil_floor(t_map *map_data);
+
+int			update(void *data_ptr);
+
+void		debug_ray(t_vector2 start, t_vector2 end, int index);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/17 07:38:20 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/05/23 19:37:54 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,10 +67,11 @@ SRC_PARSER_LIST		=	map/take_map.c		\
 						take_data.c
 SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
-SRC_RAYCAST_DIR		=	raycast/
+SRC_RAYCAST_DIR		=	raycaster/
 
-SRC_RAYCAST_LIST	=	cast_ray_v.c	\
-						cast_ray_h.c	
+SRC_RAYCAST_LIST	=	raycast_v.c	\
+						raycast_h.c	\
+						raycaster.c
 SRC_RAYCAST			=	$(addprefix $(SRC_RAYCAST_DIR), $(SRC_RAYCAST_LIST))
 
 SRC_START_DIR		=	start_game/
@@ -79,18 +80,21 @@ SRC_START_LIST		=	start_game.c \
 SRC_START			=	$(addprefix $(SRC_START_DIR), $(SRC_START_LIST))
 
 SRC_UPDATE_GAME_DIR	=	update_game/
-SRC_UPDATE_GAME_LIST	=	get_raycast.c
+SRC_UPDATE_GAME_LIST	=	update.c	\
+							draw_floor_ceil.c
 SRC_UPDATE_GAME		=	$(addprefix $(SRC_UPDATE_GAME_DIR), $(SRC_UPDATE_GAME_LIST))
 
 SRC_DEBUG_DIR		=	debug/
 SRC_DEBUG_LIST		=	draw_2d_map.c	\
 						player_angle.c	\
+						debug_ray.c		\
 						player_move.c	\
 						debug_line.c
 SRC_DEBUG			=	$(addprefix $(SRC_DEBUG_DIR), $(SRC_DEBUG_LIST))
 
 ##----------------------------------------------------------------------------------##
 SRC_LIST			=	main.c				\
+						utils.c				\
 						$(SRC_PARSER)		\
 						$(SRC_DEBUG)		\
 						$(SRC_START)		\
