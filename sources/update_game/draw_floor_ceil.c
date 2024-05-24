@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:32:46 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/23 16:56:15 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:36:12 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	draw_part(int color, t_vector2 start, t_vector2 end)
 		iterator.x = start.x;
 		while (iterator.x < 1080)
 		{
-			pixel_put(get_engine()->win[1]->renderer.b_back, iterator, color);
+			pixel_put(get_engine()->win[0]->renderer.b_back, iterator, color);
 			iterator.x++;
 		}
 		iterator.y++;

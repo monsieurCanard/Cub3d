@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:55:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/16 12:58:27 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/24 18:57:15 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,12 @@
 
 typedef struct s_player
 {
-	t_game_object	*obj;
-	t_vector2		delta;
 	t_keys			keys;
 	float			speed;
+	t_vector2		pos;
+	t_vector2		dir;
+	t_vector2		plane;
+	t_vector2		delta;
 	void			(*move_up)(struct s_player *player);
 	void			(*move_down)(struct s_player *player);
 	void			(*move_right)(struct s_player *player);

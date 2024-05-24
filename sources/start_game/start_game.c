@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:20 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/23 18:56:23 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:35:23 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,9 @@
 
 int	start_game(t_data *data)
 {
-	create_debug_map(data);
+	get_player(data);
 	event_hook(&key_press, KeyPress, KeyPressMask, &(data->player->keys), 0);
 	event_hook(&key_release, KeyRelease, KeyReleaseMask, &(data->player->keys), 0);
-	event_hook(&key_press, KeyPress, KeyPressMask, &(data->player->keys), 1);
-	event_hook(&key_release, KeyRelease, KeyReleaseMask, &(data->player->keys), 1);
 	loop(&update, data);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/23 20:08:34 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/24 19:32:35 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,18 @@ typedef struct s_data
 
 typedef struct s_ray
 {
-	t_vector2	end;
-	t_vector2	vector;
-	float		dist;
+	float		angle;
+	t_vector2	dir;
+	t_vector2	delta;
+	t_vector2	dist;
+	t_vector2	step;
+	float		line_height;
+	float		draw_start;
+	float		draw_end;
+	float		wall_dist;
+	float		wall_x;
+	int			map_x;
+	int			map_y;
 	int			hit_axis;
 }				t_ray;
 
@@ -88,7 +97,7 @@ float		cap_angle_rad(float angle);
 
 int			start_game(t_data *data);
 
-void		create_debug_map(t_data *data);
+// void		create_debug_map(t_data *data);
 
 void		print_data(t_map *map);
 
@@ -115,5 +124,8 @@ void		draw_ceil_floor(t_map *map_data);
 int			update(void *data_ptr);
 
 void		debug_ray(t_vector2 start, t_vector2 end, int index);
+
+void		get_player(t_data *data);
+
 
 #endif
