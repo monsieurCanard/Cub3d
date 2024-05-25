@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_raycast.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 15:30:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/23 18:43:28 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/25 14:11:08 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,36 +70,36 @@
 // 	}
 // }
 
-int	update_game(void *obj)
-{
-	t_data	*data;
-	t_vector2	coord_ray;
-	float	angle;
-	float	ray;
-	float	off_angle;
-	int		i;
+// int	update_game(void *obj)
+// {
+// 	t_data	*data;
+// 	t_vector2	coord_ray;
+// 	float	angle;
+// 	float	ray;
+// 	float	off_angle;
+// 	int		i;
 
-	i = 0;
-	data = (t_data *)obj;
-	event_player_2d(data->player);
-	draw_ceil_floor(data->map_data);
-	angle = data->player->obj->trans.rot.x - ((FOV / 2) * DR);
-	while (i < FOV)
-	{
-		if (angle > 2 * PI)
-			angle -= 2 * PI;
-		else if (angle < 0)
-			angle += 2 * PI;
-		ray = get_ray(data, angle, i, &coord_ray);
-		off_angle = angle - data->player->obj->trans.rot.x;
-		if (off_angle > 2 * PI)
-			off_angle -= 2 * PI;
-		else if (off_angle < 0)
-			off_angle += 2 * PI;
-		ray *= cos(fabs(off_angle));
-		draw_3d_pov(ray, data, &coord_ray , i);
-		angle += DR;
-		i++;
-	}
-	return (SUCCESS);
-}
+// 	i = 0;
+// 	data = (t_data *)obj;
+// 	event_player_2d(data->player);
+// 	draw_ceil_floor(data->map_data);
+// 	angle = data->player->obj->trans.rot.x - ((FOV / 2) * DR);
+// 	while (i < FOV)
+// 	{
+// 		if (angle > 2 * PI)
+// 			angle -= 2 * PI;
+// 		else if (angle < 0)
+// 			angle += 2 * PI;
+// 		ray = get_ray(data, angle, i, &coord_ray);
+// 		off_angle = angle - data->player->obj->trans.rot.x;
+// 		if (off_angle > 2 * PI)
+// 			off_angle -= 2 * PI;
+// 		else if (off_angle < 0)
+// 			off_angle += 2 * PI;
+// 		ray *= cos(fabs(off_angle));
+// 		draw_3d_pov(ray, data, &coord_ray , i);
+// 		angle += DR;
+// 		i++;
+// 	}
+// 	return (SUCCESS);
+// }

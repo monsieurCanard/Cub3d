@@ -6,7 +6,7 @@
 /*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/25 11:34:38 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/25 15:07:47 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@
 # define WALL 1
 # define PLAYER 2
 
+# define VERTICAL 1
+# define HORIZONTAL 0
 # define FOV 60
 
 //////////////////////////////////////
@@ -69,6 +71,7 @@ typedef struct s_ray
 	t_vector2	delta;
 	t_vector2	dist;
 	t_vector2	step;
+	float		step_texture_wall;
 	int			index_texture;
 	float		line_height;
 	float		draw_start;
@@ -106,15 +109,19 @@ void		print_data(t_map *map);
 ///////////// RAYCAST ////////////////////
 //////////////////////////////////////////
 
+void		raycaster(t_data *data, t_player *player);
+
 int			event_player_2d(t_player *player);
 
-// float		get_ray(t_data *data, float angle, int index, t_vector2 *coord_ray);
+void		init_ray(t_ray *ray, t_player *player, int x);
 
-t_vector2	cast_ray(float angle, t_data *data, int *hit_axis, int index);
+void		init_step(t_ray *ray, t_player *player);
 
-t_vector2	cast_ray_v(t_map *map, t_vector2 start, float angle);
+void		calcul_wall(t_ray *ray, t_player *player);
 
-t_vector2	cast_ray_h(t_map *map, t_vector2 start, float angle);
+t_vector2	get_coord_texture(t_ray *ray, t_data *data);
+
+void		update_3d(t_ray *ray, t_data *data, int x);
 
 //////////////////////////////////////////
 ////////////////// 3D ////////////////////
@@ -127,6 +134,8 @@ int			update(void *data_ptr);
 void		debug_ray(t_vector2 start, t_vector2 end, int index);
 
 void		get_player(t_data *data);
+
+t_player	*create_player(int x, int y);
 
 
 #endif

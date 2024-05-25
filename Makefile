@@ -6,7 +6,7 @@
 #    By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/25 09:05:53 by monsieurc        ###   ########.fr        #
+#    Updated: 2024/05/25 14:52:01 by monsieurc        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -67,10 +67,17 @@ SRC_PARSER_LIST		=	map/take_map.c		\
 						take_data.c
 SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
+SRC_PLAYER_DIR		=	player/
+
+SRC_PLAYER_LIST		=	player_angle.c	\
+						create_player.c	\
+						player_move.c
+SRC_PLAYER			=	$(addprefix $(SRC_PLAYER_DIR), $(SRC_PLAYER_LIST))
+
 SRC_RAYCAST_DIR		=	raycaster/
 
-SRC_RAYCAST_LIST	=	raycast_v.c	\
-						raycast_h.c	\
+SRC_RAYCAST_LIST	=	raycast_init.c	\
+						raycast_cal.c	\
 						raycaster.c
 SRC_RAYCAST			=	$(addprefix $(SRC_RAYCAST_DIR), $(SRC_RAYCAST_LIST))
 
@@ -86,16 +93,15 @@ SRC_UPDATE_GAME		=	$(addprefix $(SRC_UPDATE_GAME_DIR), $(SRC_UPDATE_GAME_LIST))
 
 SRC_DEBUG_DIR		=	debug/
 SRC_DEBUG_LIST		=	draw_2d_map.c	\
-						player_angle.c	\
-						debug_ray.c		\
-						player_move.c
+						debug_ray.c	
 SRC_DEBUG			=	$(addprefix $(SRC_DEBUG_DIR), $(SRC_DEBUG_LIST))
 
 ##----------------------------------------------------------------------------------##
 SRC_LIST			=	main.c				\
 						utils.c				\
-						$(SRC_PARSER)		\
 						$(SRC_DEBUG)		\
+						$(SRC_PLAYER)		\
+						$(SRC_PARSER)		\
 						$(SRC_START)		\
 						$(SRC_RAYCAST)		\
 						$(SRC_UPDATE_GAME)
