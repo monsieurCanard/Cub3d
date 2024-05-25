@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:09:41 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/24 19:45:59 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/25 12:29:25 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static void	init_ray(t_ray *ray, t_player *player, int x)
 {
-	ray->angle = 2 * x / WIN_WIDTH - 1;
+	ft_bzero(ray, sizeof(t_ray));
+	ray->angle = 2 * x / (double)WIN_WIDTH - 1;
 	ray->dir = vector2(player->dir.x + player->plane.x * ray->angle,
 			player->dir.y + player->plane.y * ray->angle);
 	ray->delta = vector2(fabs(1 / ray->dir.x), fabs(1 / ray->dir.y));
@@ -26,27 +27,44 @@ static void	init_step(t_ray *ray, t_player *player)
 {
 	if (ray->dir.x < 0)
 	{
-		ray->map_x = -1;
+		ray->step.x = -1;
 		ray->dist.x = (player->pos.x - ray->map_x) * ray->delta.x;
 	}
 	else
 	{
-		ray->map_x = 1;
+		ray->step.x = 1;
 		ray->dist.x = (ray->map_x + 1.0 - player->pos.x) * ray->delta.x;
 	}
 	if (ray->dir.y < 0)
 	{
-		ray->map_y = -1;
+		ray->step.y = -1;
 		ray->dist.y = (player->pos.y - ray->map_y) * ray->delta.y;
 	}
 	else
 	{
-		ray->map_y = 1;
+		ray->step.y = 1;
 		ray->dist.y = (ray->map_y + 1.0 - player->pos.y) * ray->delta.y;
 	}
 	//TODO REFACTo
 }
 
+static int	get_side_wall(t_ray *ray, t_player *player, int hit_axis)
+{
+	if (hit_axis == 1)
+	{
+		if (ray->dir.y > 0)
+			return (WE);
+		else
+			return (EA);
+	}
+	else
+	{
+		if (ray->dir.x < 0)
+			return (NO);
+		else
+			return (SO);
+	}
+}
 static void	launch_ray(t_ray *ray, t_data *data)
 {
 	int	touch_wall;
@@ -68,11 +86,15 @@ static void	launch_ray(t_ray *ray, t_data *data)
 		}
 		if (ray->map_y < 0.25
 			|| ray->map_x < 0.25
-			|| ray->map_y > data->map_data->size_z - 0.25
-			|| ray->map_x > data->map_data->size_x - 1.25)
+			|| ray->map_x > data->map_data->size_z - 0.25
+			|| ray->map_y > data->map_data->size_x - 1.25)
+		{
 			break ;
+		}
 		if (data->map_data->map[ray->map_x][ray->map_y] == '1')
+		{
 			touch_wall = 1;
+		}
 	}
 }
 
@@ -83,7 +105,7 @@ static void	calcul_wall(t_ray *ray, t_player *player)
 	else
 		ray->wall_dist = ray->dist.y - ray->delta.y;
 	ray->line_height = WIN_HEIGHT / ray->wall_dist;
-	ray->draw_start = -ray->line_height / 2 + WIN_HEIGHT / 2;
+	ray->draw_start = -(ray->line_height) / 2 + WIN_HEIGHT / 2;
 	if (ray->draw_start < 0)
 		ray->draw_start = 0;
 	ray->draw_end = ray->line_height / 2 + WIN_HEIGHT / 2;
@@ -94,14 +116,20 @@ static void	calcul_wall(t_ray *ray, t_player *player)
 	else
 		ray->wall_x = player->pos.x + ray->wall_dist * ray->dir.x;
 	ray->wall_x -= floor(ray->wall_x);
+	ray->index_texture = get_side_wall(ray, player, ray->hit_axis);
 }
 
 static void	update_3d(t_ray *ray, t_data *data, int x)
 {
 	t_vector2	texture;
 	float		step;
+	float		shade;
 	int 		y;
 
+	if (ray->hit_axis == 1)
+		shade = 1 / (ray->dir.y * ray->dir.y + ray->dir.x * ray->dir.x + 0.1);
+	else
+		shade = 1.0;
 	texture.x = (int)(ray->wall_x * data->texture[0]->size.x);
 	if ((ray->hit_axis == 0 && ray->dir.x > 0) || (ray->hit_axis == 1 && ray->dir.y < 0))
 		texture.x = data->texture[0]->size.x - texture.x - 1;
@@ -110,9 +138,8 @@ static void	update_3d(t_ray *ray, t_data *data, int x)
 	y = ray->draw_start;
 	while (y < ray->draw_end)
 	{
-		texture.y = (int)texture.y & (int)(data->texture[0]->size.y - 1);
 		texture.y += step;
-		copy_pixel(get_engine()->win[0], data->texture[0], vector2(x, y), texture);
+		copy_pixel(get_engine()->win[0], data->texture[ray->index_texture], vector2(x, y), texture, shade);
 		y++;
 	}
 }

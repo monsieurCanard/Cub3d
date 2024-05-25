@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_2d_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/24 19:32:20 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/25 11:25:06 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_player	*create_player(int x, int y)
 	}
 	ft_bzero(player, sizeof(t_player));
 	init_move_player(player);
-	player->plane = vector2(0, 0.66);
+	player->plane = vector2(0, -0.66);
 	player->dir = vector2(-1, 0);
 	player->pos = vector2(x + 0.5, y + 0.5);
 	return (player);

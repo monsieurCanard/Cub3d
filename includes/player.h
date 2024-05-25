@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:55:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/24 18:57:15 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/25 09:01:50 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_player
 	t_vector2		dir;
 	t_vector2		plane;
 	t_vector2		delta;
+	t_vector2		rot;
 	void			(*move_up)(struct s_player *player);
 	void			(*move_down)(struct s_player *player);
 	void			(*move_right)(struct s_player *player);

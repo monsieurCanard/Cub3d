@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:35:49 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/16 12:58:58 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/25 10:52:36 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 static void	move_up(t_player *player)
 {
-	cal_delta(player);
-	player->obj->trans.pos.x += player->delta.x;
-	player->obj->trans.pos.y += player->delta.y;
+	// cal_delta(player);
+	player->pos.x += player->dir.x / 4;
+	player->pos.y += player->dir.y / 4;
 }
 
 static void	move_down(t_player *player)
 {
-	cal_delta(player);
-	player->obj->trans.pos.x -= player->delta.x;
-	player->obj->trans.pos.y -= player->delta.y;
-}
-
-static void	move_right(t_player *player)
-{
-	cal_delta(player);
-	player->obj->trans.pos.x += player->delta.y;
-	player->obj->trans.pos.y -= player->delta.x;
+	// cal_delta(player);
+	player->pos.x -= player->dir.x / 4;
+	player->pos.y -= player->dir.y / 4;
 }
 
 static void	move_left(t_player *player)
 {
-	cal_delta(player);
-	player->obj->trans.pos.x -= player->delta.y;
-	player->obj->trans.pos.y += player->delta.x;
+	// cal_dir(player);
+	player->pos.x += player->dir.y / 4;
+	player->pos.y -= player->dir.x / 4;
+}
+
+static void	move_right(t_player *player)
+{
+	// cal_dir(player);
+	player->pos.x -= player->dir.y / 4;
+	player->pos.y += player->dir.x / 4;
 }
 
 void	init_move_player(t_player *player)

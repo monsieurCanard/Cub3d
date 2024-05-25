@@ -3,37 +3,43 @@
 /*                                                        :::      ::::::::   */
 /*   player_angle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:37:06 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/16 13:01:51 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/25 11:09:00 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "player.h"
 
-void	cal_delta(t_player *player)
-{
-	player->delta.x = player->speed * cos(player->obj->trans.rot.x);
-	player->delta.y = -(player->speed * sin(player->obj->trans.rot.x));
-}
+// void	cal_delta(t_player *player)
+// {
+// 	player->delta.x = player->speed * cos(player->rot.x);
+// 	player->delta.y = -(player->speed * sin(player->rot.x));
+// }
 
 static void	p_angle_right(t_player *player)
 {
-	player->obj->trans.rot.x += 0.035 * PI;
-	if (player->obj->trans.rot.x > 2 * PI)
-		player->obj->trans.rot.x -= 2 * PI;
-	cal_delta(player);
+	float	tmp_x;
+	
+	tmp_x = player->dir.x;
+	player->dir.x = player->dir.x * cos(0.035 * PI) - player->dir.y * sin(0.035 * PI);
+	player->dir.y = tmp_x * sin(0.035 * PI) + player->dir.y * cos(0.035 * PI);
+	tmp_x = player->plane.x;
+	player->plane.x = player->plane.x * cos(0.035 * PI) - player->plane.y * sin(0.035 * PI);
+	player->plane.y = tmp_x * sin(0.035 * PI) + player->plane.y * cos(0.035 * PI);
 }
 
 static void	p_angle_left(t_player *player)
 {
-	player->obj->trans.rot.x -= 0.035 * PI;
-	if (player->obj->trans.rot.x < 0)
-		player->obj->trans.rot.x += 2 * PI;
-	player->delta.x = player->speed * cos(player->obj->trans.rot.x);
-	player->delta.y = -(player->speed * sin(player->obj->trans.rot.x));
-	cal_delta(player);
+	float	tmp_x;
+	
+	tmp_x = player->dir.x;
+	player->dir.x = player->dir.x * cos(-0.035 * PI) - player->dir.y * sin(-0.035 * PI);
+	player->dir.y = tmp_x * sin(-0.035 * PI) + player->dir.y * cos(-0.035 * PI);
+	tmp_x = player->plane.x;
+	player->plane.x = player->plane.x * cos(-0.035 * PI) - player->plane.y * sin(-0.035 * PI);
+	player->plane.y = tmp_x * sin(-0.035 * PI) + player->plane.y * cos(-0.035 * PI);
 }
 
 void	init_angle_player(t_player *player)
