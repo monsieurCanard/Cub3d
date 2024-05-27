@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:35:49 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/25 14:24:06 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/27 10:10:59 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,25 +15,25 @@
 static void	move_up(t_player *player)
 {
 	player->pos.x += player->dir.x / player->speed;
-	player->pos.y += player->dir.y / player->speed;
+	player->pos.y -= player->dir.y / player->speed;
 }
 
 static void	move_down(t_player *player)
 {
 	player->pos.x -= player->dir.x / player->speed;
-	player->pos.y -= player->dir.y / player->speed;
+	player->pos.y += player->dir.y / player->speed;
 }
 
 static void	move_left(t_player *player)
 {
-	player->pos.x += player->dir.y / player->speed;
-	player->pos.y -= player->dir.x / player->speed;
+	player->pos.x -= player->dir.y / player->speed;
+	player->pos.y += player->dir.x / player->speed;
 }
 
 static void	move_right(t_player *player)
 {
-	player->pos.x -= player->dir.y / player->speed;
-	player->pos.y += player->dir.x / player->speed;
+	player->pos.x += player->dir.y / player->speed;
+	player->pos.y -= player->dir.x / player->speed;
 }
 
 void	init_move_player(t_player *player)

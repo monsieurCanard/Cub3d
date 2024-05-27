@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_angle.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:37:06 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/25 11:09:00 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/27 10:07:27 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 static void	p_angle_right(t_player *player)
 {
 	float	tmp_x;
-	
+
 	tmp_x = player->dir.x;
 	player->dir.x = player->dir.x * cos(0.035 * PI) - player->dir.y * sin(0.035 * PI);
 	player->dir.y = tmp_x * sin(0.035 * PI) + player->dir.y * cos(0.035 * PI);

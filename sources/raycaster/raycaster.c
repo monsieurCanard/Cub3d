@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:46:11 by monsieurc         #+#    #+#             */
-/*   Updated: 2024/05/25 15:11:23 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/27 10:14:07 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-static int get_side_wall(t_ray *ray, int hit_axis)
+static int	get_side_wall(t_ray *ray, int hit_axis)
 {
 	if (hit_axis == VERTICAL)
 	{
@@ -23,7 +23,7 @@ static int get_side_wall(t_ray *ray, int hit_axis)
 	}
 	else
 	{
-		if (ray->dir.x < 0)
+		if (ray->dir.x > 0)
 			return (NO);
 		else
 			return (SO);

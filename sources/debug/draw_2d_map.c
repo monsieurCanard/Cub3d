@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_2d_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/25 14:22:29 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/27 11:13:44 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	get_player(t_data *data)
 {
-	t_engine	*engine;
 	int			x;
 	int			y;
 
