@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/24 19:35:42 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/27 09:29:06 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ static int	take_texture_img(char **file_name, t_texture **texture_tab)
 		}
 		i++;
 	}
+	texture_tab[4] = init_texture("./debug/texture/test_gun.xpm");
 	return (SUCCESS);
 }
 
@@ -55,5 +56,5 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	event_hook(stop_engine, DestroyNotify, StructureNotifyMask, NULL, 0);
 	start_game(&data);
-	return (0);
+	return (SUCCESS);
 }

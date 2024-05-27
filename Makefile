@@ -6,7 +6,7 @@
 #    By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/25 14:52:01 by monsieurc        ###   ########.fr        #
+#    Updated: 2024/05/27 10:02:45 by monsieurc        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -88,7 +88,8 @@ SRC_START			=	$(addprefix $(SRC_START_DIR), $(SRC_START_LIST))
 
 SRC_UPDATE_GAME_DIR	=	update_game/
 SRC_UPDATE_GAME_LIST	=	update.c	\
-							draw_floor_ceil.c
+							draw_floor_ceil.c \
+							draw_player.c
 SRC_UPDATE_GAME		=	$(addprefix $(SRC_UPDATE_GAME_DIR), $(SRC_UPDATE_GAME_LIST))
 
 SRC_DEBUG_DIR		=	debug/

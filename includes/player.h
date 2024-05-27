@@ -6,7 +6,7 @@
 /*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:55:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/25 09:01:50 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/27 10:05:28 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,11 @@ typedef struct s_player
 	void			(*angle_left)(struct s_player *player);
 }	t_player;
 
+
+
 void	init_move_player(t_player *player);
 
 void	init_angle_player(t_player *player);
 
-void	cal_delta(t_player *player);
 
 #endif

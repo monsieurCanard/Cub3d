@@ -6,7 +6,7 @@
 /*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:42:14 by monsieurc         #+#    #+#             */
-/*   Updated: 2024/05/25 14:43:57 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/26 10:38:49 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	init_ray(t_ray *ray, t_player *player, int x)
 {
-	ft_bzero(ray, sizeof(t_ray));
 	ray->angle = 2 * x / (double)WIN_WIDTH - 1;
 	ray->dir = vector2(player->dir.x + player->plane.x * ray->angle,
 			player->dir.y + player->plane.y * ray->angle);

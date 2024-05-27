@@ -6,7 +6,7 @@
 /*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:09:41 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/25 15:12:04 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/27 10:03:35 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int	update(void *data_ptr)
 	event_player_2d(data->player);
 	draw_ceil_floor(data->map_data);
 	raycaster(data, data->player);
+	draw_player(data, data->player);
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/25 15:07:47 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/27 10:05:59 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ typedef struct s_data
 {
 	t_map		*map_data;
 	t_player	*player;
-	t_texture	*texture[4];
+	t_texture	*texture[5];
 }				t_data;
 
 typedef struct s_ray
@@ -128,6 +128,8 @@ void		update_3d(t_ray *ray, t_data *data, int x);
 //////////////////////////////////////////
 
 void		draw_ceil_floor(t_map *map_data);
+
+void		draw_player(t_data *data);
 
 int			update(void *data_ptr);
 
