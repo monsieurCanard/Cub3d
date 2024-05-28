@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:08:08 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 11:54:29 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:20:30 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int		take_colors(t_map *map, const char *line);
 
 int		take_texture(t_map *map, const char *line);
 
-void	read_files(t_map *map, int fd_map);
+int		read_files(t_map *map, int fd_map);
 
 t_map	*get_map(const char *map_name);
 
@@ -41,5 +41,9 @@ bool	is_map(t_map *map, const char *line);
 int		is_empty_line(const char *line);
 
 bool	is_valid_map(t_map *map_data);
+
+int		print_error(char *message, int error);
+
+void	free_map(t_map *map);
 
 #endif

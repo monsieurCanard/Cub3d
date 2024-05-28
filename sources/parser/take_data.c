@@ -6,46 +6,40 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:04:21 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/26 21:15:31 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:53:37 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-t_argb	*hook_color(const char *line)
+int	hook_color(t_argb *color, const char *line)
 {
-	t_argb	*color;
 	char	**colors;
 
-	color = ft_calloc(1, sizeof(t_argb));
-	if (color == NULL)
-		return (NULL);
 	colors = split_color(line);
 	if (colors == NULL)
 	{
-		free(color);
-		return (NULL);
+		return (FAILURE);
 	}
 	color->a = 255;
 	color->r = ft_atoi(colors[0]);
 	color->g = ft_atoi(colors[1]);
 	color->b = ft_atoi(colors[2]);
+	color->is_set = true;
 	ft_rm_split(colors);
-	return (color);
+	return (SUCCESS);
 }
 
 int	take_colors(t_map *map, const char *line)
 {
 	if (ft_strncmp(line, "F ", 1) == 0)
 	{
-		map->floor = hook_color(line);
-		if (map->floor == NULL)
+		if (hook_color(&map->floor, line) == FAILURE)
 			return (FAILURE);
 	}
 	if (ft_strncmp(line, "C ", 1) == 0)
 	{
-		map->ceiling = hook_color(line);
-		if (map->ceiling == NULL)
+		if (hook_color(&map->ceiling, line) == FAILURE)
 			return (FAILURE);
 	}
 	return (SUCCESS);

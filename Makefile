@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
+#    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/28 15:04:57 by antgabri         ###   ########.fr        #
+#    Updated: 2024/05/28 17:08:09 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,6 +101,8 @@ SRC_DEBUG			=	$(addprefix $(SRC_DEBUG_DIR), $(SRC_DEBUG_LIST))
 ##----------------------------------------------------------------------------------##
 SRC_LIST			=	main.c				\
 						utils.c				\
+						init_game.c			\
+						stop_game.c			\
 						$(SRC_DEBUG)		\
 						$(SRC_PLAYER)		\
 						$(SRC_PARSER)		\

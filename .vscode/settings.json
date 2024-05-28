@@ -1,9 +1,0 @@
-{
-    "files.associations": {
-		"parser.h": "c",
-		"vectorft.h": "c"
-	},
-	"files.associations": {
-		"parser.h": "c"
-	}
-}

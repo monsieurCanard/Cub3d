@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:09:41 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 15:04:14 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:31:54 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	update(void *data_ptr)
 	t_data	*data;
 
 	data = (t_data *)data_ptr;
-	event_player_2d(data->player);
+	event_player_2d(data);
 	draw_ceil_floor(data->map_data);
 	raycaster(data, data->player);
 	return (SUCCESS);

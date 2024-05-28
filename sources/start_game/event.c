@@ -6,16 +6,18 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 14:36:56 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:32:14 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	event_player_2d(t_player *player)
+int	event_player_2d(t_data *data)
 {
 	t_engine	*engine;
+	t_player	*player;
 
+	player = data->player;
 	engine = __get_engine();
 	if (player->keys.up)
 	{
@@ -48,6 +50,10 @@ int	event_player_2d(t_player *player)
 	else
 	{
 		player->speed = 12;
+	}
+	if (player->keys.esc)
+	{
+		stop_game(data);
 	}
 	return (SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:09:40 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/26 15:32:38 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 17:54:17 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	have_all_data(t_map *map)
 			return (false);
 		i++;
 	}
-	if (map->floor == NULL || map->ceiling == NULL)
+	if (map->floor.is_set == false || map->ceiling.is_set == false)
 		return (false);
 	return (true);
 }

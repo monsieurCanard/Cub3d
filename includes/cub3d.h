@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/28 15:07:11 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/28 18:32:43 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <errno.h>
 # include <math.h>
 # include <libft.h>
+
 # include "cub_engine.h"
 
 # define FAILURE -1
@@ -44,6 +45,7 @@
 # define VERTICAL 1
 # define HORIZONTAL 0
 # define FOV 60
+# define NB_TEXTURE 4
 
 //////////////////////////////////////
 ///////////// DEBUG //////////////////
@@ -61,7 +63,7 @@ typedef struct s_data
 {
 	t_map		*map_data;
 	t_player	*player;
-	t_texture	*texture[4];
+	t_texture	*texture[NB_TEXTURE];
 }				t_data;
 
 typedef struct s_ray
@@ -115,7 +117,7 @@ void		print_data(t_map *map);
 
 void		raycaster(t_data *data, t_player *player);
 
-int			event_player_2d(t_player *player);
+int			event_player_2d(t_data *data);
 
 void		init_ray(t_ray *ray, t_player *player, int x);
 
@@ -140,4 +142,15 @@ void		debug_ray(t_vector2 start, t_vector2 end, int index);
 void		get_player(t_data *data);
 
 t_player	*create_player(int x, int y);
+
+int			print_error(char *message, int error);
+
+void		free_map(t_map *map);
+
+int			stop_game(t_data *data);
+
+int			init_game(t_data *data, char *path);
+
+int			print_error(char *message, int error);	
+
 #endif
