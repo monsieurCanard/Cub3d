@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:08:08 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/30 16:26:35 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:54:29 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,7 @@ bool	have_all_data(t_map *map);
 bool	is_map(t_map *map, const char *line);
 
 int		is_empty_line(const char *line);
+
+bool	is_valid_map(t_map *map_data);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:30:07 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/25 18:27:14 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:24:27 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,5 +63,12 @@ t_map	*get_map(const char *map_name)
 	ft_bzero(map, sizeof(t_map));
 	fd = open_files(map_name);
 	read_files(map, fd);
+	if (is_valid_map(map) == false)
+	{
+		printf("Error map invalid\n");
+		ft_rm_split(map->map);
+		free(map);
+		exit(EXIT_FAILURE);
+	}
 	return (map);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   split_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:26:59 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/26 11:55:15 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 09:57:30 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static char	**format_split(char **colors)
 			ft_rm_split(colors);
 			return (errno = EINVAL, NULL);
 		}
-		if (tmp == NULL)
+		if (tmp == NULL || ft_atoi(tmp) > 255 || ft_atoi(tmp) < 0)
 		{
 			ft_rm_split(colors);
 			return (NULL);

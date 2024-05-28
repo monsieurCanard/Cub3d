@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:55:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/28 14:10:10 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:05:41 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ typedef struct s_player
 	void			(*angle_left)(struct s_player *player);
 }	t_player;
 
-void	init_move_player(t_player *player);
+void		init_move_player(t_player *player);
 
 void	init_angle_player(t_player *player);
 

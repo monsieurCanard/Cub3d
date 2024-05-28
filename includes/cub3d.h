@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/28 14:02:23 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 15:03:47 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,8 +138,4 @@ int			update(void *data_ptr);
 void		debug_ray(t_vector2 start, t_vector2 end, int index);
 
 void		get_player(t_data *data);
-
-t_player	*create_player(int x, int y);
-
-
 #endif

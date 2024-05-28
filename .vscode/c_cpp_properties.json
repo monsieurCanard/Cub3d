@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "${workspaceFolder}/Core-Engine/libs/minilibx",
-                "${workspaceFolder}/Core-Engine/includes"
+                "${workspaceFolder}/Core-Engine/includes",
+                "/usr/include/linux"
             ],
             "defines": [],
             "compilerPath": "/usr/bin/clang",
