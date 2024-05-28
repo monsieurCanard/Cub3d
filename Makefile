@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+         #
+#    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/25 14:52:01 by monsieurc        ###   ########.fr        #
+#    Updated: 2024/05/28 14:43:00 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@
 ################
 
 CC			=	cc
-CFLAGS		=	-Wall -Wextra  -g3
+CFLAGS		=	-Wall -Wextra -Werror -g3
 
 ################
 ##   LIBS	  ##
@@ -82,7 +82,8 @@ SRC_RAYCAST_LIST	=	raycast_init.c	\
 SRC_RAYCAST			=	$(addprefix $(SRC_RAYCAST_DIR), $(SRC_RAYCAST_LIST))
 
 SRC_START_DIR		=	start_game/
-SRC_START_LIST		=	start_game.c \
+SRC_START_LIST		=	start_game.c 	\
+						key.c			\
 						event.c
 SRC_START			=	$(addprefix $(SRC_START_DIR), $(SRC_START_LIST))
 

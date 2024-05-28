@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/24 19:35:42 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:17:30 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ static int	take_texture_img(char **file_name, t_texture **texture_tab)
 int	main(int ac, char **av)
 {
 	t_data		data;
+	const int	event[2] = {DestroyNotify, StructureNotifyMask};
 
 	if (ac != 2)
 	{
@@ -53,7 +54,7 @@ int	main(int ac, char **av)
 		return (EXIT_FAILURE);
 	if (take_texture_img(data.map_data->texture, data.texture) == FAILURE)
 		return (EXIT_FAILURE);
-	event_hook(stop_engine, DestroyNotify, StructureNotifyMask, NULL, 0);
+	event_hook(stop_engine, (int *)event, NULL, 0);
 	start_game(&data);
 	return (0);
 }

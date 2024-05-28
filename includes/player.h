@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:55:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/25 09:01:50 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/28 14:10:10 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,19 @@
 # define PLAYER_H
 
 # include "object.h"
-# include "input.h"
 
 # define PI 3.14159265359
 
+typedef struct s_keys
+{
+	bool			up;
+	bool			down;
+	bool			right;
+	bool			left;
+	bool			rot_right;
+	bool			rot_left;
+	bool			shift;
+}	t_keys;
 typedef struct s_player
 {
 	t_keys			keys;
@@ -38,7 +47,5 @@ typedef struct s_player
 void	init_move_player(t_player *player);
 
 void	init_angle_player(t_player *player);
-
-void	cal_delta(t_player *player);
 
 #endif

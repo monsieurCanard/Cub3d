@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   draw_floor_ceil.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:32:46 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/25 14:33:55 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/28 14:41:42 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	draw_part(int color, t_vector2 start, t_vector2 end)
 		iterator.x = start.x;
 		while (iterator.x < 1080)
 		{
-			pixel_put(get_engine()->win[0]->renderer.b_back, iterator, color);
+			pixel_put(__get_engine()->win[0], iterator, color);
 			iterator.x++;
 		}
 		iterator.y++;

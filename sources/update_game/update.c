@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:09:41 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/27 11:12:09 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:40:20 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	update_3d(t_ray *ray, t_data *data, int x)
 	t_vector2	texture;
 	float		shade;
 	int			y;
+	int			color;
 
 	shade = 1.0;
 	if (ray->hit_axis == VERTICAL)
@@ -25,7 +26,9 @@ void	update_3d(t_ray *ray, t_data *data, int x)
 	y = (int)ray->draw_start;
 	while (y <= ray->draw_end)
 	{
-		copy_pixel(get_engine()->win[0], data->texture[ray->index_texture], vector2(x, y), texture, shade);
+		color = take_pixel(data->texture[ray->index_texture], texture);
+		color = apply_shade(color, shade);
+		pixel_put(__get_engine()->win[0], vector2(x, y), color);
 		texture.y += ray->step_texture_wall;
 		y++;
 	}

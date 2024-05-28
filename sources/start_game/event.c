@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/27 17:29:34 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 14:36:56 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	event_player_2d(t_player *player)
 {
 	t_engine	*engine;
 
-	engine = get_engine();
+	engine = __get_engine();
 	if (player->keys.up)
 	{
 		player->move_up(player);
@@ -33,11 +33,11 @@ int	event_player_2d(t_player *player)
 	{
 		player->move_left(player);
 	}
-	if (player->keys.rotate_left)
+	if (player->keys.rot_left)
 	{
 		player->angle_left(player);
 	}
-	if (player->keys.rotate_right)
+	if (player->keys.rot_right)
 	{
 		player->angle_right(player);
 	}
