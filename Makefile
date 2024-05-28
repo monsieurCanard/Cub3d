@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+         #
+#    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/25 14:52:01 by monsieurc        ###   ########.fr        #
+#    Updated: 2024/05/28 11:50:29 by antgabri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,8 @@ SRC_PARSER_LIST		=	map/take_map.c		\
 						read_files_utils.c	\
 						read_files.c		\
 						split_color.c		\
-						take_data.c
+						take_data.c			\
+						verif_map.c
 SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
 SRC_PLAYER_DIR		=	player/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/24 19:35:42 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:55:36 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,13 +47,13 @@ int	main(int ac, char **av)
 		perror("Error\n");
 		exit(FAILURE);
 	}
-	if (init_engine() == FAILURE)
-		return (EXIT_FAILURE);
-	if (init_window(vector2(WIN_WIDTH, WIN_HEIGHT), "Cub3d") == FAILURE)
-		return (EXIT_FAILURE);
-	if (take_texture_img(data.map_data->texture, data.texture) == FAILURE)
-		return (EXIT_FAILURE);
-	event_hook(stop_engine, DestroyNotify, StructureNotifyMask, NULL, 0);
-	start_game(&data);
+	// if (init_engine() == FAILURE)
+	// 	return (EXIT_FAILURE);
+	// if (init_window(vector2(WIN_WIDTH, WIN_HEIGHT), "Cub3d") == FAILURE)
+	// 	return (EXIT_FAILURE);
+	// if (take_texture_img(data.map_data->texture, data.texture) == FAILURE)
+	// 	return (EXIT_FAILURE);
+	// event_hook(stop_engine, DestroyNotify, StructureNotifyMask, NULL, 0);
+	// start_game(&data);
 	return (0);
 }

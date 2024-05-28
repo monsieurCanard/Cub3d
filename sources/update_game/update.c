@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:09:41 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/27 11:12:09 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 11:56:18 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	update_3d(t_ray *ray, t_data *data, int x)
 	y = (int)ray->draw_start;
 	while (y <= ray->draw_end)
 	{
-		copy_pixel(get_engine()->win[0], data->texture[ray->index_texture], vector2(x, y), texture, shade);
+		// copy_pixel(get_engine()->win[0], data->texture[ray->index_texture], vector2(x, y), texture, shade);
 		texture.y += ray->step_texture_wall;
 		y++;
 	}

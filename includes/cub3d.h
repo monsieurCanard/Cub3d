@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/27 17:38:08 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/28 09:50:15 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,21 +83,6 @@ typedef struct s_ray
 	int			hit_axis;
 }				t_ray;
 
-typedef struct s_keys
-{
-	int		up;
-	int		down;
-	int		left;
-	int		right;
-	int		rotate_left;
-	int		rotate_right;
-	int		shift;
-}			t_keys;
-
-int			key_release(int keycode, t_keys *keys);
-
-int			key_press(int keycode, t_keys *keys);
-
 //////////////////////////////////////////
 ///////////// EVENTS /////////////////////
 //////////////////////////////////////////
@@ -149,8 +134,4 @@ int			update(void *data_ptr);
 void		debug_ray(t_vector2 start, t_vector2 end, int index);
 
 void		get_player(t_data *data);
-
-t_player	*create_player(int x, int y);
-
-
 #endif
