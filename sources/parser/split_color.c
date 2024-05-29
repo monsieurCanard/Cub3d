@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:26:59 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 09:57:30 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:54:32 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static char	**format_split(char **colors)
 	while (colors[i] != NULL)
 	{
 		tmp = ft_strtrim(colors[i], " \t\n\r\v\f");
-		if (check_digit(tmp) == false)
+		if (tmp && check_digit(tmp) == false)
 		{
 			ft_rm_split(colors);
 			return (errno = EINVAL, NULL);

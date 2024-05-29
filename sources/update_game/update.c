@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:09:41 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 18:31:54 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:39:18 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	update_3d(t_ray *ray, t_data *data, int x)
 	int			y;
 	int			color;
 
+	y = (int)ray->draw_start;
 	shade = 1.0;
 	if (ray->hit_axis == VERTICAL)
 		shade = 1 / (ray->dir.y * ray->dir.y + ray->dir.x * ray->dir.x + 0.5);
 	texture = get_coord_texture(ray, data);
-	y = (int)ray->draw_start;
 	while (y <= ray->draw_end)
 	{
 		color = take_pixel(data->texture[ray->index_texture], texture);

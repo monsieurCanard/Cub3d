@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
+#    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/28 17:08:09 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/05/29 11:38:23 by antgabri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,19 +59,21 @@ SRC_DIR				=	sources/
 
 SRC_PARSER_DIR		=	parser/
 
-SRC_PARSER_LIST		=	map/take_map.c		\
+SRC_PARSER_LIST		=	take_map.c			\
 						open_map.c			\
 						read_files_utils.c	\
 						read_files.c		\
 						split_color.c		\
 						take_data.c			\
-						verif_map.c
+						verif_map.c			\
+						verif_map_utils.c
 SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
 SRC_PLAYER_DIR		=	player/
 
 SRC_PLAYER_LIST		=	player_angle.c	\
 						create_player.c	\
+						get_player.c	\
 						player_move.c
 SRC_PLAYER			=	$(addprefix $(SRC_PLAYER_DIR), $(SRC_PLAYER_LIST))
 
@@ -82,31 +84,30 @@ SRC_RAYCAST_LIST	=	raycast_init.c	\
 						raycaster.c
 SRC_RAYCAST			=	$(addprefix $(SRC_RAYCAST_DIR), $(SRC_RAYCAST_LIST))
 
-SRC_START_DIR		=	start_game/
-SRC_START_LIST		=	start_game.c 	\
-						key.c			\
-						event.c
-SRC_START			=	$(addprefix $(SRC_START_DIR), $(SRC_START_LIST))
+SRC_GAME_DIR		=	game/
+SRC_GAME_LIST		=	init_game.c		\
+						start_game.c 	\
+						stop_game.c		\
+						event/key.c		\
+						event/event.c
+SRC_GAME			=	$(addprefix $(SRC_GAME_DIR), $(SRC_GAME_LIST))
 
 SRC_UPDATE_GAME_DIR	=	update_game/
-SRC_UPDATE_GAME_LIST	=	update.c	\
-							draw_floor_ceil.c
+SRC_UPDATE_GAME_LIST=	update.c	\
+						draw_floor_ceil.c
 SRC_UPDATE_GAME		=	$(addprefix $(SRC_UPDATE_GAME_DIR), $(SRC_UPDATE_GAME_LIST))
 
 SRC_DEBUG_DIR		=	debug/
-SRC_DEBUG_LIST		=	draw_2d_map.c	\
-						debug_ray.c	
+SRC_DEBUG_LIST		=	debug_ray.c	
 SRC_DEBUG			=	$(addprefix $(SRC_DEBUG_DIR), $(SRC_DEBUG_LIST))
 
 ##----------------------------------------------------------------------------------##
 SRC_LIST			=	main.c				\
 						utils.c				\
-						init_game.c			\
-						stop_game.c			\
 						$(SRC_DEBUG)		\
 						$(SRC_PLAYER)		\
 						$(SRC_PARSER)		\
-						$(SRC_START)		\
+						$(SRC_GAME)		\
 						$(SRC_RAYCAST)		\
 						$(SRC_UPDATE_GAME)
 SRC					=	$(addprefix $(SRC_DIR), $(SRC_LIST))
@@ -164,7 +165,7 @@ define print_progress
 	
 	@printf "\033[2K"; \
 	if [ $(LEN) -le 10 ]; then \
-		printf "$(COLOR_BLUE)Compiling: $(BOLD)$(1)/$(2)$(COLOR_RESET)$(COLOR_GREEN) $(notdir $(3))$(COLOR_RESET)\r"; \
+		printf "$(COLOR_BLUE)Compiling: $(BOLD)$(1)/$(2)$(COLOR_RESET)$(COLOR_GREEN) $(notdir $(3))$(COLOR_RESET)\n"; \
 	else \
 		$(call progress_bar,$(1),$(2),$(3),$(LEN)); \
 	fi

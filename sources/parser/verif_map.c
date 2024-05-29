@@ -3,58 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   verif_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:58:58 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/28 18:01:09 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:17:44 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
 
-static bool	valid_border(char *line)
-{
-	size_t	i;
-
-	i = 0;
-	while (line[i] != '\0')
-	{
-		if (line[i] != '1' && line[i] != ' ')
-			return (false);
-		i++;
-	}
-	return (true);
-}
-
-static bool	valid_condition(char **map, size_t i, size_t j)
-{
-	if (map[i][0] == '0')
-	{
-		return (false);
-	}
-	if (map[i][j] == ' ' && map[i][j + 1] == '0')
-	{
-		return (false);
-	}
-	else if ((map[i][j + 1] == ' ' || map[i][j + 1] == '\0')
-			&& map[i][j] != '1' && map[i][j] != ' ')
-	{
-		return (false);
-	}
-	if (map[i + 1] != NULL && map[i][j] != '1'
-			&& map[i][j] != ' ' && map[i + 1][j] == ' ')
-	{
-		return (false);
-	}
-	if (map[i - 1] != NULL && map[i][j] == '0'
-			&& map[i - 1][j] == ' ')
-	{
-		return (false);
-	}
-	return (true);
-}
-
-static bool	is_sourrounded(t_map *map_data)
+static bool	is_sourrounded(t_map *map_data, int *nb_player)
 {
 	size_t	i;
 	size_t	j;
@@ -69,11 +27,11 @@ static bool	is_sourrounded(t_map *map_data)
 		j = 0;
 		while (map[i][j] != '\0')
 		{
-			if (valid_condition(map, i, j) == false)
-			{
-				printf("i = %zu, j = %zu\n", i, j);
+			if (valid_condition(map, i, j) == false
+				|| is_an_item(map[i][j]) == false)
 				return (false);
-			}
+			if (is_a_player(map_data->map[i][j]) == true)
+				*nb_player += 1;
 			j++;
 		}
 		i++;
@@ -92,30 +50,14 @@ static bool	error_map(int error_nb)
 
 bool	is_valid_map(t_map *map_data)
 {
-	size_t	i;
-	size_t	j;
-	size_t	nb_player;
+	int		ret;
+	int		nb_player;
 
-	i = 0;
 	nb_player = 0;
-	while (map_data->map[i] != NULL)
-	{
-		j = 0;
-		while (map_data->map[i][j] != '\0')
-		{
-			if (map_data->map[i][j] == 'N' || map_data->map[i][j] == 'S'
-				|| map_data->map[i][j] == 'E' || map_data->map[i][j] == 'W')
-				nb_player++;
-			else if (map_data->map[i][j] != ' ' && map_data->map[i][j] != '0'
-				&& map_data->map[i][j] != '1')
-				return (error_map(1));
-			j++;
-		}
-		i++;
-	}
-	if (nb_player != 1)
-		return (error_map(2));
-	if (is_sourrounded(map_data) == false)
+	ret = is_sourrounded(map_data, &nb_player);
+	if (ret == false)
 		return (error_map(1));
+	else if (nb_player != 1)
+		return (error_map(2));
 	return (true);
 }

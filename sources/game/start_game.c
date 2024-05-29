@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:20 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 15:03:18 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:45:32 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,12 @@
 
 int	start_game(t_data *data)
 {
-	int	event[2];
+	t_keys	*keys;
 
 	get_player(data);
-	event[0] = KeyPress;
-	event[1] = KeyPressMask;
-	event_hook(&key_press, event, &(data->player->keys), 0);
-	event[0] = KeyRelease;
-	event[1] = KeyReleaseMask;
-	event_hook(&key_release, event, &(data->player->keys), 0);
+	keys = &(data->player->keys);
+	handle_event_game(&key_press, KeyPress, KeyPressMask, keys);
+	handle_event_game(&key_release, KeyRelease, KeyReleaseMask, keys);
 	add_loop_render(&update, data);
 	loop();
 	return (SUCCESS);

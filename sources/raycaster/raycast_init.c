@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_init.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:42:14 by monsieurc         #+#    #+#             */
-/*   Updated: 2024/05/27 10:05:14 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:21:18 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,4 @@ void	init_step(t_ray *ray, t_player *player)
 		ray->step.y = 1;
 		ray->dist.y = (ray->map_y + 1.0 - player->pos.y) * ray->delta.y;
 	}
-	//TODO REFACTo
 }

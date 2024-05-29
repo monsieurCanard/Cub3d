@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:07:06 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/28 18:33:15 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:46:41 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	main(int ac, char **av)
 
 	if (ac != 2)
 		exit(print_error("Wrong number of arguments", EINVAL));
-	init_game(&data, av[1]);
+	if (init_game(&data, av[1]) == FAILURE)
+		exit(print_error("Failed to init game", ENOMEM));
 	event_hook(stop_game, (int *)event, (void *)&data, 0);
 	start_game(&data);
 	return (0);

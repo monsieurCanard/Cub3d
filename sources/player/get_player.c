@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_2d_map.c                                      :+:      :+:    :+:   */
+/*   get_player.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/27 11:13:44 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:32:56 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parser.h"
 
 void	get_player(t_data *data)
 {
@@ -23,7 +24,7 @@ void	get_player(t_data *data)
 		x = 0;
 		while (x < (int)data->map_data->size_x)
 		{
-			if (data->map_data->map[y][x] == 'N')
+			if (is_a_player(data->map_data->map[y][x]) == true)
 			{
 				data->player = create_player(y, x);
 			}
@@ -32,4 +33,3 @@ void	get_player(t_data *data)
 		y++;
 	}
 }
-//TODO A mettre dans le parsing

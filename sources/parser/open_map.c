@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:30:07 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/28 18:06:31 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:20:30 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,12 @@ int	open_files(const char *map_name)
 	return (fd);
 }
 
+static int	return_failure_map(t_map *map, int return_value)
+{
+	free(map);
+	exit (return_value);
+}
+
 t_map	*get_map(const char *map_name)
 {
 	t_map	*map;
@@ -60,20 +66,16 @@ t_map	*get_map(const char *map_name)
 	fd = open_files(map_name);
 	if (fd == FAILURE)
 	{
-		free(map);
-		exit(errno);
+		return_failure_map(map, errno);
 	}
 	if (read_files(map, fd) == FAILURE)
 	{
-		close(fd);
-		free(map);
-		exit(errno);
+		return_failure_map(map, errno);
 	}
 	if (is_valid_map(map) == false)
 	{
 		ft_rm_split(map->map);
-		free(map);
-		exit(EXIT_FAILURE);
+		return_failure_map(map, EXIT_FAILURE);
 	}
 	return (map);
 }

@@ -3,14 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   raycaster.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:46:11 by monsieurc         #+#    #+#             */
-/*   Updated: 2024/05/27 10:14:07 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:29:31 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static bool	is_out_of_map(t_ray *ray, t_data *data)
+{
+	if (ray->map_y < 0.25
+		|| ray->map_x < 0.25
+		|| ray->map_x > data->map_data->size_z - 0.25
+		|| ray->map_y > data->map_data->size_x - 1.25)
+	{
+		return (true);
+	}
+	return (false);
+}
+
+static void	hit_axis(t_ray *ray, int side_wall)
+{
+	if (side_wall == VERTICAL)
+	{
+		ray->dist.y += ray->delta.y;
+		ray->map_y += ray->step.y;
+		ray->hit_axis = VERTICAL;
+	}
+	else if (side_wall == HORIZONTAL)
+	{
+		ray->dist.x += ray->delta.x;
+		ray->map_x += ray->step.x;
+		ray->hit_axis = HORIZONTAL;
+	}
+}
+
+static void	launch_ray(t_ray *ray, t_data *data)
+{
+	int	touch_wall;
+
+	touch_wall = 0;
+	while (touch_wall == 0)
+	{
+		if (ray->dist.x < ray->dist.y)
+		{
+			hit_axis(ray, HORIZONTAL);
+		}
+		else
+		{
+			hit_axis(ray, VERTICAL);
+		}
+		if (is_out_of_map(ray, data))
+		{
+			break ;
+		}
+		if (data->map_data->map[ray->map_x][ray->map_y] == '1')
+		{
+			touch_wall = 1;
+		}
+	}
+}
 
 static int	get_side_wall(t_ray *ray, int hit_axis)
 {
@@ -30,39 +84,6 @@ static int	get_side_wall(t_ray *ray, int hit_axis)
 	}
 }
 
-static void	launch_ray(t_ray *ray, t_data *data)
-{
-	int	touch_wall;
-
-	touch_wall = 0;
-	while (touch_wall == 0)
-	{
-		if (ray->dist.x < ray->dist.y)
-		{
-			ray->dist.x += ray->delta.x;
-			ray->map_x += ray->step.x;
-			ray->hit_axis = HORIZONTAL;
-		}
-		else
-		{
-			ray->dist.y += ray->delta.y;
-			ray->map_y += ray->step.y;
-			ray->hit_axis = VERTICAL;
-		}
-		if (ray->map_y < 0.25
-			|| ray->map_x < 0.25
-			|| ray->map_x > data->map_data->size_z - 0.25
-			|| ray->map_y > data->map_data->size_x - 1.25)
-		{
-			break ;
-		}
-		if (data->map_data->map[ray->map_x][ray->map_y] == '1')
-		{
-			touch_wall = 1;
-		}
-	}
-}
-
 void	raycaster(t_data *data, t_player *player)
 {
 	t_ray		ray;
@@ -76,7 +97,7 @@ void	raycaster(t_data *data, t_player *player)
 		init_step(&ray, player);
 		launch_ray(&ray, data);
 		calcul_wall(&ray, player);
-	    ray.index_texture = get_side_wall(&ray, ray.hit_axis);
+		ray.index_texture = get_side_wall(&ray, ray.hit_axis);
 		update_3d(&ray, data, x);
 		x++;
 	}

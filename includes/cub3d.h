@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/28 18:32:43 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:49:37 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,39 +85,42 @@ typedef struct s_ray
 	int			hit_axis;
 }				t_ray;
 
-int			key_release(int keycode, t_keys *keys);
-
-int			key_press(int keycode, t_keys *keys);
-
-//////////////////////////////////////////
-///////////// EVENTS /////////////////////
-//////////////////////////////////////////
-
-// t_map		open_files(char *map_name);
-
-//////////////////////////////////////////
-//////////////// UTILS ///////////////////
-//////////////////////////////////////////
-
-float		cap_angle_rad(float angle);
-
 //////////////////////////////////////////
 ///////////// GAME ///////////////////////
 //////////////////////////////////////////
 
 int			start_game(t_data *data);
 
-// void		create_debug_map(t_data *data);
+int			stop_game(t_data *data);
 
-void		print_data(t_map *map);
+int			init_game(t_data *data, char *path);
+
+//////////////////////////////////////////
+///////////// PLAYER /////////////////////
+//////////////////////////////////////////
+
+void		get_player(t_data *data);
+
+t_player	*create_player(int x, int y);
+
+//////////////////////////////////////////
+///////////// EVENTS /////////////////////
+//////////////////////////////////////////
+
+int			key_release(int keycode, t_keys *keys);
+
+int			key_press(int keycode, t_keys *keys);
+
+int			event_player_2d(t_data *data);
+
+void		handle_event_game(int (*hook_func)(), int event_type,
+				int event_mask, t_keys *keys);
 
 //////////////////////////////////////////
 ///////////// RAYCAST ////////////////////
 //////////////////////////////////////////
 
 void		raycaster(t_data *data, t_player *player);
-
-int			event_player_2d(t_data *data);
 
 void		init_ray(t_ray *ray, t_player *player, int x);
 
@@ -129,28 +132,30 @@ t_vector2	get_coord_texture(t_ray *ray, t_data *data);
 
 void		update_3d(t_ray *ray, t_data *data, int x);
 
-//////////////////////////////////////////
-////////////////// 3D ////////////////////
+void		debug_ray(t_vector2 start, t_vector2 end, int index);
+
+///////////////////////////////////////////
+////////////////// DRAW ///////////////////
 //////////////////////////////////////////
 
 void		draw_ceil_floor(t_map *map_data);
 
 int			update(void *data_ptr);
 
-void		debug_ray(t_vector2 start, t_vector2 end, int index);
+//////////////////////////////////////////
+//////////////// UTILS ///////////////////
+//////////////////////////////////////////
 
-void		get_player(t_data *data);
+float		cap_angle_rad(float angle);
 
-t_player	*create_player(int x, int y);
+//////////////////////////////////////////
+///////////// ERROR / FREE ///////////////
+//////////////////////////////////////////
 
 int			print_error(char *message, int error);
 
 void		free_map(t_map *map);
 
-int			stop_game(t_data *data);
-
-int			init_game(t_data *data, char *path);
-
-int			print_error(char *message, int error);	
+int			print_error(char *message, int error);
 
 #endif
