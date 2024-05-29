@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 11:32:56 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/29 11:59:42 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	get_player(t_data *data)
 		{
 			if (is_a_player(data->map_data->map[y][x]) == true)
 			{
-				data->player = create_player(y, x);
+				data->player = create_player(y, x, data->map_data->map[y][x]);
 			}
 			x++;
 		}

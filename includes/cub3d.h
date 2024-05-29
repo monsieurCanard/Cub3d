@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/29 10:49:37 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/29 12:01:51 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,7 @@ int			init_game(t_data *data, char *path);
 
 void		get_player(t_data *data);
 
-t_player	*create_player(int x, int y);
+t_player	*create_player(int x, int y, char direction);
 
 //////////////////////////////////////////
 ///////////// EVENTS /////////////////////
