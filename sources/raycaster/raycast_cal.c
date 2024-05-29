@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycast_cal.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:50:15 by monsieurc         #+#    #+#             */
-/*   Updated: 2024/05/29 15:54:07 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/29 17:14:03 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_vector2	get_coord_texture(t_ray *ray, t_data *data)
 		texture.x = (data->texture[0]->size.x - texture.x);
 	ray->step_texture_wall = 1.0 * data->texture[0]->size.y / ray->line_height;
 	texture.y = ((int)(ray->draw_start -(WIN_HEIGHT / 2)
-			+ (ray->line_height / 2)) * ray->step_texture_wall);
+				+ (ray->line_height / 2)) * ray->step_texture_wall);
 	return (texture);
 }
 
