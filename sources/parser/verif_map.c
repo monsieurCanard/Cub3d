@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 09:58:58 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/29 10:17:44 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:14:41 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ static bool	is_sourrounded(t_map *map_data, int *nb_player)
 		j = 0;
 		while (map[i][j] != '\0')
 		{
-			if (valid_condition(map, i, j) == false
-				|| is_an_item(map[i][j]) == false)
+			if (valid_condition(map, i, j) == false)
 				return (false);
 			if (is_a_player(map_data->map[i][j]) == true)
 				*nb_player += 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_game.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:02:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 11:48:01 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:49:20 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int	init_game(t_data *data, char *path)
 	}
 	if (init_window(vector2(WIN_WIDTH, WIN_HEIGHT), "Cub3d") == FAILURE)
 	{
+		stop_engine();
 		free_map(data->map_data);
 		exit(print_error("failed init_window", ENOMEM));
 	}

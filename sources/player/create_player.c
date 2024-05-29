@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:14:09 by monsieurc         #+#    #+#             */
-/*   Updated: 2024/05/29 12:07:53 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:37:42 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,7 @@ static void	get_player_direction(t_player *player, char direction)
 t_player	*create_player(int x, int y, char direction)
 {
 	t_player	*player;
-	int			i;
 
-	i = 0;
 	player = malloc(sizeof(t_player));
 	if (!player)
 	{

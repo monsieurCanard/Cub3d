@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 10:57:03 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/29 13:53:10 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,9 @@ static void	handle_action(int press, void (*action)(t_player *), t_player *p)
 
 int	event_player_2d(t_data *data)
 {
-	t_engine	*engine;
 	t_player	*player;
 
 	player = data->player;
-	engine = __get_engine();
 	handle_action(player->keys.up, player->move_up, player);
 	handle_action(player->keys.down, player->move_down, player);
 	handle_action(player->keys.right, player->move_right, player);

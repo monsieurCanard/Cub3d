@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:08:08 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 10:50:02 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/29 15:14:57 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <errno.h>
 # include <stdio.h>
 
+# define UPPER 0
+# define LOWER 1
+# define LEFT 2
+# define RIGHT 3
 /////////////////////////////////////////////////////////////////
 ////////////////////////// MAP PARSING //////////////////////////
 /////////////////////////////////////////////////////////////////
@@ -55,8 +59,6 @@ bool	have_all_data(t_map *map);
 bool	is_valid_map(t_map *map_data);
 
 bool	is_a_player(char c);
-
-bool	is_an_item(char c);
 
 bool	valid_border(char *line);
 
