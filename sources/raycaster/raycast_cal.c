@@ -6,7 +6,7 @@
 /*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:50:15 by monsieurc         #+#    #+#             */
-/*   Updated: 2024/05/29 14:19:56 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/29 15:54:07 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,17 @@ t_vector2	get_coord_texture(t_ray *ray, t_data *data)
 {
 	t_vector2	texture;
 
+	if (ray->hit_axis == 0)
+		texture.x = (fmod(ray->dist.y, 1) * data->texture[0]->size.x);
+	else
+		texture.x = (fmod(ray->dist.x, 1) * data->texture[0]->size.x);
 	texture.x = (ray->wall_x * data->texture[0]->size.x);
 	if ((ray->hit_axis == 0 && ray->dir.x > 0)
 		|| (ray->hit_axis == 1 && ray->dir.y < 0))
-		texture.x = data->texture[0]->size.x - texture.x;
+		texture.x = (data->texture[0]->size.x - texture.x);
 	ray->step_texture_wall = 1.0 * data->texture[0]->size.y / ray->line_height;
-	texture.y = (int)(ray->draw_start -(WIN_HEIGHT / 2)
-			+ (ray->line_height / 2)) * ray->step_texture_wall;
+	texture.y = ((int)(ray->draw_start -(WIN_HEIGHT / 2)
+			+ (ray->line_height / 2)) * ray->step_texture_wall);
 	return (texture);
 }
 

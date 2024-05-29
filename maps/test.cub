@@ -1,14 +1,14 @@
-NO    ./debug/texture/NETHER.xpm
+NO    ./debug/texture/new_2.xpm
 
 
-WE    ./debug/texture/SANDSTONE.xpm
+WE    ./debug/texture/new_4.xpm
 
 
 
-SO    ./debug/texture/BRICK.xpm
+SO    ./debug/texture/new_3.xpm
 
 
-EA    ./debug/texture/COBLE.xpm
+EA    ./debug/texture/new_4.xpm
 
 
 F 115   ,100,  100

@@ -6,7 +6,7 @@
 /*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:01:51 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/29 15:33:13 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/29 16:34:10 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ bool	valid_condition(char **map, size_t i, size_t j)
 		around[LOWER] = map[i + 1][j];
 	else
 		around[LOWER] = ' ';
-	if (map[i][j - 1] != '\0')
+	if (j >= 1 && map[i][j - 1] != '\0')
 		around[LEFT] = map[i][j - 1];
 	else
 		around[LEFT] = ' ';

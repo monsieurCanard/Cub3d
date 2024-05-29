@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:30:07 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/29 11:20:30 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/29 16:37:56 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ t_map	*get_map(const char *map_name)
 	if (read_files(map, fd) == FAILURE)
 	{
 		return_failure_map(map, errno);
+		return (NULL);
 	}
 	if (is_valid_map(map) == false)
 	{
