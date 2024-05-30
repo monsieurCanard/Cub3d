@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/30 15:15:15 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:23:28 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ static bool	valid_move(t_player *player, char **map)
 	t_vector2	futur_pos;
 	t_vector2	step;
 
+	printf("player->dir.x = %f\n", player->dir.x);
+	printf("player->dir.y = %f\n", player->dir.y);
 	if (player->dir.x > 0)
 		step.x = 0.2;
 	else
@@ -45,7 +47,8 @@ static bool	valid_move(t_player *player, char **map)
 		step.y = -0.2;
 	futur_pos.x = (player->pos.x + step.x);
 	futur_pos.y = (player->pos.y + step.y);
-	if (map[(int)futur_pos.x][(int)(futur_pos.y)] == '1')
+	if (map[(int)futur_pos.x][(int)(futur_pos.y)] == '1' ||
+		map[(int)futur_pos.x][(int)(futur_pos.y)] == 'P')
 	{
 		return (false);
 	}
@@ -55,21 +58,19 @@ static bool	valid_move(t_player *player, char **map)
 static void	open_close_door(t_player *player, char **map)
 {
 	t_vector2	futur_pos;
-	t_vector2	step;
 
-	if (player->dir.x > 0)
-		step.x = 0.5;
-	else
-		step.x = -0.5;
-	if (player->dir.y < 0)
-		step.y = 0.5;
-	else
-		step.y = -0.5;
-	futur_pos.x = (player->pos.x + step.x);
-	futur_pos.y = (player->pos.y + step.y);
-	if (map[(int)futur_pos.x][(int)(futur_pos.y)] == '1')
+	futur_pos.x = player->pos.x + player->dir.x;
+	futur_pos.y = player->pos.y + player->dir.y;
+	printf("futur_pos.x = %d\n", (int)futur_pos.x);
+	printf("futur_pos.y = %d\n", (int)futur_pos.y);
+	printf("map[(int)futur_pos.x][(int)(futur_pos.y)] = %c\n", map[(int)futur_pos.x][(int)(futur_pos.y)]);
+	if (map[(int)futur_pos.x][(int)(futur_pos.y)] == 'P')
 	{
-		map[(int)futur_pos.x][(int)(futur_pos.y)] = '0';
+		map[(int)futur_pos.x][(int)(futur_pos.y)] = 'C';
+	}
+	else if (map[(int)(futur_pos.x)][(int)(futur_pos.y)] == 'C')
+	{
+		map[(int)futur_pos.x][(int)(futur_pos.y)] = 'P';
 	}
 }
 
@@ -97,6 +98,7 @@ int	event_player_2d(t_data *data)
 	if (player->keys.open_close)
 	{
 		open_close_door(player, data->map_data->map);
+		player->keys.open_close = 0;
 	}
 	if (player->keys.esc)
 	{

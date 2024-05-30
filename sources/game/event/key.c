@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:37:22 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/30 14:18:26 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/30 17:00:13 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	key_press(int keycode, t_keys *keys)
 		keys->shift = 1;
 	if (keycode == XK_Escape)
 		keys->esc = 1;
-	if (keycode == XK_space)
+	if (keycode == XK_e)
 		keys->open_close = 1;
 	return (0);
 }
@@ -53,7 +53,7 @@ int	key_release(int keycode, t_keys *keys)
 		keys->shift = 0;
 	if (keycode == XK_Escape)
 		keys->esc = 0;
-	if (keycode == XK_space)
-		keys->open_close = 0;
+	// if (keycode == XK_e)
+	// 	keys->open_close = 0;
 	return (0);
 }
