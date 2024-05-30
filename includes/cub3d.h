@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/29 14:34:52 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/30 12:30:56 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,8 +132,6 @@ t_vector2	get_coord_texture(t_ray *ray, t_data *data);
 
 void		update_3d(t_ray *ray, t_data *data, int x);
 
-void		debug_ray(t_vector2 start, t_vector2 end, int index);
-
 ///////////////////////////////////////////
 ////////////////// DRAW ///////////////////
 //////////////////////////////////////////
@@ -141,12 +139,6 @@ void		debug_ray(t_vector2 start, t_vector2 end, int index);
 void		draw_ceil_floor(t_map *map_data);
 
 int			update(void *data_ptr);
-
-//////////////////////////////////////////
-//////////////// UTILS ///////////////////
-//////////////////////////////////////////
-
-float		cap_angle_rad(float angle);
 
 //////////////////////////////////////////
 ///////////// ERROR / FREE ///////////////
