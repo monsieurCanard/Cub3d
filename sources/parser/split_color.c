@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 11:26:59 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 11:54:32 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/30 10:46:12 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,14 @@ static char	**format_split(char **colors)
 		tmp = ft_strtrim(colors[i], " \t\n\r\v\f");
 		if (tmp && check_digit(tmp) == false)
 		{
+			free(tmp);
 			ft_rm_split(colors);
 			return (errno = EINVAL, NULL);
 		}
 		if (tmp == NULL || ft_atoi(tmp) > 255 || ft_atoi(tmp) < 0)
 		{
+			if (tmp)
+				free(tmp);
 			ft_rm_split(colors);
 			return (NULL);
 		}

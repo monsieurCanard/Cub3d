@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:29:31 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 11:21:00 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:39:35 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,12 +73,22 @@ static char	*get_raw_line(int fd_map)
 	return (line);
 }
 
-static int	read_file_error(t_map *map, char *raw_line)
+static int	read_file_error(char *raw_line, int fd_map)
 {
+	char	*line;
+
+	while (true)
+	{
+		line = get_raw_line(fd_map);
+		if (line == NULL)
+			break ;
+		free(line);
+	}
 	errno = print_error("Malloc failed", ENOMEM);
 	if (raw_line != NULL)
+	{
 		free(raw_line);
-	free_map(map);
+	}
 	return (FAILURE);
 }
 
@@ -96,16 +106,16 @@ int	read_files(t_map *map, int fd_map)
 			break ;
 		ret = is_empty_line(raw_line);
 		if (ret == FAILURE)
-			return (read_file_error(map, raw_line));
+			return (read_file_error(raw_line, fd_map));
 		else if (ret == false)
 		{
 			if (save_data(map, &lst_map, raw_line) == FAILURE)
-				return (read_file_error(map, raw_line));
+				return (read_file_error(raw_line, fd_map));
 		}
 		free(raw_line);
 	}
 	if (take_map(map, &lst_map) == FAILURE)
-		return (read_file_error(map, NULL));
+		return (read_file_error(NULL, fd_map));
 	close(fd_map);
 	return (SUCCESS);
 }

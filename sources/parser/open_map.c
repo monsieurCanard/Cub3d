@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:30:07 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/29 16:37:56 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/30 10:33:31 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,16 @@ int	open_files(const char *map_name)
 
 static int	return_failure_map(t_map *map, int return_value)
 {
+	int	i;
+
+	i = 0;
+	if (map->map != NULL)
+		ft_rm_split(map->map);
+	while (map->texture[i] != NULL)
+	{
+		free(map->texture[i]);
+		i++;
+	}
 	free(map);
 	exit (return_value);
 }
@@ -71,11 +81,9 @@ t_map	*get_map(const char *map_name)
 	if (read_files(map, fd) == FAILURE)
 	{
 		return_failure_map(map, errno);
-		return (NULL);
 	}
 	if (is_valid_map(map) == false)
 	{
-		ft_rm_split(map->map);
 		return_failure_map(map, EXIT_FAILURE);
 	}
 	return (map);
