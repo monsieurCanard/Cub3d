@@ -6,7 +6,7 @@
 #    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/29 11:38:23 by antgabri         ###   ########.fr        #
+#    Updated: 2024/05/30 12:37:27 by antgabri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,14 +97,9 @@ SRC_UPDATE_GAME_LIST=	update.c	\
 						draw_floor_ceil.c
 SRC_UPDATE_GAME		=	$(addprefix $(SRC_UPDATE_GAME_DIR), $(SRC_UPDATE_GAME_LIST))
 
-SRC_DEBUG_DIR		=	debug/
-SRC_DEBUG_LIST		=	debug_ray.c	
-SRC_DEBUG			=	$(addprefix $(SRC_DEBUG_DIR), $(SRC_DEBUG_LIST))
-
 ##----------------------------------------------------------------------------------##
 SRC_LIST			=	main.c				\
 						utils.c				\
-						$(SRC_DEBUG)		\
 						$(SRC_PLAYER)		\
 						$(SRC_PARSER)		\
 						$(SRC_GAME)		\
