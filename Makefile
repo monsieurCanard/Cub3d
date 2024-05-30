@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
+#    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/29 11:38:23 by antgabri         ###   ########.fr        #
+#    Updated: 2024/05/30 17:12:20 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -97,9 +97,10 @@ SRC_UPDATE_GAME_LIST=	update.c	\
 						draw_floor_ceil.c
 SRC_UPDATE_GAME		=	$(addprefix $(SRC_UPDATE_GAME_DIR), $(SRC_UPDATE_GAME_LIST))
 
-SRC_DEBUG_DIR		=	debug/
-SRC_DEBUG_LIST		=	debug_ray.c	
-SRC_DEBUG			=	$(addprefix $(SRC_DEBUG_DIR), $(SRC_DEBUG_LIST))
+SRC_HUD_DIR			=	hud/
+SRC_HUD_LIST		=	init_minimap.c	\
+						hud.c
+SRC_HUD				=	$(addprefix $(SRC_HUD_DIR), $(SRC_HUD_LIST))
 
 ##----------------------------------------------------------------------------------##
 SRC_LIST			=	main.c				\
@@ -107,7 +108,8 @@ SRC_LIST			=	main.c				\
 						$(SRC_DEBUG)		\
 						$(SRC_PLAYER)		\
 						$(SRC_PARSER)		\
-						$(SRC_GAME)		\
+						$(SRC_GAME)			\
+						$(SRC_HUD)			\
 						$(SRC_RAYCAST)		\
 						$(SRC_UPDATE_GAME)
 SRC					=	$(addprefix $(SRC_DIR), $(SRC_LIST))

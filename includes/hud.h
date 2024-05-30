@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   debug_ray.c                                        :+:      :+:    :+:   */
+/*   hud.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/05/23 16:02:13 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 13:32:45 by jbrousse         ###   ########.fr       */
+/*   Created: 2024/05/30 15:48:08 by jbrousse          #+#    #+#             */
+/*   Updated: 2024/05/30 17:13:50 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#ifndef HUD_H
+# define HUD_H
 
-void	debug_ray(t_vector2 start, t_vector2 end, int index)
-{
-	t_engine	*engine;
+# include "cub_engine.h"
+# include "cub3d.h"
 
-	engine = __get_engine();
-	engine->debug[index]->start = world_to_screen(start, 0);
-	engine->debug[index]->end = world_to_screen(end, 0);
-	engine->debug[index]->color = 0x00FF00;
-}
+t_texture	*init_minimap(t_map *map);
+
+void		update_hud(t_data *data);
+
+#endif
