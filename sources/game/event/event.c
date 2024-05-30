@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 13:53:10 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/30 15:15:15 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,55 @@ static void	handle_action(int press, void (*action)(t_player *), t_player *p)
 	}
 }
 
+static bool	valid_move(t_player *player, char **map)
+{
+	t_vector2	futur_pos;
+	t_vector2	step;
+
+	if (player->dir.x > 0)
+		step.x = 0.2;
+	else
+		step.x = -0.2;
+	if (player->dir.y < 0)
+		step.y = 0.2;
+	else
+		step.y = -0.2;
+	futur_pos.x = (player->pos.x + step.x);
+	futur_pos.y = (player->pos.y + step.y);
+	if (map[(int)futur_pos.x][(int)(futur_pos.y)] == '1')
+	{
+		return (false);
+	}
+	return (true);
+}
+
+static void	open_close_door(t_player *player, char **map)
+{
+	t_vector2	futur_pos;
+	t_vector2	step;
+
+	if (player->dir.x > 0)
+		step.x = 0.5;
+	else
+		step.x = -0.5;
+	if (player->dir.y < 0)
+		step.y = 0.5;
+	else
+		step.y = -0.5;
+	futur_pos.x = (player->pos.x + step.x);
+	futur_pos.y = (player->pos.y + step.y);
+	if (map[(int)futur_pos.x][(int)(futur_pos.y)] == '1')
+	{
+		map[(int)futur_pos.x][(int)(futur_pos.y)] = '0';
+	}
+}
+
 int	event_player_2d(t_data *data)
 {
 	t_player	*player;
+	t_vector2	pos;
 
+	pos = data->player->pos;
 	player = data->player;
 	handle_action(player->keys.up, player->move_up, player);
 	handle_action(player->keys.down, player->move_down, player);
@@ -41,11 +86,17 @@ int	event_player_2d(t_data *data)
 	handle_action(player->keys.left, player->move_left, player);
 	handle_action(player->keys.rot_left, player->angle_left, player);
 	handle_action(player->keys.rot_right, player->angle_right, player);
+	if (valid_move(player, data->map_data->map) == false)
+	{
+		player->pos = pos;
+	}
 	if (player->keys.shift)
 		player->speed = 5;
 	else
-	{
 		player->speed = 12;
+	if (player->keys.open_close)
+	{
+		open_close_door(player, data->map_data->map);
 	}
 	if (player->keys.esc)
 	{

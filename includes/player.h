@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:55:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/29 10:51:23 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/30 14:17:44 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,10 @@ typedef struct s_keys
 	bool			rot_right;
 	bool			rot_left;
 	bool			shift;
+	bool			open_close;
 	bool			esc;
 }	t_keys;
+
 typedef struct s_player
 {
 	t_keys			keys;
