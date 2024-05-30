@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_game.c                                       :+:      :+:    :+:   */
+/*   get_player.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 15:33:20 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 10:45:32 by antgabri         ###   ########.fr       */
+/*   Created: 2024/04/26 21:18:44 by jbrousse          #+#    #+#             */
+/*   Updated: 2024/05/29 11:59:42 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+#include "parser.h"
 
-int	start_game(t_data *data)
+void	get_player(t_data *data)
 {
-	t_keys	*keys;
+	int			x;
+	int			y;
 
-	get_player(data);
-	keys = &(data->player->keys);
-	handle_event_game(&key_press, KeyPress, KeyPressMask, keys);
-	handle_event_game(&key_release, KeyRelease, KeyReleaseMask, keys);
-	add_loop_render(&update, data);
-	loop();
-	return (SUCCESS);
+	y = 0;
+	while (y < (int)data->map_data->size_z)
+	{
+		x = 0;
+		while (x < (int)data->map_data->size_x)
+		{
+			if (is_a_player(data->map_data->map[y][x]) == true)
+			{
+				data->player = create_player(y, x, data->map_data->map[y][x]);
+			}
+			x++;
+		}
+		y++;
+	}
 }

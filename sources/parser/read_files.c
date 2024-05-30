@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_files.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:29:31 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/26 15:33:07 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/30 11:39:35 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,28 +41,6 @@ static int	take_data(t_map *map, const char *raw_line)
 	return (SUCCESS);
 }
 
-static void	print_data(t_map *map)
-{
-	size_t i = 0;
-	while (i < 4)
-	{
-		printf("texture[%zu] = %s\n", i, map->texture[i]);
-		i++;
-	}
-	printf("floor = %d %d %d %d\n", map->floor->a, map->floor->r, map->floor->g, map->floor->b);
-	printf("ceiling = %d %d %d %d\n", map->ceiling->a, map->ceiling->r, map->ceiling->g, map->ceiling->b);
-
-	printf("size_x = %zu\n", map->size_x);
-	printf("size_z = %zu\n", map->size_z);
-
-	i = 0;
-	while (i < map->size_z)
-	{
-		printf("map[%zu] = %s\n", i, map->map[i]);
-		i++;
-	}
-}
-
 static int	save_data(t_map *map, t_list **lst_map, const char *raw_line)
 {
 	if (is_map(map, raw_line) == false)
@@ -80,7 +58,7 @@ static int	save_data(t_map *map, t_list **lst_map, const char *raw_line)
 	return (SUCCESS);
 }
 
-static char *get_raw_line(int fd_map)
+static char	*get_raw_line(int fd_map)
 {
 	char	*raw_line;
 	char	*line;
@@ -95,7 +73,26 @@ static char *get_raw_line(int fd_map)
 	return (line);
 }
 
-void	read_files(t_map *map, int fd_map)
+static int	read_file_error(char *raw_line, int fd_map)
+{
+	char	*line;
+
+	while (true)
+	{
+		line = get_raw_line(fd_map);
+		if (line == NULL)
+			break ;
+		free(line);
+	}
+	errno = print_error("Malloc failed", ENOMEM);
+	if (raw_line != NULL)
+	{
+		free(raw_line);
+	}
+	return (FAILURE);
+}
+
+int	read_files(t_map *map, int fd_map)
 {
 	char	*raw_line;
 	t_list	*lst_map;
@@ -109,14 +106,16 @@ void	read_files(t_map *map, int fd_map)
 			break ;
 		ret = is_empty_line(raw_line);
 		if (ret == FAILURE)
-			break ; // TODO ON SE CASSE
+			return (read_file_error(raw_line, fd_map));
 		else if (ret == false)
 		{
 			if (save_data(map, &lst_map, raw_line) == FAILURE)
-				break ;
+				return (read_file_error(raw_line, fd_map));
 		}
 		free(raw_line);
 	}
-	take_map(map, &lst_map);
-	print_data(map);
+	if (take_map(map, &lst_map) == FAILURE)
+		return (read_file_error(NULL, fd_map));
+	close(fd_map);
+	return (SUCCESS);
 }

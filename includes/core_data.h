@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   core_data.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:08:52 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/26 14:30:40 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:45:43 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,14 @@ typedef struct s_argb
 	unsigned char	r;
 	unsigned char	g;
 	unsigned char	b;
+	bool			is_set;
 }	t_argb;
 
 typedef struct s_map
 {
 	char		*texture[5];
-	t_argb		*floor;
-	t_argb		*ceiling;
+	t_argb		floor;
+	t_argb		ceiling;
 	size_t		size_x;
 	size_t		size_z;
 	char		**map;

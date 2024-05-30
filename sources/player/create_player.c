@@ -3,17 +3,52 @@
 /*                                                        :::      ::::::::   */
 /*   create_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 10:55:53 by antgabri          #+#    #+#             */
-/*   Updated: 2024/04/26 17:00:12 by jbrousse         ###   ########.fr       */
+/*   Created: 2024/05/25 14:14:09 by monsieurc         #+#    #+#             */
+/*   Updated: 2024/05/29 13:37:42 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	create_player(t_data *data)
+static void	get_player_direction(t_player *player, char direction)
 {
-	data->player.x = HEIGHT / 2;
-	data->player.y = WIDTH / 2;
+	if (direction == 'N')
+	{
+		player->dir = vector2(-1, 0);
+		player->plane = vector2(0, -0.66);
+	}
+	else if (direction == 'S')
+	{
+		player->dir = vector2(1, 0);
+		player->plane = vector2(0, 0.66);
+	}
+	else if (direction == 'W')
+	{
+		player->dir = vector2(0, 1);
+		player->plane = vector2(-0.66, 0);
+	}
+	else if (direction == 'E')
+	{
+		player->dir = vector2(0, -1);
+		player->plane = vector2(0.66, 0);
+	}
+}
+
+t_player	*create_player(int x, int y, char direction)
+{
+	t_player	*player;
+
+	player = malloc(sizeof(t_player));
+	if (!player)
+	{
+		logerror(__FILE__, __LINE__, "malloc() failed");
+		return (NULL);
+	}
+	ft_bzero(player, sizeof(t_player));
+	init_move_player(player);
+	get_player_direction(player, direction);
+	player->pos = vector2(x + 0.5, y + 0.5);
+	return (player);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:30:07 by anthony           #+#    #+#             */
-/*   Updated: 2024/04/25 18:27:14 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/30 10:33:31 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,16 +37,32 @@ int	open_files(const char *map_name)
 
 	if (check_extension(map_name) == false)
 	{
-		perror("Error\n");
-		exit(FAILURE);
+		errno = print_error("Invalid file extension", EINVAL);
+		return (FAILURE);
 	}
 	fd = open(map_name, O_RDONLY);
 	if (fd == FAILURE)
 	{
-		perror("Error\n");
-		exit(FAILURE);
+		errno = print_error("Failed to open file", errno);
+		return (FAILURE);
 	}
 	return (fd);
+}
+
+static int	return_failure_map(t_map *map, int return_value)
+{
+	int	i;
+
+	i = 0;
+	if (map->map != NULL)
+		ft_rm_split(map->map);
+	while (map->texture[i] != NULL)
+	{
+		free(map->texture[i]);
+		i++;
+	}
+	free(map);
+	exit (return_value);
 }
 
 t_map	*get_map(const char *map_name)
@@ -54,14 +70,21 @@ t_map	*get_map(const char *map_name)
 	t_map	*map;
 	int		fd;
 
-	map = malloc(sizeof(t_map));
+	map = (t_map *)ft_calloc(1, sizeof(t_map));
 	if (map == NULL)
-	{
-		perror("Error\n");
-		exit(FAILURE);
-	}
-	ft_bzero(map, sizeof(t_map));
+		exit(print_error("Malloc failed", ENOMEM));
 	fd = open_files(map_name);
-	read_files(map, fd);
+	if (fd == FAILURE)
+	{
+		return_failure_map(map, errno);
+	}
+	if (read_files(map, fd) == FAILURE)
+	{
+		return_failure_map(map, errno);
+	}
+	if (is_valid_map(map) == false)
+	{
+		return_failure_map(map, EXIT_FAILURE);
+	}
 	return (map);
 }

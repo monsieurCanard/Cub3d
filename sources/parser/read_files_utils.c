@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   read_files_utils.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:09:40 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/04/26 15:32:38 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/29 10:12:18 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	have_all_data(t_map *map)
 			return (false);
 		i++;
 	}
-	if (map->floor == NULL || map->ceiling == NULL)
+	if (map->floor.is_set == false || map->ceiling.is_set == false)
 		return (false);
 	return (true);
 }
@@ -43,11 +43,6 @@ bool	is_map(t_map *map, const char *line)
 	i = 0;
 	while (line[i] != '\0')
 	{
-		if (line[i] != ' ' && line[i] != '1' && line[i] != '0' && line[i] != 'N'
-			&& line[i] != 'S' && line[i] != 'W' && line[i] != 'E')
-		{
-			return (false);
-		}
 		if (have_all_data(map) == false)
 			return (false);
 		i++;

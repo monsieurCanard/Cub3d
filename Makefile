@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
+#    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/04/26 17:10:02 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/05/29 11:38:23 by antgabri         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,27 +14,35 @@
 ##  COMPILE	  ##
 ################
 
-CC		=	cc
-CFLAGS	=	-Wall -Wextra -Werror -g3
-OPTION	=	-L $(MLX_DIR) -lmlx -lX11 -lXext -lm
+CC			=	cc
+CFLAGS		=	-Wall -Wextra -Werror -g3
+
 ################
 ##   LIBS	  ##
 ################
 
-LIBFT		= $(LIBFT_DIR)libft.a
-LIBFT_DIR	= libs/libft/
-LIBFT_INC	= $(LIBFT_DIR)includes/
+CORE_ENGINE		=	$(CORE_ENGINE_DIR)core_engine.a
+CORE_ENGINE_DIR	=	Core-Engine/
+CORE_ENGINE_INC	=	$(CORE_ENGINE_DIR)includes/
+CORE_ENGINE_NORME = $(CORE_ENGINE_DIR)includes/ $(CORE_ENGINE_DIR)sources/ $(CORE_ENGINE_DIR)libs/libft/ $(CORE_ENGINE_DIR)libs/vectorft/
 
-MLX			= $(MLX_DIR)libmlx_Linux.a
-MLX_DIR		= libs/minilibx/
-MLX_INC		= $(MLX_DIR)
+LIBFT_INC		= $(CORE_ENGINE_DIR)libs/libft/includes/
+
+MLX_INC			= $(CORE_ENGINE_DIR)libs/minilibx/
+
+VECTORFT_INC	= $(CORE_ENGINE_DIR)libs/vectorft/includes/
+
+LDFLAGS 		= $(CORE_ENGINE) -lX11 -lXext -lm
+
 #################
 ##   INCLUDE   ##
 #################
 
 INCLUDE_LIST	=	./includes/				\
 					./$(LIBFT_INC)			\
-					./$(MLX_INC)
+					./$(MLX_INC)			\
+					./$(VECTORFT_INC)		\
+					./$(CORE_ENGINE_INC)
 INCLUDE			=	$(addprefix -I, $(INCLUDE_LIST))
 
 
@@ -51,50 +59,57 @@ SRC_DIR				=	sources/
 
 SRC_PARSER_DIR		=	parser/
 
-SRC_PARSER_LIST		=	map/take_map.c		\
+SRC_PARSER_LIST		=	take_map.c			\
 						open_map.c			\
 						read_files_utils.c	\
 						read_files.c		\
 						split_color.c		\
-						take_data.c
+						take_data.c			\
+						verif_map.c			\
+						verif_map_utils.c
 SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
-SRC_COMPONENTS_DIR	=	components/
+SRC_PLAYER_DIR		=	player/
 
-SRC_COMPONENTS_LIST	=	free.c	
-SRC_COMPONENTS		=	$(addprefix $(SRC_COMPONENTS_DIR), $(SRC_COMPONENTS_LIST))
+SRC_PLAYER_LIST		=	player_angle.c	\
+						create_player.c	\
+						get_player.c	\
+						player_move.c
+SRC_PLAYER			=	$(addprefix $(SRC_PLAYER_DIR), $(SRC_PLAYER_LIST))
 
-SRC_ENGINE_DIR		=	engine/
+SRC_RAYCAST_DIR		=	raycaster/
 
-SRC_ENGINE_LIST		=	engine_void.c	\
-						init_engine.c	\
-						pixel_put.c
-SRC_ENGINE			=	$(addprefix $(SRC_ENGINE_DIR), $(SRC_ENGINE_LIST))
+SRC_RAYCAST_LIST	=	raycast_init.c	\
+						raycast_cal.c	\
+						raycaster.c
+SRC_RAYCAST			=	$(addprefix $(SRC_RAYCAST_DIR), $(SRC_RAYCAST_LIST))
 
-SRC_EVENTS_DIR		=	events/
+SRC_GAME_DIR		=	game/
+SRC_GAME_LIST		=	init_game.c		\
+						start_game.c 	\
+						stop_game.c		\
+						event/key.c		\
+						event/event.c
+SRC_GAME			=	$(addprefix $(SRC_GAME_DIR), $(SRC_GAME_LIST))
 
-SRC_EVENTS_LIST		=	key_press.c \
-						close_window.c
-SRC_EVENTS			=	$(addprefix $(SRC_EVENTS_DIR), $(SRC_EVENTS_LIST))
+SRC_UPDATE_GAME_DIR	=	update_game/
+SRC_UPDATE_GAME_LIST=	update.c	\
+						draw_floor_ceil.c
+SRC_UPDATE_GAME		=	$(addprefix $(SRC_UPDATE_GAME_DIR), $(SRC_UPDATE_GAME_LIST))
 
-
-# SRC_PLAYER_DIR		=	player/
-
-# SRC_PLAYER_LIST		=	create_player.c
-# SRC_PLAYER			=	$(addprefix $(SRC_PLAYER_DIR), $(SRC_PLAYER_LIST))
-
-# SRC_GAME_DIR		=	game/
-
-# SRC_GAME_LIST		=	start_game.c
-# SRC_GAME			=	$(addprefix $(SRC_GAME_DIR), $(SRC_GAME_LIST))
+SRC_DEBUG_DIR		=	debug/
+SRC_DEBUG_LIST		=	debug_ray.c	
+SRC_DEBUG			=	$(addprefix $(SRC_DEBUG_DIR), $(SRC_DEBUG_LIST))
 
 ##----------------------------------------------------------------------------------##
 SRC_LIST			=	main.c				\
+						utils.c				\
+						$(SRC_DEBUG)		\
+						$(SRC_PLAYER)		\
 						$(SRC_PARSER)		\
-						$(SRC_COMPONENTS)	\
-						$(SRC_INIT_DATA)	\
-						$(SRC_EVENTS)		\
-						$(SRC_ENGINE)
+						$(SRC_GAME)		\
+						$(SRC_RAYCAST)		\
+						$(SRC_UPDATE_GAME)
 SRC					=	$(addprefix $(SRC_DIR), $(SRC_LIST))
 
 ##################
@@ -150,7 +165,7 @@ define print_progress
 	
 	@printf "\033[2K"; \
 	if [ $(LEN) -le 10 ]; then \
-		printf "$(COLOR_BLUE)Compiling: $(BOLD)$(1)/$(2)$(COLOR_RESET)$(COLOR_GREEN) $(notdir $(3))$(COLOR_RESET)\r"; \
+		printf "$(COLOR_BLUE)Compiling: $(BOLD)$(1)/$(2)$(COLOR_RESET)$(COLOR_GREEN) $(notdir $(3))$(COLOR_RESET)\n"; \
 	else \
 		$(call progress_bar,$(1),$(2),$(3),$(LEN)); \
 	fi
@@ -160,40 +175,36 @@ endef
 ##    RULES    ##
 #################
 
-all: $(LIBFT) $(MLX) $(NAME)
+all: $(CORE_ENGINE) $(NAME)
 
-$(LIBFT):
-	@make -sC $(LIBFT_DIR)
 
-$(MLX):
-	@make -sC $(MLX_DIR)
+$(CORE_ENGINE):
+	@make -sC $(CORE_ENGINE_DIR) 
 
-$(OBJ_DIR)%.o: $(SRC_DIR)%.c
+$(OBJ_DIR)%.o: $(SRC_DIR)%.c $(INCLUDES)
 	@mkdir -p $(dir $@)
 	@$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 	@$(eval COMPILED_SRCS=$(shell expr $(COMPILED_SRCS) + 1))
 	@$(call print_progress,$(COMPILED_SRCS),$(TOTAL_SRCS), $<)
 
 
-$(NAME): $(call $(RQ_SRC)) $(OBJ_LIST)
+$(NAME): $(OBJ_LIST)
 	@echo "\033[2K$(COLOR_ORANGE)$(BOLD)Compilation complete ! $(COLOR_BLUE)Cub3d is Ready !$(COLOR_RESET)"
-	@$(CC) $(CFLAGS) $^ $(INCLUDE) $(OPTION) $(LIBFT) -o $@
+	@$(CC) $(CFLAGS) $^ $(INCLUDE) $(LDFLAGS) -o $@
 
 clean:
 	@echo "$(COLOR_RED)$(BOLD)Delete $(NAME) objects$(COLOR_RESET)"
 	@rm -rf $(OBJ_DIR) $(NORM_LOG)
-	@make clean -sC $(LIBFT_DIR)
-	@make clean -sC $(MLX_DIR)
+	@make clean -sC $(CORE_ENGINE_DIR)
 
 fclean: clean
 	@echo "$(COLOR_RED)$(BOLD)Delete Cub3d$(COLOR_RESET)"
 	@rm -f $(NAME)
-	@echo "$(COLOR_RED)$(BOLD)Delete Libft$(COLOR_RESET)"
-	@rm -f $(LIBFT)
+	@make fclean -sC $(CORE_ENGINE_DIR)
 
 norme:
 	@echo "$(COLOR_BLUE)Norminette...$(COLOR_RESET)"
-	@norminette $(SRC) $(INCLUDES) $(LIBFT_DIR) > $(NORM_LOG) ; \
+	@norminette $(SRC) $(INCLUDES) $(CORE_ENGINE_NORME) > $(NORM_LOG) ; \
 	if grep -q "Error" $(NORM_LOG); then \
 		echo "$(COLOR_RED)Norme : KO!$(COLOR_RESET)"; \
 	else \

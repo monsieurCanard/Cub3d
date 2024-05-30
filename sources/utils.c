@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_game.c                                       :+:      :+:    :+:   */
+/*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/30 15:33:20 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 10:45:32 by antgabri         ###   ########.fr       */
+/*   Created: 2024/05/23 17:12:44 by jbrousse          #+#    #+#             */
+/*   Updated: 2024/05/29 11:34:53 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	start_game(t_data *data)
+int	print_error(char *message, int error)
 {
-	t_keys	*keys;
-
-	get_player(data);
-	keys = &(data->player->keys);
-	handle_event_game(&key_press, KeyPress, KeyPressMask, keys);
-	handle_event_game(&key_release, KeyRelease, KeyReleaseMask, keys);
-	add_loop_render(&update, data);
-	loop();
-	return (SUCCESS);
+	ft_putendl_fd("Error:", 2);
+	ft_putendl_fd(message, 2);
+	return (error);
 }
