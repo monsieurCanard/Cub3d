@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/31 10:42:51 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/31 14:43:08 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ typedef struct s_data
 	t_map		*map_data;
 	t_player	*player;
 	t_texture	*texture[NB_TEXTURE];
+	t_texture	*minimap;
 }				t_data;
 
 typedef struct s_ray
@@ -94,6 +95,8 @@ int			start_game(t_data *data);
 int			stop_game(t_data *data);
 
 int			init_game(t_data *data, char *path);
+
+int			update_logic(void *data_ptr);
 
 //////////////////////////////////////////
 ///////////// PLAYER /////////////////////
@@ -132,21 +135,13 @@ t_vector2	get_coord_texture(t_ray *ray, t_data *data);
 
 void		update_3d(t_ray *ray, t_data *data, int x);
 
-void		debug_ray(t_vector2 start, t_vector2 end, int index);
-
 ///////////////////////////////////////////
 ////////////////// DRAW ///////////////////
 //////////////////////////////////////////
 
 void		draw_ceil_floor(t_map *map_data);
 
-int			update(void *data_ptr);
-
-//////////////////////////////////////////
-//////////////// UTILS ///////////////////
-//////////////////////////////////////////
-
-float		cap_angle_rad(float angle);
+int			update_render(void *data_ptr);
 
 //////////////////////////////////////////
 ///////////// ERROR / FREE ///////////////
