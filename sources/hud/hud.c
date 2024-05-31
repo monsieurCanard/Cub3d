@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/30 16:54:21 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/31 14:38:23 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/05/31 15:03:49 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ t_vector2	rotate_point(t_vector2 point, float angle)
 {
 	t_vector2	result;
 
-	result.x = point.x * cos(angle) + point.y * sin(angle);
-	result.y = point.x * sin(angle) - point.y * cos(angle);
+	result.x = point.x * cos(angle) - point.y * sin(angle);
+	result.y = point.x * sin(angle) + point.y * cos(angle);
 	return (result);
 }
 
@@ -33,7 +33,7 @@ void	update_minimap(t_texture *minimap, t_player *player)
 	dst_offset = vector2(50, 50);
 	size = vector2(100, 100);
 	iter = vector2(0, 0);
-	float angle = atan2f(player->dir.y, -player->dir.x);
+	float angle = -atan2f(player->dir.y, -player->dir.x);
 	while (iter.y < size.y)
 	{
 		iter.x = 0;
@@ -42,7 +42,7 @@ void	update_minimap(t_texture *minimap, t_player *player)
 			t_vector2 tmp = rotate_point(vector2(iter.x - size.x / 2, iter.y - size.y / 2), angle);		
 
 			tmp.x += (player->pos.y * 10);
-			tmp.y += (player->pos.x * -10) + size.y / 2;
+			tmp.y += (player->pos.x * 10) ;
 			
 			if (tmp.x < 0 || tmp.x >= minimap->size.x
 				|| tmp.y < 0 || tmp.y >= minimap->size.y)
