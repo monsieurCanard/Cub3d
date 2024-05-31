@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/30 15:51:46 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/31 10:42:51 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define VERTICAL 1
 # define HORIZONTAL 0
 # define FOV 60
-# define NB_TEXTURE 5
+# define NB_TEXTURE 6
 
 //////////////////////////////////////
 ///////////// DEBUG //////////////////

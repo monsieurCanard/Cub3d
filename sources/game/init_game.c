@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:02:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/30 15:59:17 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:01:39 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ static int	take_texture_img(char **file_name, t_texture **texture_tab)
 	i = 0;
 	while (i < NB_TEXTURE)
 	{
-		printf("file_name[%d] = %s\n", i, file_name[i]);
 		texture_tab[i] = init_texture(file_name[i]);
 		if (texture_tab[i] == NULL)
 		{

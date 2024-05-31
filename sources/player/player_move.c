@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:35:49 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/30 13:53:34 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:26:28 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static void	move_down(t_player *player)
 static void	move_left(t_player *player)
 {
 	player->pos.x -= player->dir.y / player->speed;
-	player->pos.y += player->dir.x / player->speed;
+	player->pos.y -= player->dir.x / player->speed;
 }
 
 static void	move_right(t_player *player)
 {
 	player->pos.x += player->dir.y / player->speed;
-	player->pos.y -= player->dir.x / player->speed;
+	player->pos.y += player->dir.x / player->speed;
 }
 
 void	init_move_player(t_player *player)

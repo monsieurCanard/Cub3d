@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:04:21 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/30 16:00:33 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:30:26 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,7 @@ int	take_texture(t_map *map, const char *line)
 		return (hook_texture(map, line, EA));
 	if (ft_strncmp(line, "P ", 1) == 0)
 		return (hook_texture(map, line, 4));
+	if (ft_strncmp(line, "O ", 1) == 0)
+		return (hook_texture(map, line, 5));
 	return (SUCCESS);
 }

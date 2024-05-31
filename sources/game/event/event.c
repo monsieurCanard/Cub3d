@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/30 17:23:28 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/31 11:25:15 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,6 @@ static bool	valid_move(t_player *player, char **map)
 	t_vector2	futur_pos;
 	t_vector2	step;
 
-	printf("player->dir.x = %f\n", player->dir.x);
-	printf("player->dir.y = %f\n", player->dir.y);
 	if (player->dir.x > 0)
 		step.x = 0.2;
 	else
@@ -61,9 +59,6 @@ static void	open_close_door(t_player *player, char **map)
 
 	futur_pos.x = player->pos.x + player->dir.x;
 	futur_pos.y = player->pos.y + player->dir.y;
-	printf("futur_pos.x = %d\n", (int)futur_pos.x);
-	printf("futur_pos.y = %d\n", (int)futur_pos.y);
-	printf("map[(int)futur_pos.x][(int)(futur_pos.y)] = %c\n", map[(int)futur_pos.x][(int)(futur_pos.y)]);
 	if (map[(int)futur_pos.x][(int)(futur_pos.y)] == 'P')
 	{
 		map[(int)futur_pos.x][(int)(futur_pos.y)] = 'C';
@@ -106,3 +101,4 @@ int	event_player_2d(t_data *data)
 	}
 	return (SUCCESS);
 }
+
