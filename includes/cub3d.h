@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/31 14:43:08 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:07:13 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,5 +152,7 @@ int			print_error(char *message, int error);
 void		free_map(t_map *map);
 
 int			print_error(char *message, int error);
+
+float		cap_angle(float angle);
 
 #endif

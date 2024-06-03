@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/28 16:15:28 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/28 18:05:01 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:14:52 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ int	stop_game(t_data *data)
 			break ;
 		destroy_texture(data->texture[i]);
 	}
+	if (data->minimap)
+		destroy_texture(data->minimap);
 	if (data->player)
 		free(data->player);
 	free_map(data->map_data);

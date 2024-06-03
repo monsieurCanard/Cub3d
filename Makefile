@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/31 14:43:01 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/06/03 13:00:11 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,7 +99,8 @@ SRC_UPDATE_GAME		=	$(addprefix $(SRC_UPDATE_GAME_DIR), $(SRC_UPDATE_GAME_LIST))
 
 SRC_HUD_DIR			=	hud/
 SRC_HUD_LIST		=	init_minimap.c	\
-						hud.c
+						hud.c			\
+						update_minimap.c
 SRC_HUD				=	$(addprefix $(SRC_HUD_DIR), $(SRC_HUD_LIST))
 
 ##----------------------------------------------------------------------------------##
