@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/06/03 15:57:49 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/03 18:15:00 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,9 +109,13 @@ void		get_player(t_data *data);
 
 t_player	*create_player(int x, int y, char direction);
 
+void		draw_texture_player(t_texture *texture);
+
 void		open_close_door(t_player *player, char **map);
 
 bool		valid_move(t_player *player, t_map *map_data);
+
+void    	update_player(t_data *data);
 
 //////////////////////////////////////////
 ///////////// EVENTS /////////////////////

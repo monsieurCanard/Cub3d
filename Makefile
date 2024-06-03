@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
+#    By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/06/03 10:39:08 by antgabri         ###   ########.fr        #
+#    Updated: 2024/06/03 18:16:17 by monsieurc        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -75,7 +75,9 @@ SRC_PLAYER_LIST		=	player_angle.c	\
 						create_player.c	\
 						get_player.c	\
 						action_player.c	\
-						player_move.c
+						player_move.c	\
+						player_draw.c	\
+						player_update.c
 SRC_PLAYER			=	$(addprefix $(SRC_PLAYER_DIR), $(SRC_PLAYER_LIST))
 
 SRC_RAYCAST_DIR		=	raycaster/
