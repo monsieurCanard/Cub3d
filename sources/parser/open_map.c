@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   open_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:30:07 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/31 10:31:13 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:53:55 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ static int	return_failure_map(t_map *map, int return_value)
 	i = 0;
 	if (map->map != NULL)
 		ft_rm_split(map->map);
-	while (map->texture[i] != NULL)
+	while (map->texture[i] != NULL && i < 6)
 	{
 		free(map->texture[i]);
 		i++;
