@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:37:22 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 18:36:07 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/06/03 20:24:12 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,13 @@ static void	key_press_other(int keycode, t_keys *keys)
 	{
 		if (keys->reload == 0 || keys->reload < 3)
 			keys->reload = 13;
+	}
+	if (keycode == XK_grave)
+	{
+		if (keys->grave == 1)
+			keys->grave = 0;
+		else
+			keys->grave = 1;
 	}
 }
 

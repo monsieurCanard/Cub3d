@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+         #
+#    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/06/03 18:16:17 by monsieurc        ###   ########.fr        #
+#    Updated: 2024/06/03 20:21:28 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -102,7 +102,8 @@ SRC_UPDATE_GAME		=	$(addprefix $(SRC_UPDATE_GAME_DIR), $(SRC_UPDATE_GAME_LIST))
 
 SRC_HUD_DIR			=	hud/
 SRC_HUD_LIST		=	init_minimap.c	\
-						hud.c
+						hud.c			\
+						update_minimap.c
 SRC_HUD				=	$(addprefix $(SRC_HUD_DIR), $(SRC_HUD_LIST))
 
 ##----------------------------------------------------------------------------------##

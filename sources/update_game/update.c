@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   update.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:09:41 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 18:22:35 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/06/03 20:24:30 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,34 @@ void	update_3d(t_ray *ray, t_data *data, int x)
 	}
 }
 
+static float	normalize_rot(int x, t_win *win)
+{
+	float	rot;
+
+	rot = (float)x / (float)win->width;
+	return (rot);
+}
+
 int	update_logic(void *data_ptr)
 {
 	t_data	*data;
+	int		x;
+	int		y;
+	int		center_x;
 
 	data = (t_data *)data_ptr;
 	event_player_2d(data);
+	if (data->player->keys.grave == 1)
+	{
+		get_mouse_pos_hook(0, &x, &y);
+		center_x = x - __get_engine()->win[0]->width / 2;
+		if (center_x != 0)
+		{
+			data->player->rotate(data->player,
+				normalize_rot(center_x, __get_engine()->win[0]));
+			fix_pointer(0, 0);
+		}
+	}
 	return (SUCCESS);
 }
 

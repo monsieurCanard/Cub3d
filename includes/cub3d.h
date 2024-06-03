@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/06/03 18:15:00 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/06/03 20:21:48 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void		open_close_door(t_player *player, char **map);
 
 bool		valid_move(t_player *player, t_map *map_data);
 
-void    	update_player(t_data *data);
+void		update_player(t_data *data);
 
 //////////////////////////////////////////
 ///////////// EVENTS /////////////////////
@@ -129,6 +129,8 @@ int			event_player_2d(t_data *data);
 
 void		handle_event_game(int (*hook_func)(), int event_type,
 				int event_mask, t_keys *keys);
+
+int			get_mouse_pos(int keycode, int x, int y, t_keys *keys);
 
 //////////////////////////////////////////
 ///////////// RAYCAST ////////////////////
@@ -163,5 +165,7 @@ int			print_error(char *message, int error);
 void		free_map(t_map *map);
 
 int			print_error(char *message, int error);
+
+float		cap_angle(float angle);
 
 #endif
