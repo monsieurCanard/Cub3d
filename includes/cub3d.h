@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/06/03 15:07:13 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:32:06 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,8 @@ int			event_player_2d(t_data *data);
 
 void		handle_event_game(int (*hook_func)(), int event_type,
 				int event_mask, t_keys *keys);
+
+int			get_mouse_pos(int keycode, int x, int y, t_keys *keys);
 
 //////////////////////////////////////////
 ///////////// RAYCAST ////////////////////

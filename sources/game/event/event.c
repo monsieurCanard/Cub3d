@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/31 11:25:15 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:26:26 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ int	event_player_2d(t_data *data)
 {
 	t_player	*player;
 	t_vector2	pos;
+	// int			mouse_x;
+	// int			mouse_y;
 
 	pos = data->player->pos;
 	player = data->player;

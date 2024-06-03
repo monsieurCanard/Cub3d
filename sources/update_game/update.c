@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:09:41 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/31 14:43:20 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:26:05 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	update_logic(void *data_ptr)
 
 	data = (t_data *)data_ptr;
 	event_player_2d(data);
+	fix_pointer(0, 0);
 	return (SUCCESS);
 }
 

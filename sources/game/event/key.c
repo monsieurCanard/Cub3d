@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:37:22 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/31 11:36:45 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:37:43 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,5 +53,14 @@ int	key_release(int keycode, t_keys *keys)
 		keys->shift = 0;
 	if (keycode == XK_Escape)
 		keys->esc = 0;
+	return (0);
+}
+
+int	get_mouse_pos(int keycode, int x, int y, t_keys *keys)
+{
+	(void)keycode;
+	printf("x: %d, y: %d\n", x, y);
+	keys->mouse.x = x;
+	keys->mouse.y = y;
 	return (0);
 }
