@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 15:31:35 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/03 18:40:43 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,17 @@ static void	handle_action(int press, void (*action)(t_player *), t_player *p)
 	{
 		action(p);
 	}
-}	
+}
+
+static void	update_player_move(t_player *player)
+{
+	handle_action(player->keys.up, player->move_up, player);
+	handle_action(player->keys.down, player->move_down, player);
+	handle_action(player->keys.right, player->move_right, player);
+	handle_action(player->keys.left, player->move_left, player);
+	handle_action(player->keys.rot_left, player->angle_left, player);
+	handle_action(player->keys.rot_right, player->angle_right, player);
+}
 
 int	event_player_2d(t_data *data)
 {
@@ -37,12 +47,7 @@ int	event_player_2d(t_data *data)
 
 	old_pos = data->player->pos;
 	player = data->player;
-	handle_action(player->keys.up, player->move_up, player);
-	handle_action(player->keys.down, player->move_down, player);
-	handle_action(player->keys.right, player->move_right, player);
-	handle_action(player->keys.left, player->move_left, player);
-	handle_action(player->keys.rot_left, player->angle_left, player);
-	handle_action(player->keys.rot_right, player->angle_right, player);
+	update_player_move(player);
 	if (valid_move(player, data->map_data) == false)
 		player->pos = old_pos;
 	if (player->keys.shift != 0)

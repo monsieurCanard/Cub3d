@@ -3,29 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   key.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:37:22 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 16:14:57 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/03 18:36:07 by monsieurc        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	key_press(int keycode, t_keys *keys)
+static void	key_press_other(int keycode, t_keys *keys)
 {
-	if (keycode == XK_Up || keycode == XK_w)
-		keys->up = 1;
-	if (keycode == XK_Down || keycode == XK_s)
-		keys->down = 1;
-	if (keycode == XK_Right)
-		keys->rot_right = 1;
-	if (keycode == XK_Left)
-		keys->rot_left = 1;
-	if (keycode == XK_a)
-		keys->right = 1;
-	if (keycode == XK_d)
-		keys->left = 1;
 	if (keycode == XK_Shift_L || keycode == XK_Shift_R)
 		keys->shift = 14;
 	if (keycode == XK_Escape)
@@ -42,7 +30,24 @@ int	key_press(int keycode, t_keys *keys)
 		if (keys->reload == 0 || keys->reload < 3)
 			keys->reload = 13;
 	}
-	return (0);
+}
+
+int	key_press(int keycode, t_keys *keys)
+{
+	if (keycode == XK_Up || keycode == XK_w)
+		keys->up = 1;
+	if (keycode == XK_Down || keycode == XK_s)
+		keys->down = 1;
+	if (keycode == XK_Right)
+		keys->rot_right = 1;
+	if (keycode == XK_Left)
+		keys->rot_left = 1;
+	if (keycode == XK_a)
+		keys->right = 1;
+	if (keycode == XK_d)
+		keys->left = 1;
+	key_press_other(keycode, keys);
+	return (SUCCESS);
 }
 
 int	key_release(int keycode, t_keys *keys)
