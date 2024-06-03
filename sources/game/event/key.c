@@ -6,11 +6,22 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:37:22 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 15:37:43 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:19:32 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+static int key_press2(int keycode, t_keys *keys)
+{
+	if (keycode == XK_grave)
+	{
+		if (keys->grave == 1)
+			keys->grave = 0;
+		else
+			keys->grave = 1;
+	}
+}
 
 int	key_press(int keycode, t_keys *keys)
 {
@@ -32,6 +43,7 @@ int	key_press(int keycode, t_keys *keys)
 		keys->esc = 1;
 	if (keycode == XK_e)
 		keys->open_close = 1;
+	key_press2(keycode, keys);
 	return (0);
 }
 
@@ -53,14 +65,5 @@ int	key_release(int keycode, t_keys *keys)
 		keys->shift = 0;
 	if (keycode == XK_Escape)
 		keys->esc = 0;
-	return (0);
-}
-
-int	get_mouse_pos(int keycode, int x, int y, t_keys *keys)
-{
-	(void)keycode;
-	printf("x: %d, y: %d\n", x, y);
-	keys->mouse.x = x;
-	keys->mouse.y = y;
 	return (0);
 }

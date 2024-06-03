@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:55:57 by antgabri          #+#    #+#             */
-/*   Updated: 2024/06/03 15:20:43 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:18:53 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_keys
 	bool			shift;
 	bool			open_close;
 	bool			esc;
-	t_vector2		mouse;
+	bool			grave;
 }	t_keys;
 
 typedef struct s_player
@@ -40,12 +40,12 @@ typedef struct s_player
 	t_vector2		plane;
 	t_vector2		delta;
 	t_vector2		rot;
+	float			rot_speed;
 	void			(*move_up)(struct s_player *player);
 	void			(*move_down)(struct s_player *player);
 	void			(*move_right)(struct s_player *player);
 	void			(*move_left)(struct s_player *player);
-	void			(*angle_right)(struct s_player *player);
-	void			(*angle_left)(struct s_player *player);
+	void			(*rotate)(struct s_player *player, float rot_speed);
 }	t_player;
 
 void		init_move_player(t_player *player);

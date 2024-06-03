@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 16:09:41 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 16:56:51 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:18:53 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,34 @@ void	update_3d(t_ray *ray, t_data *data, int x)
 	}
 }
 
+static float	normalize_rot(int x, t_win *win)
+{
+	float	rot;
+
+	rot = (float)x / (float)win->width;
+	return (rot);
+}
+
 int	update_logic(void *data_ptr)
 {
 	t_data	*data;
-	int 	x;
-	int 	y;
+	int		x;
+	int		y;
+	int		center_x;
 
 	data = (t_data *)data_ptr;
 	event_player_2d(data);
-	get_mouse_pos_hook(0, &x, &y);
-	printf("x: %d, y: %d\n", x, y);
-	fix_pointer(0, 0);
+	if (data->player->keys.grave == 1)
+	{
+		get_mouse_pos_hook(0, &x, &y);
+		center_x = x - __get_engine()->win[0]->width / 2;
+		if (center_x != 0)
+		{
+			data->player->rotate(data->player,
+				normalize_rot(center_x, __get_engine()->win[0]));
+			fix_pointer(0, 0);
+		}
+	}
 	return (SUCCESS);
 }
 

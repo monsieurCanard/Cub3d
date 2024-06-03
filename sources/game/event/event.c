@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 16:26:26 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 20:19:57 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,6 @@ int	event_player_2d(t_data *data)
 {
 	t_player	*player;
 	t_vector2	pos;
-	// int			mouse_x;
-	// int			mouse_y;
 
 	pos = data->player->pos;
 	player = data->player;
@@ -82,8 +80,10 @@ int	event_player_2d(t_data *data)
 	handle_action(player->keys.down, player->move_down, player);
 	handle_action(player->keys.right, player->move_right, player);
 	handle_action(player->keys.left, player->move_left, player);
-	handle_action(player->keys.rot_left, player->angle_left, player);
-	handle_action(player->keys.rot_right, player->angle_right, player);
+	if (player->keys.rot_right)
+		player->rotate(player, player->rot_speed);
+	if (player->keys.rot_left)
+		player->rotate(player, -player->rot_speed);
 	if (valid_move(player, data->map_data->map) == false)
 	{
 		player->pos = pos;
@@ -103,4 +103,3 @@ int	event_player_2d(t_data *data)
 	}
 	return (SUCCESS);
 }
-

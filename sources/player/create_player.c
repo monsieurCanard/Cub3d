@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_player.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:14:09 by monsieurc         #+#    #+#             */
-/*   Updated: 2024/05/29 13:37:42 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/06/03 19:10:17 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ t_player	*create_player(int x, int y, char direction)
 	init_move_player(player);
 	get_player_direction(player, direction);
 	player->pos = vector2(x + 0.5, y + 0.5);
+	player->rot_speed = 0.035;
 	return (player);
 }
