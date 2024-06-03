@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/31 14:43:08 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:57:49 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@
 # define FOV 60
 # define NB_TEXTURE 6
 
+# define NB_TEXTURE_PLAYER 23
+
 //////////////////////////////////////
 ///////////// DEBUG //////////////////
 //////////////////////////////////////
@@ -64,6 +66,7 @@ typedef struct s_data
 	t_map		*map_data;
 	t_player	*player;
 	t_texture	*texture[NB_TEXTURE];
+	t_texture	*texture_player[NB_TEXTURE_PLAYER];
 	t_texture	*minimap;
 }				t_data;
 
@@ -105,6 +108,10 @@ int			update_logic(void *data_ptr);
 void		get_player(t_data *data);
 
 t_player	*create_player(int x, int y, char direction);
+
+void		open_close_door(t_player *player, char **map);
+
+bool		valid_move(t_player *player, t_map *map_data);
 
 //////////////////////////////////////////
 ///////////// EVENTS /////////////////////

@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:46:11 by monsieurc         #+#    #+#             */
-/*   Updated: 2024/05/31 10:26:51 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:16:17 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	get_side_wall(t_ray *ray, int hit_axis, t_data *data)
 		else
 		{
 			if (data->map_data->map[ray->map_x][ray->map_y] == '1'
-				&& data->map_data->map[ray->map_x][ray->map_y - 1] == 'C')
+				&& data->map_data->map[ray->map_x][ray->map_y - 1] == 'O')
 				return (5);
 			else
 				return (EA);

@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/31 11:25:15 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/03 15:31:35 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,53 +28,14 @@ static void	handle_action(int press, void (*action)(t_player *), t_player *p)
 	{
 		action(p);
 	}
-}
-
-static bool	valid_move(t_player *player, char **map)
-{
-	t_vector2	futur_pos;
-	t_vector2	step;
-
-	if (player->dir.x > 0)
-		step.x = 0.2;
-	else
-		step.x = -0.2;
-	if (player->dir.y < 0)
-		step.y = 0.2;
-	else
-		step.y = -0.2;
-	futur_pos.x = (player->pos.x + step.x);
-	futur_pos.y = (player->pos.y + step.y);
-	if (map[(int)futur_pos.x][(int)(futur_pos.y)] == '1' ||
-		map[(int)futur_pos.x][(int)(futur_pos.y)] == 'P')
-	{
-		return (false);
-	}
-	return (true);
-}
-
-static void	open_close_door(t_player *player, char **map)
-{
-	t_vector2	futur_pos;
-
-	futur_pos.x = player->pos.x + player->dir.x;
-	futur_pos.y = player->pos.y + player->dir.y;
-	if (map[(int)futur_pos.x][(int)(futur_pos.y)] == 'P')
-	{
-		map[(int)futur_pos.x][(int)(futur_pos.y)] = 'C';
-	}
-	else if (map[(int)(futur_pos.x)][(int)(futur_pos.y)] == 'C')
-	{
-		map[(int)futur_pos.x][(int)(futur_pos.y)] = 'P';
-	}
-}
+}	
 
 int	event_player_2d(t_data *data)
 {
 	t_player	*player;
-	t_vector2	pos;
+	t_vector2	old_pos;
 
-	pos = data->player->pos;
+	old_pos = data->player->pos;
 	player = data->player;
 	handle_action(player->keys.up, player->move_up, player);
 	handle_action(player->keys.down, player->move_down, player);
@@ -82,11 +43,9 @@ int	event_player_2d(t_data *data)
 	handle_action(player->keys.left, player->move_left, player);
 	handle_action(player->keys.rot_left, player->angle_left, player);
 	handle_action(player->keys.rot_right, player->angle_right, player);
-	if (valid_move(player, data->map_data->map) == false)
-	{
-		player->pos = pos;
-	}
-	if (player->keys.shift)
+	if (valid_move(player, data->map_data) == false)
+		player->pos = old_pos;
+	if (player->keys.shift != 0)
 		player->speed = 5;
 	else
 		player->speed = 12;
@@ -96,9 +55,6 @@ int	event_player_2d(t_data *data)
 		player->keys.open_close = 0;
 	}
 	if (player->keys.esc)
-	{
 		stop_game(data);
-	}
 	return (SUCCESS);
 }
-

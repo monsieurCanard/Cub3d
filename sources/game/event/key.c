@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/27 17:37:22 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/31 11:36:45 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/03 16:14:57 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,21 @@ int	key_press(int keycode, t_keys *keys)
 	if (keycode == XK_d)
 		keys->left = 1;
 	if (keycode == XK_Shift_L || keycode == XK_Shift_R)
-		keys->shift = 1;
+		keys->shift = 14;
 	if (keycode == XK_Escape)
 		keys->esc = 1;
 	if (keycode == XK_e)
 		keys->open_close = 1;
+	if (keycode == XK_space)
+	{
+		keys->open_close = 1;
+		keys->fire = 2;
+	}
+	if (keycode == XK_r)
+	{
+		if (keys->reload == 0 || keys->reload < 3)
+			keys->reload = 13;
+	}
 	return (0);
 }
 
