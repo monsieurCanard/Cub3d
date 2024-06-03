@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/06/03 20:21:28 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/06/03 20:26:16 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,12 +71,12 @@ SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
 SRC_PLAYER_DIR		=	player/
 
-SRC_PLAYER_LIST		=	player_angle.c	\
-						create_player.c	\
-						get_player.c	\
-						action_player.c	\
-						player_move.c	\
+SRC_PLAYER_LIST		=	get_player.c	\
+						player_action.c	\
+						player_angle.c	\
+						player_create.c	\
 						player_draw.c	\
+						player_move.c	\
 						player_update.c
 SRC_PLAYER			=	$(addprefix $(SRC_PLAYER_DIR), $(SRC_PLAYER_LIST))
 
