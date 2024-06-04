@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:01:51 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/31 10:48:38 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:21:36 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,18 +42,28 @@ static bool	wall_or_space(char current_pos)
 	return (false);
 }
 
-static bool	check_around_pos(char current_pos, char *around)
+static int	check_around_pos(char current_pos, char *around)
 {
 	if ((around[LEFT] == ' ' || around[RIGHT] == ' ')
 		&& (wall_or_space(current_pos)) == true)
-		return (false);
+	{
+		if (is_a_player(current_pos))
+			return (PLAYER_OUTBOUND);
+		else
+			return (MAP_HOLE);
+	}
 	if ((around[UPPER] == ' ' || around[LOWER] == ' ')
 		&& (wall_or_space(current_pos)) == true)
-		return (false);
-	return (true);
+	{
+		if (is_a_player(current_pos))
+			return (PLAYER_OUTBOUND);
+		else
+			return (MAP_HOLE);
+	}
+	return (SUCCESS);
 }
 
-bool	valid_condition(char **map, size_t i, size_t j)
+int	valid_condition(char **map, size_t i, size_t j)
 {
 	char	around[4];
 	char	current;
@@ -61,7 +71,7 @@ bool	valid_condition(char **map, size_t i, size_t j)
 	current = map[i][j];
 	if (current != '1' && current != '0'
 		&& current != ' ' && !(is_a_player(current)) && current != 'P')
-		return (false);
+		return (INV_OBJ);
 	if (map[i - 1] && map[i - 1][j] != '\0')
 		around[UPPER] = map[i - 1][j];
 	else

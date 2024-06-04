@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:29:31 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/31 11:26:47 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/04 13:47:52 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ static int	read_file_error(char *raw_line, int fd_map)
 			break ;
 		free(line);
 	}
-	errno = print_error("Malloc failed", ENOMEM);
+	errno = print_error("Data from file .cub invalid", ENOMEM);
 	if (raw_line != NULL)
 	{
 		free(raw_line);
@@ -107,15 +107,16 @@ int	read_files(t_map *map, int fd_map)
 		ret = is_empty_line(raw_line);
 		if (ret == FAILURE)
 			return (read_file_error(raw_line, fd_map));
-		else if (ret == false)
+		else if (ft_lstsize(lst_map) == 0 && ret == true)
 		{
-			if (save_data(map, &lst_map, raw_line) == FAILURE)
-				return (read_file_error(raw_line, fd_map));
+			free(raw_line);
+			continue ;
 		}
+		if (save_data(map, &lst_map, raw_line) == FAILURE)
+			return (read_file_error(raw_line, fd_map));
 		free(raw_line);
 	}
 	if (take_map(map, &lst_map) == FAILURE)
 		return (read_file_error(NULL, fd_map));
-	close(fd_map);
-	return (SUCCESS);
+	return (close(fd_map), SUCCESS);
 }

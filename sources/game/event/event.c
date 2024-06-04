@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   event.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/06/04 11:22:30 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/04 12:52:20 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,14 +57,14 @@ int	event_player_2d(t_data *data)
 	old_pos = data->player->pos;
 	player = data->player;
 	update_player_move(player);
-	if (valid_move(data->player, data->map_data) == false)
-	{
-		player->pos = old_pos;
-	}
 	if (player->keys.shift != 0)
 		player->speed = 5;
 	else
 		player->speed = 12;
+	if (valid_move(data->player, data->map_data) == false)
+	{
+		player->pos = old_pos;
+	}
 	if (player->keys.open_close)
 	{
 		open_close_door(player, data->map_data->map);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:08:08 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 15:14:57 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/06/04 13:17:34 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 # define LOWER 1
 # define LEFT 2
 # define RIGHT 3
+
+enum	e_error
+{
+	NB_PLAYER,
+	PLAYER_OUTBOUND,
+	NO_PLAYER,
+	NO_MAP,
+	INV_OBJ,
+	MAP_HOLE,
+};
 /////////////////////////////////////////////////////////////////
 ////////////////////////// MAP PARSING //////////////////////////
 /////////////////////////////////////////////////////////////////
@@ -62,7 +72,7 @@ bool	is_a_player(char c);
 
 bool	valid_border(char *line);
 
-bool	valid_condition(char **map, size_t i, size_t j);
+int		valid_condition(char **map, size_t i, size_t j);
 
 /////////////////////////////////////////////////////////////////
 ////////////////////////// MAP ERROR /////////////////////////////
