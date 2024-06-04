@@ -6,7 +6,7 @@
 #    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/06/03 20:26:16 by jbrousse         ###   ########.fr        #
+#    Updated: 2024/06/04 10:50:51 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -92,7 +92,8 @@ SRC_GAME_LIST		=	init_game.c		\
 						start_game.c 	\
 						stop_game.c		\
 						event/key.c		\
-						event/event.c
+						event/event.c	\
+						event/mouse.c
 SRC_GAME			=	$(addprefix $(SRC_GAME_DIR), $(SRC_GAME_LIST))
 
 SRC_UPDATE_GAME_DIR	=	update_game/

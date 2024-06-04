@@ -2,6 +2,7 @@
 	"files.associations": {
 		"cub3d.h": "c",
 		"object.h": "c",
-		"cub_engine.h": "c"
+		"cub_engine.h": "c",
+		"core.h": "c"
 	}
 }

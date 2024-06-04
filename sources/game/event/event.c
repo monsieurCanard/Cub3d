@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 11:50:50 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 20:23:08 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/04 10:49:17 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,17 @@ static void	update_player_move(t_player *player)
 	handle_action(player->keys.down, player->move_down, player);
 	handle_action(player->keys.right, player->move_right, player);
 	handle_action(player->keys.left, player->move_left, player);
-	if (player->keys.rot_right)
-		player->rotate(player, player->rot_speed);
-	if (player->keys.rot_left)
-		player->rotate(player, -player->rot_speed);
+	if (player->keys.grave == 1)
+	{
+		mouse_rot(player);
+	}
+	else
+	{
+		if (player->keys.rot_right)
+			player->rotate(player, player->rot_speed);
+		if (player->keys.rot_left)
+			player->rotate(player, -player->rot_speed);
+	}
 }
 
 int	event_player_2d(t_data *data)
