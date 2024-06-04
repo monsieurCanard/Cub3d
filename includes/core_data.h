@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 16:08:52 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 10:45:43 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/31 10:47:24 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_argb
 
 typedef struct s_map
 {
-	char		*texture[5];
+	char		*texture[6];
 	t_argb		floor;
 	t_argb		ceiling;
 	size_t		size_x;

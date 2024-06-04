@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verif_map_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: monsieurc <monsieurc@student.42.fr>        +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/29 10:01:51 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/29 16:34:10 by monsieurc        ###   ########.fr       */
+/*   Updated: 2024/05/31 10:48:38 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ bool	valid_condition(char **map, size_t i, size_t j)
 
 	current = map[i][j];
 	if (current != '1' && current != '0'
-		&& current != ' ' && !(is_a_player(current)))
+		&& current != ' ' && !(is_a_player(current)) && current != 'P')
 		return (false);
 	if (map[i - 1] && map[i - 1][j] != '\0')
 		around[UPPER] = map[i - 1][j];

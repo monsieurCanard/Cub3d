@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+         #
+#    By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/20 15:47:28 by anthony           #+#    #+#              #
-#    Updated: 2024/05/30 12:37:27 by antgabri         ###   ########.fr        #
+#    Updated: 2024/06/04 11:31:04 by jbrousse         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,10 +71,13 @@ SRC_PARSER			=	$(addprefix $(SRC_PARSER_DIR), $(SRC_PARSER_LIST))
 
 SRC_PLAYER_DIR		=	player/
 
-SRC_PLAYER_LIST		=	player_angle.c	\
-						create_player.c	\
-						get_player.c	\
-						player_move.c
+SRC_PLAYER_LIST		=	get_player.c	\
+						player_action.c	\
+						player_angle.c	\
+						player_create.c	\
+						player_draw.c	\
+						player_move.c	\
+						player_update.c
 SRC_PLAYER			=	$(addprefix $(SRC_PLAYER_DIR), $(SRC_PLAYER_LIST))
 
 SRC_RAYCAST_DIR		=	raycaster/
@@ -89,7 +92,8 @@ SRC_GAME_LIST		=	init_game.c		\
 						start_game.c 	\
 						stop_game.c		\
 						event/key.c		\
-						event/event.c
+						event/event.c	\
+						event/mouse.c
 SRC_GAME			=	$(addprefix $(SRC_GAME_DIR), $(SRC_GAME_LIST))
 
 SRC_UPDATE_GAME_DIR	=	update_game/
@@ -97,12 +101,19 @@ SRC_UPDATE_GAME_LIST=	update.c	\
 						draw_floor_ceil.c
 SRC_UPDATE_GAME		=	$(addprefix $(SRC_UPDATE_GAME_DIR), $(SRC_UPDATE_GAME_LIST))
 
+SRC_HUD_DIR			=	hud/
+SRC_HUD_LIST		=	init_minimap.c	\
+						hud.c			\
+						update_minimap.c
+SRC_HUD				=	$(addprefix $(SRC_HUD_DIR), $(SRC_HUD_LIST))
+
 ##----------------------------------------------------------------------------------##
 SRC_LIST			=	main.c				\
 						utils.c				\
 						$(SRC_PLAYER)		\
 						$(SRC_PARSER)		\
-						$(SRC_GAME)		\
+						$(SRC_GAME)			\
+						$(SRC_HUD)			\
 						$(SRC_RAYCAST)		\
 						$(SRC_UPDATE_GAME)
 SRC					=	$(addprefix $(SRC_DIR), $(SRC_LIST))

@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 15:09:40 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/05/29 10:12:18 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/05/31 10:46:18 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 bool	is_coord_id(const char *line)
 {
 	if (ft_strncmp(line, "NO ", 2) == 0 || ft_strncmp(line, "SO ", 2) == 0
-		|| ft_strncmp(line, "WE ", 2) == 0 || ft_strncmp(line, "EA ", 2) == 0)
+		|| ft_strncmp(line, "WE ", 2) == 0 || ft_strncmp(line, "EA ", 2) == 0
+		|| ft_strncmp(line, "P ", 1) == 0 || ft_strncmp(line, "O ", 1) == 0)
 		return (true);
 	return (false);
 }
@@ -25,7 +26,7 @@ bool	have_all_data(t_map *map)
 	int	i;
 
 	i = 0;
-	while (i < 4)
+	while (i < 5)
 	{
 		if (map->texture[i] == NULL)
 			return (false);

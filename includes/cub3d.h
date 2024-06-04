@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/05/30 12:30:56 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/04 11:31:18 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define FAILURE -1
 # define SUCCESS 0
 
-# define WIN_WIDTH 1080
-# define WIN_HEIGHT 1080
+# define WIN_WIDTH 900
+# define WIN_HEIGHT 900
 
 # define BLUE 0x0000FF
 # define RED 0xFF0000
@@ -45,7 +45,9 @@
 # define VERTICAL 1
 # define HORIZONTAL 0
 # define FOV 60
-# define NB_TEXTURE 4
+# define NB_TEXTURE 6
+
+# define NB_TEXTURE_PLAYER 23
 
 //////////////////////////////////////
 ///////////// DEBUG //////////////////
@@ -64,6 +66,8 @@ typedef struct s_data
 	t_map		*map_data;
 	t_player	*player;
 	t_texture	*texture[NB_TEXTURE];
+	t_texture	*texture_player[NB_TEXTURE_PLAYER];
+	t_texture	*minimap;
 }				t_data;
 
 typedef struct s_ray
@@ -95,6 +99,8 @@ int			stop_game(t_data *data);
 
 int			init_game(t_data *data, char *path);
 
+int			update_logic(void *data_ptr);
+
 //////////////////////////////////////////
 ///////////// PLAYER /////////////////////
 //////////////////////////////////////////
@@ -102,6 +108,14 @@ int			init_game(t_data *data, char *path);
 void		get_player(t_data *data);
 
 t_player	*create_player(int x, int y, char direction);
+
+void		draw_texture_player(t_texture *texture);
+
+void		open_close_door(t_player *player, char **map);
+
+bool		valid_move(t_player *player, t_map *map_data);
+
+void		update_player(t_data *data);
 
 //////////////////////////////////////////
 ///////////// EVENTS /////////////////////
@@ -138,7 +152,7 @@ void		update_3d(t_ray *ray, t_data *data, int x);
 
 void		draw_ceil_floor(t_map *map_data);
 
-int			update(void *data_ptr);
+int			update_render(void *data_ptr);
 
 //////////////////////////////////////////
 ///////////// ERROR / FREE ///////////////
@@ -149,5 +163,15 @@ int			print_error(char *message, int error);
 void		free_map(t_map *map);
 
 int			print_error(char *message, int error);
+
+//////////////////////////////////////////
+///////////// UTILS //////////////////////
+//////////////////////////////////////////
+
+float		cap_angle(float angle);
+
+bool		is_a_wall(char c);
+
+void		mouse_rot(t_player *player);
 
 #endif

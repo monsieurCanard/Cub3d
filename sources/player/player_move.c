@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_move.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/09 13:35:49 by antgabri          #+#    #+#             */
-/*   Updated: 2024/05/27 10:10:59 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/03 11:32:19 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ static void	move_down(t_player *player)
 static void	move_left(t_player *player)
 {
 	player->pos.x -= player->dir.y / player->speed;
-	player->pos.y += player->dir.x / player->speed;
+	player->pos.y -= player->dir.x / player->speed;
 }
 
 static void	move_right(t_player *player)
 {
 	player->pos.x += player->dir.y / player->speed;
-	player->pos.y -= player->dir.x / player->speed;
+	player->pos.y += player->dir.x / player->speed;
 }
 
 void	init_move_player(t_player *player)

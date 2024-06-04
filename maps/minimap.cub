@@ -1,0 +1,33 @@
+NO    ./asset/texture/new_2.xpm
+
+
+WE    ./asset/texture/new_4.xpm
+
+
+
+SO    ./asset/texture/new_3.xpm
+
+
+EA    ./asset/texture/new_4.xpm
+
+P      ./asset/texture/porte.xpm
+
+O      ./asset/texture/porte_close.xpm
+
+
+
+F 115   ,100,  100
+C 8,    150,    255
+
+
+
+11111111
+1000000111111111111111111111111111111111111111111111111
+100N000000000000000000000000000000000000000000000000001
+1000000111111111111111111111111111111111111111111111111
+11011111
+ 101
+ 101
+ 101
+ 101
+ 111

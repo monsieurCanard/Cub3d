@@ -6,7 +6,7 @@
 /*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/25 14:46:11 by monsieurc         #+#    #+#             */
-/*   Updated: 2024/05/29 11:29:31 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/04 10:29:03 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,21 +59,30 @@ static void	launch_ray(t_ray *ray, t_data *data)
 		{
 			break ;
 		}
-		if (data->map_data->map[ray->map_x][ray->map_y] == '1')
+		if (data->map_data->map[ray->map_x][ray->map_y] == '1'
+			|| data->map_data->map[ray->map_x][ray->map_y] == 'P')
 		{
 			touch_wall = 1;
 		}
 	}
 }
 
-static int	get_side_wall(t_ray *ray, int hit_axis)
+static int	get_side_wall(t_ray *ray, int hit_axis, t_data *data)
 {
+	if (data->map_data->map[ray->map_x][ray->map_y] == 'P')
+		return (4);
 	if (hit_axis == VERTICAL)
 	{
 		if (ray->dir.y > 0)
 			return (WE);
 		else
-			return (EA);
+		{
+			if (data->map_data->map[ray->map_x][ray->map_y] == '1'
+				&& data->map_data->map[ray->map_x][ray->map_y - 1] == 'O')
+				return (5);
+			else
+				return (EA);
+		}
 	}
 	else
 	{
@@ -97,7 +106,7 @@ void	raycaster(t_data *data, t_player *player)
 		init_step(&ray, player);
 		launch_ray(&ray, data);
 		calcul_wall(&ray, player);
-		ray.index_texture = get_side_wall(&ray, ray.hit_axis);
+		ray.index_texture = get_side_wall(&ray, ray.hit_axis, data);
 		update_3d(&ray, data, x);
 		x++;
 	}
