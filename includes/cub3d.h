@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/06/04 12:58:20 by antgabri         ###   ########.fr       */
+/*   Updated: 2024/06/04 14:23:40 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@
 # define FAILURE -1
 # define SUCCESS 0
 
-# define WIN_WIDTH 900
-# define WIN_HEIGHT 900
+# define WIN_WIDTH 1280
+# define WIN_HEIGHT 720
 
 # define BLUE 0x0000FF
 # define RED 0xFF0000
@@ -60,8 +60,6 @@
 
 # include "core_data.h"
 # include "player.h"
-
-
 
 typedef struct s_data
 {
