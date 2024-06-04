@@ -6,7 +6,7 @@
 /*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/06/04 11:18:43 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/04 11:22:23 by jbrousse         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,13 @@ void		free_map(t_map *map);
 
 int			print_error(char *message, int error);
 
+//////////////////////////////////////////
+///////////// UTILS //////////////////////
+//////////////////////////////////////////
+
 float		cap_angle(float angle);
+
+bool		is_a_wall(char c);
 
 void		mouse_rot(t_player *player);
 
