@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:12:44 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 15:11:53 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/04 11:02:28 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,11 @@ float	cap_angle(float angle)
 	if (angle > PI)
 		angle -= 2 * PI;
 	return (angle);
+}
+
+bool	is_a_wall(char c)
+{
+	if (c == '1' || c == 'P')
+		return (true);
+	return (false);
 }

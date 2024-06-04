@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/30 15:33:20 by jbrousse          #+#    #+#             */
-/*   Updated: 2024/06/03 20:22:04 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/04 11:18:50 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	start_game(t_data *data)
 
 	get_player(data);
 	keys = &(data->player->keys);
-	data->minimap = init_minimap(data->map_data); // TODO verif init
+	data->minimap = init_minimap(data->map_data);
 	handle_event_game(&key_press, KeyPress, KeyPressMask, keys);
 	handle_event_game(&key_release, KeyRelease, KeyReleaseMask, keys);
 	add_loop_render(&update_render, data);

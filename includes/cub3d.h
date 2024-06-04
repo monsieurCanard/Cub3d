@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jbrousse <jbrousse@student.42.fr>          +#+  +:+       +#+        */
+/*   By: antgabri <antgabri@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 14:05:28 by anthony           #+#    #+#             */
-/*   Updated: 2024/06/03 20:21:48 by jbrousse         ###   ########.fr       */
+/*   Updated: 2024/06/04 11:03:32 by antgabri         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -166,6 +166,12 @@ void		free_map(t_map *map);
 
 int			print_error(char *message, int error);
 
+//////////////////////////////////////////
+///////////// UTILS //////////////////////
+//////////////////////////////////////////
+
 float		cap_angle(float angle);
+
+bool		is_a_wall(char c);
 
 #endif
