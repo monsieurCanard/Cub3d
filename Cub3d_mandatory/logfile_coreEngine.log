@@ -1,0 +1,5 @@
+[DEBUG] sources/initializer/init_engine.c:23 - mlx_init() called
+[ERROR] sources/initializer/init_texture.c:46 - mlx_xpm_file_to_image() failed
+[DEBUG] sources/stop_components/stop_engine.c:20 - mlx_destroy_display() called
+[DEBUG] sources/stop_components/stop_engine.c:25 - Freeing mlx
+[DEBUG] sources/stop_components/stop_engine.c:34 - Freeing engine
