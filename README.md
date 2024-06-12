@@ -7,7 +7,7 @@
 </p>
 
 <p align="center">
-	<img src="https://github.com/monsieurCanard/monsieurCanard/blob/main/badges/cub3dn.png" alt="cub3d_logo" />
+	<img src="https://github.com/monsieurCanard/monsieurCanard/blob/main/badges/cub3dm.png" alt="cub3d_logo" />
 </p>
 
 ---
@@ -45,5 +45,19 @@ Additionally, the bonus part of the project requires the implementation of advan
 - Doors which can open and close
 - Animated sprite
 - Rotate the point of view with the mouse
+
+## Installation and compilation commands :
+```
+git clone git@github.com:monsieurCanard/Cub3d.git
+cd Cub3d
+make
+```
+For the bonus part : 
+```
+make bonus
+```
+## 🤖 Usage
+
+
 
 This work is published under the terms of **[42 Unlicense](https://github.com/gcamerli/42unlicense)**.
