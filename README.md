@@ -12,6 +12,12 @@
 
 ---
 
+<p align="center">
+	<img src="https://img.shields.io/badge/Score-125-blue?style=flat-square&logo=42" alt="Score project :125"/>
+	<img alt="Static Badge" src="https://img.shields.io/badge/Outstanding-3-blue?style=flat-square&logo=42">
+	<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/monsieurCanard/Cub3d?style=flat-square&logo=github">
+</p>
+
 ## Overview
 
 This project serves an educational purpose and is based on the **common core of 42 School**. Therefore, it is subject to educational restrictions. Please be aware of these restrictions before making any contributions.
@@ -57,6 +63,32 @@ For the bonus part :
 make bonus
 ```
 ## 🤖 Usage
+
+Launch mandatory part :
+<p align="center">
+	<img src="https://github.com/monsieurCanard/Cub3d/blob/main/img/launch_manda.png" 
+	alt="launch mandatory"/>
+</p>
+
+Launch bonus part :
+<p align="center">
+	<img src="https://github.com/monsieurCanard/Cub3d/blob/main/img/launch_bonus.png"
+	alt="launch mandatory"/>
+</p>
+
+Game preview : 
+<p align="center">
+	<img src="https://github.com/monsieurCanard/Cub3d/blob/main/img/ingame.png"
+	alt="game"/>
+</p>
+
+Controls :
+<p align="center">
+	<img src="https://github.com/monsieurCanard/Cub3d/blob/main/img/controls.png"
+	alt="controls"/>
+</p>
+
+
 
 
 
