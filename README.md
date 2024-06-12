@@ -78,13 +78,13 @@ Launch bonus part :
 
 Game preview : 
 <p align="center">
-	<img src="https://github.com/monsieurCanard/Cub3d/blob/main/img/ingame.png"
+	<img src="https://github.com/monsieurCanard/Cub3d/blob/main/img/ingame.png" 
 	alt="game"/>
 </p>
 
 Controls :
 <p align="center">
-	<img src="https://github.com/monsieurCanard/Cub3d/blob/main/img/controls.png"
+	<img src="https://github.com/monsieurCanard/Cub3d/blob/main/img/controls.png" length="500" width="500"
 	alt="controls"/>
 </p>
 
