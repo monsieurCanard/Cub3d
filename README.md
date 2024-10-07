@@ -1,3 +1,7 @@
+
+![Cub3d](https://github.com/user-attachments/assets/007de45a-eb9b-47e7-bc76-d58f0757c775)
+
+
 <h1 align="center">
 	42 Project - Cub3d
 </h1>
