@@ -13,7 +13,7 @@
 	<img src="https://github.com/monsieurCanard/monsieurCanard/blob/main/badges/cub3dm.png" alt="cub3d_logo" />
 </p> -->
 
----
+
 
 <p align="center">
 	<img src="https://img.shields.io/github/languages/top/monsieurCanard/Cub3d" alt="project language" />
