@@ -1,7 +1,6 @@
 
 ![Cub3d](https://github.com/user-attachments/assets/007de45a-eb9b-47e7-bc76-d58f0757c775)
 
-
 <h1 align="center">
 	42 Project - Cub3d
 </h1>
@@ -10,13 +9,14 @@
 	<b><i> My first RayCaster with miniLibX !</i></b>
 </p>
 
-<p align="center">
+<!-- <p align="center">
 	<img src="https://github.com/monsieurCanard/monsieurCanard/blob/main/badges/cub3dm.png" alt="cub3d_logo" />
-</p>
+</p> -->
 
 ---
 
 <p align="center">
+	<img src="https://img.shields.io/github/languages/top/monsieurCanard/Cub3d" alt="project language" />
 	<img src="https://img.shields.io/badge/Score-125-blue?style=flat-square&logo=42" alt="Score project :125"/>
 	<img alt="Static Badge" src="https://img.shields.io/badge/Outstanding-3-blue?style=flat-square&logo=42">
 	<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/monsieurCanard/Cub3d?style=flat-square&logo=github">
