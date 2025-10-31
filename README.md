@@ -16,11 +16,12 @@
 
 
 <p align="center">
-	<img src="https://img.shields.io/github/languages/top/monsieurCanard/Cub3d" alt="project language" />
-	<img src="https://img.shields.io/badge/Score-125-blue?style=flat-square&logo=42" alt="Score project :125"/>
-	<img alt="Static Badge" src="https://img.shields.io/badge/Outstanding-3-blue?style=flat-square&logo=42">
-	<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/monsieurCanard/Cub3d?style=flat-square&logo=github">
+	<img src="https://img.shields.io/github/languages/top/monsieurCanard/Cub3d?color=red" alt="project language" />
+	<img src="https://img.shields.io/badge/Score-125-red?style=flat-square&logo=42" alt="Score project :125"/>
+	<img alt="Static Badge" src="https://img.shields.io/badge/Outstanding-3-red?style=flat-square&logo=42">
+	<img alt="GitHub repo size" src="https://img.shields.io/github/repo-size/monsieurCanard/Cub3d?style=flat-square&logo=github&color=red">
 </p>
+
 
 ## Overview
 
