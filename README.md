@@ -77,22 +77,21 @@ make
 ```bash
 git clone git@github.com:monsieurCanard/Cub3d.git
 cd Cub3d
-make
+make bonus
 ```
 
 ## 🤖 Usage
 
 Launch mandatory part :
-<p align="center">
-	<img src="https://github.com/monsieurCanard/Cub3d/blob/main/img/launch_manda.png" 
-	alt="launch mandatory"/>
-</p>
+
+```bash
+./cub3D maps/mandatory.cub
+```
 
 Launch bonus part :
-<p align="center">
-	<img src="https://github.com/monsieurCanard/Cub3d/blob/main/img/launch_bonus.png"
-	alt="launch mandatory"/>
-</p>
+```bash
+./cub3D_bonus maps/bonus.cub
+```
 
 Game preview : 
 <p align="center">
